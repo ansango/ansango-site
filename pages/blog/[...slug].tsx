@@ -1,6 +1,7 @@
 import { Post } from "components/blog/post";
 import { getAllPosts, postConn, postQuery, useTina } from "lib/tina";
 import { composeSlug } from "lib/utils";
+import { Suspense } from "react";
 
 export default function NextPage(
   props: AsyncReturnType<typeof getStaticProps>["props"]
@@ -12,13 +13,15 @@ export default function NextPage(
   });
 
   return (
-    <Post
-      {...{
-        body: data.post.body,
-        next: props.next,
-        prev: props.prev,
-      }}
-    />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Post
+        {...{
+          body: data.post?.body,
+          next: props.next,
+          prev: props.prev,
+        }}
+      />
+    </Suspense>
   );
 }
 

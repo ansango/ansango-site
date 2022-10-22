@@ -1,8 +1,12 @@
+import { PostQuery } from ".tina/__generated__/types";
 import { useEffect, useState } from "react";
-import { client } from "../../.tina/__generated__/client";
+import { client } from ".tina/__generated__/client";
 
 export const useAllPostsQuery = () => {
-  const [data, setPosts] = useState<{ loading: boolean; posts: any[] | null }>({
+  const [data, setPosts] = useState<{
+    loading: boolean;
+    posts: PostQuery["post"][] | null;
+  }>({
     loading: true,
     posts: null,
   });

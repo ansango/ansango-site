@@ -22,7 +22,7 @@ query postsLatestsQuery {
         }
         publishedAt
         _sys {
-          filename
+          relativePath
         }
       }
     }
