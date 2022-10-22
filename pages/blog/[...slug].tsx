@@ -1,6 +1,5 @@
-import { useTina } from "tinacms/dist/edit-state";
-import { client } from "../../.tina/__generated__/client";
-import { postConn, postQuery } from "../../lib/tina";
+import { postConn, postQuery, useTina } from "lib/tina";
+
 export default function NextPage(
   props: AsyncReturnType<typeof getStaticProps>["props"]
 ) {

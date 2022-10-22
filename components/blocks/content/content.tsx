@@ -1,5 +1,5 @@
 import { Components, TinaMarkdown } from "tinacms/dist/rich-text";
-import { type FC, type ReactNode } from "react";
+import { type FC } from "react";
 
 import {
   type BlockQuoteProps,

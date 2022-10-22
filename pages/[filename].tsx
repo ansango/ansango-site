@@ -1,6 +1,5 @@
-import { Blocks } from "../components/blocks-renderer";
-import { useTina } from "tinacms/dist/edit-state";
-import { client } from "../.tina/__generated__/client";
+import { Blocks } from "components/blocks/blocks-renderer";
+import { client, useTina } from "lib/tina";
 
 export default function NextPage(
   props: AsyncReturnType<typeof getStaticProps>["props"]

@@ -1,6 +1,6 @@
 import { tagOptions, categories } from "../constants";
 import { defineSchema, defineConfig, RouteMappingPlugin } from "tinacms";
-import { contentBlockSchema } from "../components/blocks/content";
+import { contentBlockSchema, postListSchema } from "../components/schemas";
 import { client } from "./__generated__/client";
 
 const branch =
@@ -107,7 +107,7 @@ const schema = defineSchema({
           ui: {
             visualSelector: true,
           },
-          templates: [contentBlockSchema],
+          templates: [contentBlockSchema, postListSchema],
         },
       ],
     },

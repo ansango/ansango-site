@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { client } from "../../.tina/__generated__/client";
 
 export const useAllPostsQuery = () => {
-  const [data, setPosts] = useState({
+  const [data, setPosts] = useState<{ loading: boolean; posts: any[] | null }>({
     loading: true,
     posts: null,
   });
