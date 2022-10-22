@@ -3,3 +3,9 @@ query contentQuery($relativePath: String!) {
     ...PageParts
   }
 }
+
+query postQuery($relativePath: String!) {
+  post(relativePath: $relativePath) {
+    ...PostParts
+  }
+}
