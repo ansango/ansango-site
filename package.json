@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tinacms/cli": "^0.61.25",
+    "daisyui": "^2.33.0",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -17,6 +18,9 @@
     "tinacms": "^0.69.19"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "@tailwindcss/typography": "^0.5.7",
     "@types/node": "18.11.3",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",

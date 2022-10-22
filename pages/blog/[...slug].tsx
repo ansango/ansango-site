@@ -1,4 +1,5 @@
 import { Post } from "components/blog/post";
+import { Layout } from "components/layout/layout";
 import { getAllPosts, postConn, postQuery, useTina } from "lib/tina";
 import { composeSlug } from "lib/utils";
 import { Suspense } from "react";
@@ -13,15 +14,19 @@ export default function NextPage(
   });
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Post
-        {...{
-          body: data.post?.body,
-          next: props.next,
-          prev: props.prev,
-        }}
-      />
-    </Suspense>
+    <Layout>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Post
+          {...{
+            title: data.post?.title,
+            summary: data.post?.summary,
+            body: data.post?.body,
+            next: props.next,
+            prev: props.prev,
+          }}
+        />
+      </Suspense>
+    </Layout>
   );
 }
 

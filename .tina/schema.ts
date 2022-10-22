@@ -1,8 +1,12 @@
 import { tagOptions, categories } from "../constants";
 import { defineSchema, defineConfig, RouteMappingPlugin } from "tinacms";
-import { contentBlockSchema, postListSchema } from "../components/schemas";
+import {
+  contentBlockSchema,
+  postListSchema,
+  heroBlockSchema,
+} from "../components/schemas";
 import { client } from "./__generated__/client";
-import { composeSlug, kebabCase, kebabParser } from "lib/utils";
+import { composeSlug, kebabCase } from "lib/utils";
 
 const branch =
   process.env.NEXT_PUBLIC_TINA_BRANCH ||
@@ -110,7 +114,7 @@ const schema = defineSchema({
           ui: {
             visualSelector: true,
           },
-          templates: [contentBlockSchema, postListSchema],
+          templates: [contentBlockSchema, postListSchema, heroBlockSchema],
         },
       ],
     },

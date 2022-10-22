@@ -20,6 +20,7 @@ export const components: Components<{
   DateTime,
   img,
   code_block: CodeBlock,
+  hr: () => <span className="divider"/>,
 };
 
 export const Content: FC<{

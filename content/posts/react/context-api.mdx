@@ -1,13 +1,10 @@
 ---
 title: Context API ⚛️
 summary: Cómo Context API puede sustituir a Redux
+category: react
 draft: false
-publishedAt: "2021-08-06T22:00:00.000Z"
+publishedAt: '2021-08-06T22:00:00.000Z'
 ---
-
-
-
-
 
 La API de Contexto nos permite manejar el estado de nuestra aplicación sin necesidad de utilizar `Redux`.
 
@@ -263,7 +260,7 @@ Este `NewsContext.Provider` actúa como wrapper para el contexto que acabamos de
 
 A conitnuación vamos a consumir los datos en los componentes hijo.
 
-- App:
+* App:
 
 ```javascript
 import NewsList from './components/NewsList'
@@ -285,7 +282,7 @@ const App = () => {
 
 Envolvemos nuestro componente App con el Estado.
 
-- NewsList:
+* NewsList:
 
 ```javascript
 import { useContext, useEffect } from 'react'
@@ -320,7 +317,7 @@ Utilizamos aquí el `useContext` que recibe un objeto (el valor devuelto por Rea
 
 ## Ejemplo final
 
-- UserContext:
+* UserContext:
 
 ```javascript
 import React from 'react'
@@ -401,7 +398,7 @@ const useUser = () => React.useContext(UserContext)
 export { UserProvider, useUser }
 ```
 
-- App
+* App
 
 ```javascript
 import React from 'react'
@@ -431,7 +428,7 @@ const App = () => {
 export default App
 ```
 
-- Header:
+* Header:
 
 ```javascript
 import React from 'react'
@@ -470,7 +467,7 @@ const UserBox = () => {
 export default Header
 ```
 
-- Footer:
+* Footer:
 
 ```javascript
 import React from 'react'
@@ -492,4 +489,4 @@ export default Footer
 
 ❤️ Espero que te haya gustado la entrada.
 
-Puedes continuar leyendo el siguiente capítulo sobre [React Router](/blog/react/router), volver al capítulo anterior de [Conceptos avanzados](/blog/react/conceptos-avanzados), o volver al [Índice](/blog/react/indice).
+Puedes continuar leyendo el siguiente capítulo sobre [React Router](/blog/react/router ""), volver al capítulo anterior de [Conceptos avanzados](/blog/react/conceptos-avanzados ""), o volver al [Índice](/blog/react/indice "").

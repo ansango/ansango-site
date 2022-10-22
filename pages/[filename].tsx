@@ -1,4 +1,5 @@
 import { Blocks } from "components/blocks/blocks-renderer";
+import { Layout } from "components/layout/layout";
 import { client, useTina } from "lib/tina";
 
 export default function NextPage(
@@ -9,7 +10,11 @@ export default function NextPage(
     variables: props.variables,
     data: props.data,
   });
-  return <Blocks {...data.page} />;
+  return (
+    <Layout>
+      <Blocks {...data.page} />
+    </Layout>
+  );
 }
 
 export const getStaticProps = async ({

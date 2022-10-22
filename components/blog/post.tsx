@@ -1,3 +1,4 @@
+import { Hero } from "components/blocks/hero";
 import { Container, Section } from "components/common";
 import { Markdown } from "lib/tina";
 import Link from "next/link";
@@ -41,21 +42,28 @@ const Pagination: FC<{
 };
 
 export type PostProps = {
-  title?: string;
-  summary?: string;
-  category?: string;
-  tags?: string[];
-  body?: any;
-  publishedAt?: string;
+  title?: string | null;
+  summary?: string | null;
+  category?: string | null;
+  tags?: string[] | null;
+  body?: any | null;
+  publishedAt?: string | null;
   prev: Pagination | null;
   next: Pagination | null;
 };
 
-export const Post: FC<PostProps> = ({ body, next, prev }) => {
+export const Post: FC<PostProps> = ({ body, next, prev, title, summary }) => {
   return (
     <article>
+      <Hero
+        data={{
+          headline: title,
+          text: summary,
+          type: "blogPost",
+        }}
+      />
       <Section>
-        <Container>
+        <Container className="prose">
           <Markdown content={body} />
         </Container>
       </Section>

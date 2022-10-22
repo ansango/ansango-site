@@ -7,7 +7,7 @@ export const Container: FC<{ children: ReactNode; className?: string }> = ({
 }) => {
   return (
     <div
-      className={`w-full max-w-7xl 2xl:max-w-[90rem] sm:px-6 md:px-12 lg:px-24 2xl:px-12 px-4 py-12 lg:py-24 mx-auto ${className}`}
+      className={`w-full max-w-5xl sm:px-6 md:px-12 lg:px-24 2xl:px-12 px-4 py-12 lg:py-24 mx-auto ${className}`}
       {...props}
     >
       {children}

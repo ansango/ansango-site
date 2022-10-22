@@ -1,11 +1,9 @@
 ---
 title: Conceptos avanzados ⚛️
-summary: Apuntes sobre Error Boundaries, Fragment y HOC
+summary: 'Apuntes sobre Error Boundaries, Fragment y HOC'
 draft: false
-publishedAt: "2021-08-05T22:00:00.000Z"
+publishedAt: '2021-08-05T22:00:00.000Z'
 ---
-
-
 
 ## Error boundaries
 
@@ -38,17 +36,14 @@ class ErrorBoundary extends React.Component {
     super(props)
     this.state = { hasError: false }
   }
-
   // usamos este método para el estado
   static getDerivedStateFromError(error) {
     return { hasError: true }
   }
-
   // usamos este método para logs
   componentDidCatch(error, errorInfo) {
     console.log(error, errorInfo)
   }
-
   render() {
     if (this.state.hasError) {
       return <h1>We are sorry, there was a fatal error</h1>
@@ -62,7 +57,7 @@ export default ErrorBoundary
 
 Un ejemplo más real, partiendo de códigos anteriores sería el siguiente:
 
-- Componente Bug
+* Componente Bug
 
 ```javascript
 const BugComponent = () => {
@@ -74,7 +69,7 @@ const BugComponent = () => {
 export default BugComponent
 ```
 
-- Error Boundary
+* Error Boundary
 
 ```javascript
 export default class ErrorCatcher extends React.Component {
@@ -82,11 +77,9 @@ export default class ErrorCatcher extends React.Component {
     super(props)
     this.state = { hasError: false }
   }
-
   static getDerivedStateFromError(error) {
     return { hasError: true }
   }
-
   componentDidCatch(error, errorInfo) {
     console.log(error.toString(), errorInfo.componentStack)
   }
@@ -100,7 +93,7 @@ export default class ErrorCatcher extends React.Component {
 }
 ```
 
-- App
+* App
 
 ```javascript
 const App = () => {
@@ -153,7 +146,7 @@ Son funciones que reciben un componente como parámetro y devuelven un component
 
 Están en desuso, pero a continuación vemos un ejemplo:
 
-- High order functional component
+* High order functional component
 
 ```javascript
 const withRedBox = (Component) => ({ ...props }) => (
@@ -161,7 +154,7 @@ const withRedBox = (Component) => ({ ...props }) => (
 )
 ```
 
-- High order class component
+* High order class component
 
 ```javascript
 const withRedBox = (Component) => {
@@ -177,7 +170,7 @@ Cada vez tienden a usarse menos por la aparición de los hooks.
 
 Ejemplo más real:
 
-- High Order Component
+* High Order Component
 
 ```javascript
 import React from 'react'
@@ -229,7 +222,7 @@ const Header = ({ title, onClick, isFemale = false, style = {} }) => {
 export default withRedBox(Header)
 ```
 
-- App
+* App
 
 ```javascript
 import Header from './components/Header'
@@ -254,4 +247,4 @@ export default App
 
 ❤️ Espero que te haya gustado la entrada.
 
-Puedes continuar leyendo el siguiente capítulo sobre [Context API](/blog/react/context-api), volver al capítulo anterior de [Hooks](/blog/react/hooks), o volver al [Índice](/blog/react/indice).
+Puedes continuar leyendo el siguiente capítulo sobre [Context API](/blog/react/context-api ""), volver al capítulo anterior de [Hooks](/blog/react/hooks ""), o volver al [Índice](/blog/react/indice "").
