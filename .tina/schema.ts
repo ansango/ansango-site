@@ -1,3 +1,4 @@
+import { tagOptions, categories } from "../constants";
 import { defineSchema, defineConfig, RouteMappingPlugin } from "tinacms";
 import { contentBlockSchema } from "../components/content";
 import { client } from "./__generated__/client";
@@ -36,7 +37,21 @@ const schema = defineSchema({
           type: "string",
           label: "Category",
           name: "category",
-          options: ["tech", "design", "business"],
+          options: categories,
+        },
+        {
+          name: "tags",
+          label: "Tags",
+          type: "object",
+          fields: [
+            {
+              type: "string",
+              label: "Options",
+              name: "options",
+              list: true,
+              options: tagOptions,
+            },
+          ],
         },
         {
           type: "rich-text",
@@ -64,6 +79,16 @@ const schema = defineSchema({
               ],
             },
           ],
+        },
+        {
+          type: "boolean",
+          label: "Draft",
+          name: "draft",
+        },
+        {
+          type: "datetime",
+          label: "Published Date",
+          name: "publishedAt",
         },
       ],
     },

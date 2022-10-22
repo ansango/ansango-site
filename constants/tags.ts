@@ -45,61 +45,11 @@ export const javascript = [
   "reduce",
 ];
 
-export const tagOptions = {
-  generic,
-  so,
-  db,
-  tools,
-  react,
-  javascript,
-};
-
-export const tagSchema = {
-  name: "tags",
-  label: "Tags",
-  type: "object",
-  fields: [
-    {
-      name: "generic",
-      label: "Generic",
-      type: "string",
-      list: true,
-      options: tagOptions.generic,
-    },
-    {
-      name: "so",
-      label: "SO",
-      type: "string",
-      list: true,
-      options: tagOptions.so,
-    },
-    {
-      name: "db",
-      label: "DB",
-      type: "string",
-      list: true,
-      options: tagOptions.db,
-    },
-    {
-      name: "tools",
-      label: "Tools",
-      type: "string",
-      list: true,
-      options: tagOptions.tools,
-    },
-    {
-      name: "react",
-      label: "React",
-      type: "string",
-      list: true,
-      options: tagOptions.react,
-    },
-    {
-      name: "javascript",
-      label: "Javascript",
-      type: "string",
-      list: true,
-      options: tagOptions.javascript,
-    },
-  ],
-};
+export const tagOptions = [
+  ...generic,
+  ...so,
+  ...db,
+  ...tools,
+  ...react,
+  ...javascript,
+];
