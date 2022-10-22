@@ -10,7 +10,6 @@ export default function NextPage(
     variables: props.variables,
     data: props.data,
   });
-
   return <Blocks {...data.page} />;
 }
 

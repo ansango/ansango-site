@@ -9,3 +9,19 @@ query postQuery($relativePath: String!) {
     ...PostParts
   }
 }
+
+query postsLatestsQuery {
+  postConnection(sort: "publishedAt", filter: { draft: { eq: false } }) {
+    edges {
+      node {
+        title
+        summary
+        id
+        publishedAt
+        _sys {
+          filename
+        }
+      }
+    }
+  }
+}
