@@ -16,7 +16,10 @@ query postsLatestsQuery {
       node {
         title
         summary
-        id
+        category
+        tags {
+          options
+        }
         publishedAt
         _sys {
           filename

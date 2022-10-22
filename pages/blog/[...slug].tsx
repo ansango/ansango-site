@@ -1,4 +1,6 @@
-import { postConn, postQuery, useTina } from "lib/tina";
+import { Post } from "components/blog/post";
+import { getAllPosts, postConn, postQuery, useTina } from "lib/tina";
+import { composeSlug } from "lib/utils";
 
 export default function NextPage(
   props: AsyncReturnType<typeof getStaticProps>["props"]
@@ -9,7 +11,15 @@ export default function NextPage(
     data: props.data,
   });
 
-  return <div>Hola</div>;
+  return (
+    <Post
+      {...{
+        body: data.post.body,
+        next: props.next,
+        prev: props.prev,
+      }}
+    />
+  );
 }
 
 export const getStaticProps = async ({
@@ -19,50 +29,40 @@ export const getStaticProps = async ({
     slug: string[];
   };
 }) => {
-  const { slug } = params;
-  const relativePath = slug[1] ? slug[1] : slug[0];
-  const postList = (await postConn()) || [];
-  const allPosts = postList.filter((post) => post?.draft !== true) as any;
-  const postIndex = allPosts
-    .sort((a: any, b: any) => (a?.publishedAt > b?.publishedAt ? -1 : 1))
-    .findIndex((post: any) => post._sys.filename === relativePath);
+  const relativePath = composeSlug(params.slug);
+
+  const allPosts = await getAllPosts();
+  const postIndex = allPosts.findIndex(
+    (post) =>
+      post && post._sys.relativePath.replace(".mdx", "") === relativePath
+  );
 
   const prevPost = allPosts[postIndex - 1] || null;
   const nextPost = allPosts[postIndex + 1] || null;
-  const prev =
-    (prevPost && {
-      title: prevPost.title,
-      slug: `/blog/${prevPost.category}/${prevPost._sys.filename}`,
-    }) ||
-    null;
-  const next =
-    (nextPost && {
-      title: nextPost.title,
-      slug: `/blog/${nextPost.category}/${nextPost._sys.filename}`,
-    }) ||
-    null;
   const tinaProps = await postQuery(`${relativePath}.mdx`);
+
   return {
     props: {
-      data: tinaProps.data,
-      query: tinaProps.query,
-      variables: tinaProps.variables,
-      prev,
-      next,
+      ...tinaProps,
+      prev: prevPost && {
+        title: prevPost.title,
+        slug: `/blog/${composeSlug(prevPost._sys.breadcrumbs)}`,
+      },
+      next: nextPost && {
+        title: nextPost.title,
+        slug: `/blog/${composeSlug(nextPost._sys.breadcrumbs)}`,
+      },
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  const postList = (await postConn()) || [];
+  const postList = await postConn();
   return {
     paths: postList.map((post) => {
-      const category = post?.category;
-      const filename = post?._sys.filename;
-      const slug = category ? [category, filename] : [filename];
       return {
         params: {
-          slug,
+          slug: post?._sys.breadcrumbs,
         },
       };
     }),

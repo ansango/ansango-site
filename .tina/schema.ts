@@ -2,6 +2,7 @@ import { tagOptions, categories } from "../constants";
 import { defineSchema, defineConfig, RouteMappingPlugin } from "tinacms";
 import { contentBlockSchema, postListSchema } from "../components/schemas";
 import { client } from "./__generated__/client";
+import { composeSlug, kebabCase, kebabParser } from "lib/utils";
 
 const branch =
   process.env.NEXT_PUBLIC_TINA_BRANCH ||
@@ -21,7 +22,27 @@ const schema = defineSchema({
       name: "post",
       path: "content/posts",
       format: "mdx",
-
+      ui: {
+        filename: {
+          readonly: true,
+          slugify({ category, title }) {
+            return `${kebabCase(category)}/${kebabCase(title)}`;
+          },
+        },
+        router({ document }) {
+          return `/blog/${composeSlug(document._sys.breadcrumbs)}`;
+        },
+      },
+      defaultItem: {
+        title: "New Post",
+        tags: {
+          options: "",
+        },
+        category: categories[0],
+        body: "",
+        draft: true,
+        publishedAt: new Date().toISOString(),
+      },
       fields: [
         {
           type: "string",
@@ -32,6 +53,9 @@ const schema = defineSchema({
           name: "summary",
           label: "Summary",
           type: "string",
+          ui: {
+            component: "textarea",
+          },
         },
         {
           type: "string",
@@ -58,27 +82,6 @@ const schema = defineSchema({
           label: "Blog Post Body",
           name: "body",
           isBody: true,
-          templates: [
-            {
-              name: "PageSection",
-              label: "Page Section",
-              fields: [
-                {
-                  type: "string",
-                  name: "heading",
-                  label: "Heading",
-                },
-                {
-                  type: "string",
-                  name: "content",
-                  label: "Content",
-                  ui: {
-                    component: "textarea",
-                  },
-                },
-              ],
-            },
-          ],
         },
         {
           type: "boolean",
