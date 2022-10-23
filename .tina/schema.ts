@@ -4,7 +4,8 @@ import {
   contentBlockSchema,
   postListSchema,
   heroBlockSchema,
-} from "../components/schemas";
+  postFeaturedSchema,
+} from "components/schemas";
 import { client } from "./__generated__/client";
 import { composeSlug, kebabCase } from "lib/utils";
 
@@ -120,7 +121,12 @@ const schema = defineSchema({
           ui: {
             visualSelector: true,
           },
-          templates: [heroBlockSchema, contentBlockSchema, postListSchema],
+          templates: [
+            heroBlockSchema,
+            contentBlockSchema,
+            postListSchema,
+            postFeaturedSchema,
+          ],
         },
       ],
     },

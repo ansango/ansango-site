@@ -31,7 +31,7 @@ export const NavBar = () => {
           <div className="navbar-start">
             {isMounted && asPath !== "/" && (
               <Link href="/">
-                <a className="link link-hover font-serif italic font-semibold text-lg hover:text-primary">
+                <a className="link link-hover font-serif italic font-semibold text-lg hover:text-primary transition-all duration-300">
                   ansango
                 </a>
               </Link>
@@ -40,7 +40,7 @@ export const NavBar = () => {
 
           <div className="navbar-end">
             <button
-              className="btn btn-ghost hover:btn-secondary btn-circle"
+              className="btn btn-ghost hover:btn-secondary btn-circle transition-all duration-300"
               onClick={() => setTheme(theme !== "cmyk" ? "cmyk" : "night")}
             >
               <svg

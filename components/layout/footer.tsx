@@ -52,7 +52,9 @@ export const Footer = () => {
             return (
               <li key={route.href}>
                 <Link href={route.href}>
-                  <a className="link link-hover">{route.label}</a>
+                  <a className="link link-hover hover:text-primary-focus transition-all duration-300">
+                    {route.label}
+                  </a>
                 </Link>
               </li>
             );
@@ -64,7 +66,7 @@ export const Footer = () => {
             return (
               <li key={route.href}>
                 <a
-                  className="link link-hover"
+                  className="link link-hover hover:text-primary-focus transition-all duration-300"
                   href={route.href}
                   target="_blank"
                   rel="noreferrer"
@@ -81,7 +83,7 @@ export const Footer = () => {
             return (
               <li key={route.href}>
                 <a
-                  className="link link-hover"
+                  className="link link-hover hover:text-primary-focus transition-all duration-300"
                   href={route.href}
                   target="_blank"
                   rel="noreferrer"

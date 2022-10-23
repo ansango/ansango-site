@@ -20,7 +20,7 @@ const Searcher = ({
         type="text"
         onChange={onSearch}
         placeholder={placeholder}
-        className="input w-full input-primary border-2"
+        className="input w-full input-primary border-2 transition-all"
       />
 
       <span className="absolute top-0 right-0 translate-y-2/4 -translate-x-3">
@@ -132,7 +132,7 @@ const Posts = ({
             href={`/blog/${_sys.relativePath.replace(".mdx", "")}`}
             passHref
           >
-            <a className="card bg-base-100 border-3 border-primary">
+            <a className="card bg-base-100 border-3 border-primary hover:border-accent transition-all duration-300">
               <div className="card-body p-4 w-full">
                 <h3 className="card-title">{title}</h3>
 
