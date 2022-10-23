@@ -9,3 +9,7 @@
 .code__block span {
   @apply no-underline !important;
 }
+
+h1 {
+  @apply text-primary;
+}

@@ -12,16 +12,17 @@ module.exports = {
         sans: ["Noto Sans", ...defaultTheme.fontFamily.sans],
         mono: ["Fira Code", ...defaultTheme.fontFamily.mono],
       },
+      borderWidth: { DEFAULT: "3px", 0: "0", 2: "2px", 3: "3px", 4: "4px" },
     },
   },
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/line-clamp"),
-    require("@tailwindcss/forms"),
+    // require("@tailwindcss/forms"),
 
     require("daisyui"),
   ],
   daisyui: {
-    themes: ["lofi"],
+    themes: ["cmyk", "night"],
   },
 };

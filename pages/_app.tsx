@@ -1,11 +1,14 @@
-import { AppProps } from "next/app.js";
+import { AppProps } from "next/app";
+import { ThemeProvider } from "next-themes";
 import Tina from ".tina/components/TinaDynamicProvider";
 import "styles/globals.css";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <Tina>
-      <Component {...pageProps} />
+      <ThemeProvider themes={["cmyk", "night"]} defaultTheme="cmyk">
+        <Component {...pageProps} />
+      </ThemeProvider>
     </Tina>
   );
 };

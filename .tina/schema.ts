@@ -45,6 +45,7 @@ const schema = defineSchema({
         category: categories[0],
         body: "",
         draft: true,
+        featured: false,
         publishedAt: new Date().toISOString(),
       },
       fields: [
@@ -89,6 +90,11 @@ const schema = defineSchema({
         },
         {
           type: "boolean",
+          label: "Featured",
+          name: "featured",
+        },
+        {
+          type: "boolean",
           label: "Draft",
           name: "draft",
         },
@@ -114,7 +120,7 @@ const schema = defineSchema({
           ui: {
             visualSelector: true,
           },
-          templates: [contentBlockSchema, postListSchema, heroBlockSchema],
+          templates: [heroBlockSchema, contentBlockSchema, postListSchema],
         },
       ],
     },

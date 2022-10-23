@@ -1,7 +1,9 @@
 import React from "react";
-import type { Page } from ".tina/__generated__/types";
+
 import { Content } from "components/blocks/content";
+import { Hero } from "components/blocks/hero";
 import { PostList } from "components/blog/post-list";
+import { Page } from ".tina/__generated__/types";
 
 export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
   return (
@@ -9,6 +11,16 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
       {props.blocks
         ? props.blocks.map((block, i) => {
             switch (block?.__typename) {
+              case "PageBlocksHero":
+                return (
+                  <div
+                    data-tinafield={`blocks.${i}`}
+                    key={i + block.__typename}
+                  >
+                     <Hero key={i} data={block} />
+                  </div>
+                );
+
               case "PageBlocksContent":
                 return (
                   <div
@@ -24,7 +36,7 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
                     data-tinafield={`blocks.${i}`}
                     key={i + block.__typename}
                   >
-                    <PostList />
+                    <PostList data={block} />
                   </div>
                 );
               default:

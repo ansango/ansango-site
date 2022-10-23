@@ -3,7 +3,7 @@ import { type FC } from "react";
 import { Template } from "tinacms/dist/admin/types";
 
 type HeroData = {
-  type?: "left" | "center" | string;
+  type?: "left" | "center" | string | any;
   tagline?: string | null;
   headline?: string | null;
   text?: string | null;
@@ -29,7 +29,7 @@ const renderHero = (
               )}
               {headline && (
                 <h1
-                  className={`mb-4 text-4xl font-bold leading-none tracking-tighter`}
+                  className={`mb-4 text-4xl font-bold leading-none tracking-tighter font-serif italic`}
                   data-tinafield={`${parentField}.headline`}
                 >
                   {headline}
@@ -78,11 +78,13 @@ const renderHero = (
       return (
         <Container>
           <div className="flex flex-col lg:flex-row-reverse lg:items-center mx-auto 5xl:max-w-7xl gap-10">
-            <div>
-              <img
-                src="https://www.anibalsantosgomez.com/avatar.jpeg"
-                className="rounded-full w-20 md:w-32 lg:w-36"
-              />
+            <div className="avatar">
+              <div className="w-24 md:w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <img
+                  src="https://www.anibalsantosgomez.com/avatar.jpeg"
+                  //   className="rounded-full w-20 md:w-32 lg:w-36"
+                />
+              </div>
             </div>
             <div className="flex flex-col items-start mb-16 text-left lg:flex-grow lg:w-1/2 lg:pr-24 md:mb-0">
               {tagline && (
@@ -95,7 +97,7 @@ const renderHero = (
               )}
               {headline && (
                 <h1
-                  className={`mb-4 text-4xl font-bold leading-none tracking-tighter md:text-5xl`}
+                  className={`mb-4 text-4xl font-bold leading-none tracking-wide md:text-5xl font-serif italic text-primary`}
                   data-tinafield={`${parentField}.headline`}
                 >
                   {headline}
@@ -129,7 +131,7 @@ const renderHero = (
               )}
               {headline && (
                 <h1
-                  className={`mb-4 text-4xl font-bold leading-none tracking-wide md:text-5xl font-serif`}
+                  className={`mb-4 text-4xl font-bold leading-none tracking-wide md:text-5xl font-serif italic text-primary`}
                   data-tinafield={`${parentField}.headline`}
                 >
                   {headline}
@@ -155,9 +157,12 @@ const renderHero = (
 };
 
 export const Hero: FC<{
-  data: HeroData;
+  data?: HeroData;
   parentField?: string;
 }> = ({ data, parentField = "" }) => {
+  if (!data) {
+    return null;
+  }
   return <Section>{renderHero(data, parentField)}</Section>;
 };
 

@@ -28,3 +28,25 @@ query postsLatestsQuery {
     }
   }
 }
+
+query postsFeaturedQuery {
+  postConnection(
+    sort: "publishedAt"
+    filter: { draft: { eq: false }, featured: { eq: true } }
+  ) {
+    edges {
+      node {
+        title
+        summary
+        category
+        tags {
+          options
+        }
+        publishedAt
+        _sys {
+          relativePath
+        }
+      }
+    }
+  }
+}
