@@ -1,79 +1,11 @@
-import { Container, Section } from "components/common";
+import { tagsSearcher } from "constants/tags";
 import { useAllPostsQuery } from "lib/hooks/queries";
 import Link from "next/link";
-import { Suspense, useState } from "react";
-import { Template } from "tinacms/dist/admin/types";
+import { useState } from "react";
+import { Pagination } from "./pagination";
+import { Searcher } from "./searcher";
 
-const Searcher = ({
-  onSearch,
-  placeholder,
-  parentField = "",
-}: {
-  onSearch: (e: any) => void;
-  placeholder: string;
-  parentField: string;
-}) => {
-  return (
-    <div className="relative max-w-lg" data-tinafield={`${parentField}.search`}>
-      <input
-        aria-label="Search"
-        type="text"
-        onChange={onSearch}
-        placeholder={placeholder}
-        className="input w-full input-primary border-2 transition-all"
-      />
-
-      <span className="absolute top-0 right-0 translate-y-2/4 -translate-x-3">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-6 h-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-          />
-        </svg>
-      </span>
-    </div>
-  );
-};
-
-const Pagination = ({
-  pageNumbers = [],
-  onPagination,
-  currentPage = 0,
-}: {
-  pageNumbers: number[];
-  onPagination: (page: any) => void;
-  currentPage: number;
-}) => {
-  return (
-    <div className="flex justify-center py-5 space-x-5 btn-group">
-      {pageNumbers.length !== 1 &&
-        pageNumbers.map((number) => {
-          const cn = currentPage === number ? `btn btn-active` : `btn`;
-
-          return (
-            <button
-              className={cn}
-              key={number}
-              onClick={onPagination}
-              id={number.toString()}
-            >
-              {number}
-            </button>
-          );
-        })}
-    </div>
-  );
-};
-
-const Posts = ({
+export const Posts = ({
   data,
   parentField = "",
 }: {
@@ -121,10 +53,12 @@ const Posts = ({
       {search?.active && (
         <Searcher
           onSearch={(e: any) => setSearchValue(e.target.value)}
+          onReset={() => setCurrentPage(1)}
           placeholder={configSearch.placeholder}
           parentField={parentField}
         />
       )}
+
       <ul className="columns-1 sm:columns-2 md:columns-3 space-y-5">
         {currentPosts.map(({ _sys, title, category, tags, summary }, i) => (
           <Link
@@ -166,55 +100,4 @@ const Posts = ({
       )}
     </div>
   );
-};
-
-export const PostList = ({ data = {}, parentField = "" }) => {
-  return (
-    <Section>
-      <Container>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Posts data={data} />
-        </Suspense>
-      </Container>
-    </Section>
-  );
-};
-
-export const postListSchema: Template = {
-  label: "Post List",
-  name: "postList",
-  fields: [
-    {
-      type: "string",
-      name: "title",
-      label: "Title",
-    },
-    {
-      type: "string",
-      name: "noDataMessage",
-      label: "No data message",
-    },
-    {
-      name: "search",
-      label: "Search",
-      type: "object",
-      fields: [
-        {
-          name: "placeholder",
-          label: "Placeholder",
-          type: "string",
-        },
-        {
-          name: "active",
-          label: "Active",
-          type: "boolean",
-        },
-        {
-          name: "maxPosts",
-          label: "Max posts",
-          type: "number",
-        },
-      ],
-    },
-  ],
 };
