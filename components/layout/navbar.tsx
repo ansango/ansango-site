@@ -31,7 +31,7 @@ export const NavBar = () => {
           <div className="navbar-start">
             {isMounted && asPath !== "/" && (
               <Link href="/">
-                <a className="btn btn-link text-neutral normal-case font-serif italic font-semibold text-lg hover:text-primary transition-all duration-300">
+                <a className="link no-underline font-serif italic font-semibold text-lg hover:text-primary transition-colors duration-300">
                   ansango
                 </a>
               </Link>
