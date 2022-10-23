@@ -18,9 +18,13 @@ const Pagination: FC<{
       <div className="text-left group">
         {prev && (
           <>
-            <h4 className={`text-xs tracking-wide italic`}>Anterior</h4>
+            <h4 className={`tracking-wide italic`}>←</h4>
             <Link href={prev.slug} passHref>
-              <a className={`line-clamp-1 max-w-xs mr-auto`}>{prev.title}</a>
+              <a
+                className={`link no-underline hover:text-primary transition-all line-clamp-1 max-w-xs mr-auto`}
+              >
+                {prev.title}
+              </a>
             </Link>
           </>
         )}
@@ -29,10 +33,14 @@ const Pagination: FC<{
       <div className="text-right group">
         {next && (
           <>
-            <h4 className={`text-xs tracking-wide italic`}>Siguiente</h4>
+            <h4 className={`tracking-wide italic`}>→</h4>
 
             <Link href={`${next.slug}`} passHref>
-              <a className={`line-clamp-1 max-w-xs ml-auto`}>{next.title}</a>
+              <a
+                className={`link no-underline hover:text-primary transition-all line-clamp-1 max-w-xs ml-auto`}
+              >
+                {next.title}
+              </a>
             </Link>
           </>
         )}
@@ -63,7 +71,7 @@ export const Post: FC<PostProps> = ({ body, next, prev, title, summary }) => {
         }}
       />
       <Section>
-        <Container className="prose prose-h2:text-secondary">
+        <Container className="prose prose-h2:text-secondary prose-code:bg-accent">
           <Markdown content={body} />
         </Container>
       </Section>

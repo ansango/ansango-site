@@ -31,9 +31,7 @@ export const Posts = ({
         )
     ) || [];
 
-  const onPagination = (event: any) => {
-    setCurrentPage(Number(event.target.id));
-  };
+  const onPagination = (event: any) => setCurrentPage(Number(event.target.id));
 
   const indexOfLastPost = currentPage * configSearch.maxPosts;
   const indexOfFirstPost = indexOfLastPost - configSearch.maxPosts;
