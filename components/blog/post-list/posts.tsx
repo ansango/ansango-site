@@ -90,7 +90,7 @@ export const Posts = ({
                       <div className="md:flex justify-between">
                         <p className="text-lg font-medium leading-6">
                           <h3
-                            className={`card-title ${hoverTextGroup} transition-all duration-300`}
+                            className={`line-clamp-1 card-title ${hoverTextGroup} transition-all duration-300`}
                           >
                             {title}
                           </h3>
@@ -123,7 +123,7 @@ export const Posts = ({
                         </div>
                       </div>
                       <p
-                        className={`${hoverTextGroup} transition-all duration-300`}
+                        className={`line-clamp-2 ${hoverTextGroup} transition-all duration-300`}
                       >
                         {summary}
                       </p>
