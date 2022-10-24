@@ -50,14 +50,14 @@ export const Searcher = ({
       </div>
       <ul>
         <li
-          className="badge hover:bg-secondary-focus mr-1 badge-secondary cursor-pointer"
+          className="badge hover:bg-secondary-focus mr-1.5 mb-1.5 badge-secondary cursor-pointer"
           onClick={() => handleTag("")}
         >
           todas
         </li>
         {tagsSearcher.map((tag, i) => (
           <li
-            className="badge hover:bg-accent-focus mr-1 badge-accent cursor-pointer"
+            className="badge hover:bg-accent-focus mr-1.5 my-1.5 badge-accent cursor-pointer"
             key={`${tag}-${i}`}
             onClick={() => handleTag(tag)}
           >

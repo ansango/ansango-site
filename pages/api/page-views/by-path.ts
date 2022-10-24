@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { GADAO, queryReport } from "lib/google/client";
+
 type Data = any;
 
 const configQuery: GADAO = {
@@ -10,12 +11,14 @@ const configQuery: GADAO = {
       endDate: "today",
     },
   ],
+  dimensions: [
+    {
+      name: "pagePath",
+    },
+  ],
   metrics: [
     {
       name: "screenPageViews",
-    },
-    {
-      name: "activeUsers",
     },
   ],
 };
@@ -25,24 +28,19 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method === "GET") {
+    const path = req.body.path;
+
     try {
       const response = await queryReport(configQuery);
 
-      const analytics = response?.rows?.map(
-        (row) =>
-          row.metricValues &&
-          row.metricValues.map((metric, i) => {
-            const name =
-              response &&
-              response.metricHeaders &&
-              response.metricHeaders[i].name;
-            const value = metric.value;
-            return {
-              name,
-              value,
-            };
-          })
-      ).flat();
+      const analytics = response.rows?.map((row) => {
+        return {
+          path: row.dimensionValues && row.dimensionValues[0].value,
+          value:
+            row.metricValues &&
+            row.metricValues.map((metric, i) => metric.value)[0],
+        };
+      });
 
       res.status(200).json({ analytics });
     } catch (error) {

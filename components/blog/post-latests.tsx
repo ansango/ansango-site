@@ -1,5 +1,5 @@
 import { Container, Section } from "components/common";
-import { useFeaturedPostsQuery } from "lib/hooks/queries";
+import { useLatestsPostsQuery } from "lib/hooks/queries";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Template } from "tinacms/dist/admin/types";
@@ -11,10 +11,8 @@ const Posts = ({
   data?: any;
   parentField?: string;
 }) => {
-  const { posts } = useFeaturedPostsQuery({
-    init: data?.init || 0,
-    limit: data?.limit || 3,
-  });
+  const { init, limit } = data;
+  const { posts } = useLatestsPostsQuery({ init, limit });
 
   return (
     <ul className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
@@ -25,7 +23,7 @@ const Posts = ({
             href={`/blog/${_sys.relativePath.replace(".mdx", "")}`}
             passHref
           >
-            <a className="card bg-base-100 border border-secondary border-dashed h-full hover:border-accent-focus transition-all duration-300">
+            <a className="card bg-base-100 border-secondary border h-full hover:border-accent-focus transition-all duration-300">
               <div className="card-body p-4 w-full">
                 <h3 className="card-title">{title}</h3>
 
@@ -51,13 +49,11 @@ const Posts = ({
   );
 };
 
-export const PostFeaturedList = ({ data = {}, parentField = "" }) => {
+export const PostLatestsList = ({ data = {}, parentField = "" }) => {
   return (
     <Section>
       <Container className="space-y-10">
-        <h2 className="text-4xl font-bold font-serif">
-          destacadas
-        </h2>
+        <h2 className="text-4xl font-bold font-serif">últimas entradas</h2>
         <Suspense fallback={<div>Loading...</div>}>
           <Posts data={data} />
         </Suspense>
@@ -66,9 +62,9 @@ export const PostFeaturedList = ({ data = {}, parentField = "" }) => {
   );
 };
 
-export const postFeaturedSchema: Template = {
-  label: "Post Featured List",
-  name: "postFeaturedList",
+export const postLatestsSchema: Template = {
+  label: "Post Latests List",
+  name: "postLatestsList",
   fields: [
     {
       type: "string",

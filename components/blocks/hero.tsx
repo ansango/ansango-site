@@ -86,7 +86,7 @@ const renderHero = (
                 />
               </div>
             </div>
-            <div className="flex flex-col items-start mb-16 text-left lg:flex-grow lg:w-1/2 lg:pr-24 md:mb-0">
+            <div className="flex flex-col items-start mb-0 text-left lg:flex-grow lg:w-1/2 lg:pr-24">
               {tagline && (
                 <span
                   className={`mb-4 text-xs font-bold tracking-widest uppercase`}
