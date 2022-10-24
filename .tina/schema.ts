@@ -6,6 +6,7 @@ import {
   heroBlockSchema,
   postFeaturedSchema,
   postLatestsSchema,
+  postMostViewedSchema,
   statsSchema,
 } from "components/schemas";
 import { client } from "./__generated__/client";
@@ -129,6 +130,7 @@ const schema = defineSchema({
             postListSchema,
             postFeaturedSchema,
             postLatestsSchema,
+            postMostViewedSchema,
             statsSchema,
           ],
         },

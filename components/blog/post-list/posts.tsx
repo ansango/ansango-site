@@ -4,6 +4,7 @@ import { Pagination } from "./pagination";
 import { Searcher } from "./searcher";
 import { usePostMapper } from "./query";
 import { formatDate } from "lib/utils";
+import { useTheme } from "next-themes";
 export const Posts = ({
   data,
   parentField = "",
@@ -11,6 +12,13 @@ export const Posts = ({
   data?: any;
   parentField?: string;
 }) => {
+  const { theme } = useTheme();
+  const hoverTheme =
+    theme === "night" ? "hover:border-accent-focus" : "hover:border-secondary";
+  const hoverTextGroup =
+    theme === "night"
+      ? "group-hover:text-accent-focus"
+      : "group-hover:text-secondary";
   const { search } = data;
   const configSearch = {
     placeholder: search?.placeholder || "Search",
@@ -74,12 +82,16 @@ export const Posts = ({
                 key={`${title}-${i}`}
                 passHref
               >
-                <a className="group space-y-1 card bg-base-100 border-3 border-dashed border-primary hover:border-secondary transition-all duration-300">
+                <a
+                  className={`group space-y-1 card bg-base-100 border-3 border-dashed border-primary ${hoverTheme} transition-all duration-300`}
+                >
                   <li className="sm:flex lg:items-end card-body p-4">
                     <div className="w-full space-y-2">
                       <div className="md:flex justify-between">
                         <p className="text-lg font-medium leading-6">
-                          <h3 className="card-title group-hover:text-secondary transition-all duration-300">
+                          <h3
+                            className={`card-title ${hoverTextGroup} transition-all duration-300`}
+                          >
                             {title}
                           </h3>
                         </p>
@@ -110,7 +122,9 @@ export const Posts = ({
                           </span>
                         </div>
                       </div>
-                      <p className="group-hover:text-secondary transition-all duration-300">
+                      <p
+                        className={`${hoverTextGroup} transition-all duration-300`}
+                      >
                         {summary}
                       </p>
 

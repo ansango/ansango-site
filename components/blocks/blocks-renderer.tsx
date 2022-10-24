@@ -7,6 +7,7 @@ import { Page } from ".tina/__generated__/types";
 import { PostFeaturedList } from "components/blog/post-featured";
 import { Stats } from "./stats";
 import { PostLatestsList } from "components/blog/post-latests";
+import { PostMostViewedList } from "components/blog/post-most-viewed";
 
 export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
   return (
@@ -58,6 +59,15 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
                     key={i + block.__typename}
                   >
                     <PostLatestsList data={block} />
+                  </div>
+                );
+              case "PageBlocksPostMostViewedList":
+                return (
+                  <div
+                    data-tinafield={`blocks.${i}`}
+                    key={i + block.__typename}
+                  >
+                    <PostMostViewedList data={block} />
                   </div>
                 );
               case "PageBlocksStats":

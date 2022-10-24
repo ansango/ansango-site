@@ -1,5 +1,6 @@
 import { Container, Section } from "components/common";
 import { useLatestsPostsQuery } from "lib/hooks/queries";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Template } from "tinacms/dist/admin/types";
@@ -13,7 +14,9 @@ const Posts = ({
 }) => {
   const { init, limit } = data;
   const { posts } = useLatestsPostsQuery({ init, limit });
-
+  const { theme } = useTheme();
+  const hoverTheme =
+    theme === "night" ? "hover:border-accent-focus" : "hover:border-primary";
   return (
     <ul className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
       {posts &&
@@ -23,11 +26,12 @@ const Posts = ({
             href={`/blog/${_sys.relativePath.replace(".mdx", "")}`}
             passHref
           >
-            <a className="card bg-base-100 border-secondary border h-full hover:border-accent-focus transition-all duration-300">
-              <div className="card-body p-4 w-full">
-                <h3 className="card-title">{title}</h3>
-
-                <p>{summary}</p>
+            <a
+              className={`h-40 card bg-base-100 border-secondary border border-dashed ${hoverTheme} transition-all duration-300`}
+            >
+              <div className="card-body p-4 w-full h-full">
+                <h3 className="card-title line-clamp-1">{title}</h3>
+                <p className="line-clamp-2">{summary}</p>
                 <div className="card-actions justify-end">
                   <div className="badge badge-primary badge-sm">{category}</div>
                   {tags?.options
