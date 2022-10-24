@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ["Noto Serif", ...defaultTheme.fontFamily.serif],
+        serif: ["Permanent Marker", ...defaultTheme.fontFamily.serif],
         sans: ["Noto Sans", ...defaultTheme.fontFamily.sans],
         mono: ["Fira Code", ...defaultTheme.fontFamily.mono],
       },

@@ -71,7 +71,7 @@ export const Post: FC<PostProps> = ({ body, next, prev, title, summary }) => {
         }}
       />
       <Section>
-        <Container className="prose prose-h2:text-secondary prose-code:bg-accent">
+        <Container className="prose prose-h2:text-secondary prose-code:bg-accent prose-code:text-accent-content">
           <Markdown content={body} />
         </Container>
       </Section>

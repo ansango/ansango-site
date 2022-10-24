@@ -97,7 +97,7 @@ const renderHero = (
               )}
               {headline && (
                 <h1
-                  className={`mb-4 text-4xl font-bold leading-none tracking-wide md:text-5xl font-serif italic text-primary`}
+                  className={`mb-4 text-4xl font-bold leading-none tracking-wide md:text-8xl font-serif text-primary`}
                   data-tinafield={`${parentField}.headline`}
                 >
                   {headline}
@@ -120,7 +120,7 @@ const renderHero = (
       return (
         <Container>
           <div className="flex flex-wrap items-center mx-auto 5xl:max-w-7xl">
-            <div className="flex flex-col items-start text-left lg:flex-grow lg:w-1/2 lg:pr-24">
+            <div className="flex flex-col items-start text-left lg:flex-grow">
               {tagline && (
                 <span
                   className={`mb-8 text-xs font-bold tracking-widest uppercase`}
@@ -131,7 +131,7 @@ const renderHero = (
               )}
               {headline && (
                 <h1
-                  className={`mb-4 text-4xl font-bold leading-none tracking-wide md:text-5xl font-serif italic text-primary`}
+                  className={`mb-4 text-4xl font-bold leading-none tracking-wide md:text-6xl lg:text-7xl font-serif text-primary`}
                   data-tinafield={`${parentField}.headline`}
                 >
                   {headline}
