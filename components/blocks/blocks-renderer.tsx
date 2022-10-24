@@ -5,6 +5,7 @@ import { Hero } from "components/blocks/hero";
 import { PostList } from "components/blog/post-list";
 import { Page } from ".tina/__generated__/types";
 import { PostFeaturedList } from "components/blog/post-featured";
+import { Stats } from "./stats";
 
 export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
   return (
@@ -47,6 +48,15 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
                     key={i + block.__typename}
                   >
                     <PostFeaturedList data={block} />
+                  </div>
+                );
+              case "PageBlocksStats":
+                return (
+                  <div
+                    data-tinafield={`blocks.${i}`}
+                    key={i + block.__typename}
+                  >
+                    <Stats />
                   </div>
                 );
               default:
