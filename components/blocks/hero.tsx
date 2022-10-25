@@ -175,7 +175,7 @@ const renderHero = (
               </div>
             </div>
             <div className="hidden divider md:flex md:divider-horizontal"></div>{" "}
-            <div className="grid flex-grow card rounded-box place-items-center md:w-6/12">
+            <div className="grid flex-grow card rounded-box place-items-start md:w-6/12">
               <p>{text}</p>
             </div>
           </div>
