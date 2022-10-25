@@ -1,8 +1,9 @@
 import { Post } from "components/blog/post";
 import { Layout } from "components/layout/layout";
 import { getAllPosts, postConn, postQuery, useTina } from "lib/tina";
-import { composeSlug } from "lib/utils";
+import { composeSlug, getTextInTinaMarkDownContent } from "lib/utils";
 import { Suspense } from "react";
+import readingTime from "reading-time";
 
 export default function NextPage(
   props: AsyncReturnType<typeof getStaticProps>["props"]
@@ -49,6 +50,8 @@ export const getStaticProps = async ({
   const nextPost = allPosts[postIndex + 1] || null;
   const tinaProps = await postQuery(`${relativePath}.mdx`);
 
+  const time = getTextInTinaMarkDownContent(tinaProps.data.post.body);
+  console.log(time);
   return {
     props: {
       ...tinaProps,

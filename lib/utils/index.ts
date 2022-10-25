@@ -1,3 +1,4 @@
+import readingTime from "reading-time";
 export const kebabCase = (str: any) =>
   // remove title case
   str &&
@@ -59,4 +60,38 @@ export const formatDate = (
   const now = new Date(date).toLocaleDateString(locale, _options);
 
   return now;
+};
+
+export const getTextInTinaMarkDownContent = (content: any | any[]) => {
+  const nodes = Array.isArray(content) ? content : content.children;
+  const mapper = nodes.map((child: any) => {
+    if (
+      child.type === "h1" ||
+      child.type === "h2" ||
+      child.type === "h3" ||
+      child.type === "h4" ||
+      child.type === "h5" ||
+      child.type === "h6" ||
+      child.type === "p" ||
+      child.type === "blockquote" ||
+      child.type === "a" ||
+      child.type === "strong" ||
+      child.type === "em" ||
+      child.type === "code"
+    ) {
+      return child.children[0].text;
+    } else if (child.type === "ul" || child.type === "ol") {
+      return child.children
+        .flatMap((item: any) => item.children.map((item: any) => item))
+        .flatMap((item: any) => item.children)
+        .map((item: any) => item.text)
+        .join(" ");
+    } else if (child.type === "code_block") {
+      return child.value;
+    } else {
+      return "";
+    }
+  });
+
+  return readingTime(mapper.join(" "));
 };
