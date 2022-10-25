@@ -83,10 +83,10 @@ export const Posts = ({
                 passHref
               >
                 <a
-                  className={`group space-y-1 card bg-base-100 border-3 border-dashed border-primary ${hoverTheme} transition-all duration-300`}
+                  className={`h-36 group space-y-1 card bg-base-100 border-3 border-dashed border-primary ${hoverTheme} transition-all duration-300`}
                 >
-                  <li className="sm:flex lg:items-end card-body p-4">
-                    <div className="w-full space-y-2">
+                  <li className="sm:flex lg:items-end card-body p-4 w-full h-full justify-between">
+                    <div className="w-full space-y-2 h-full">
                       <div className="md:flex justify-between">
                         <p className="text-lg font-medium leading-6">
                           <h3
@@ -123,26 +123,25 @@ export const Posts = ({
                         </div>
                       </div>
                       <p
-                        className={`line-clamp-2 ${hoverTextGroup} transition-all duration-300`}
+                        className={`line-clamp-1 md:line-clamp-2 ${hoverTextGroup} transition-all duration-300`}
                       >
                         {summary}
                       </p>
-
-                      <div className="">
-                        <div className="badge badge-secondary badge-sm mr-1.5">
-                          {category}
-                        </div>
-                        {tags?.options
-                          ?.filter((tag: string, i: number) => tag !== category)
-                          .map((tag: string, i: number) => (
-                            <div
-                              key={`tag-${i}`}
-                              className="badge badge-outline badge-sm mr-1.5"
-                            >
-                              {tag}
-                            </div>
-                          ))}
+                    </div>
+                    <div className="">
+                      <div className="badge badge-secondary badge-sm mr-1.5">
+                        {category}
                       </div>
+                      {tags?.options
+                        ?.filter((tag: string, i: number) => tag !== category)
+                        .map((tag: string, i: number) => (
+                          <div
+                            key={`tag-${i}`}
+                            className="badge badge-outline badge-sm mr-1.5"
+                          >
+                            {tag}
+                          </div>
+                        ))}
                     </div>
                   </li>
                 </a>
