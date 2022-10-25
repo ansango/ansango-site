@@ -1,5 +1,7 @@
 import { Container, Section } from "components/common";
+import { formatDate } from "lib/utils";
 import { type FC } from "react";
+import { ReadTimeResults } from "reading-time";
 import { Template } from "tinacms/dist/admin/types";
 
 type HeroData = {
@@ -7,10 +9,23 @@ type HeroData = {
   tagline?: string | null;
   headline?: string | null;
   text?: string | null;
+  category?: string | null;
+  tags?: (string[] | null)[] | null;
+  publishedAt?: string | null;
+  readingTime: ReadTimeResults["text"];
 };
 
 const renderHero = (
-  { type, headline, tagline, text }: HeroData,
+  {
+    type,
+    headline,
+    tagline,
+    text,
+    readingTime,
+    publishedAt,
+    category,
+    tags,
+  }: HeroData,
   parentField: string
 ) => {
   switch (type) {
@@ -118,7 +133,7 @@ const renderHero = (
     }
     case "blogPost": {
       return (
-        <Container>
+        <Container className="space-y-20 pb-0 md:pb-0 lg:pb-0">
           <div className="flex flex-wrap items-center mx-auto 5xl:max-w-7xl">
             <div className="flex flex-col items-start text-left lg:flex-grow">
               {tagline && (
@@ -137,14 +152,31 @@ const renderHero = (
                   {headline}
                 </h1>
               )}
-              {text && (
-                <p
-                  className={`mb-8 text-base leading-relaxed text-left max-w-4xl`}
-                  data-tinafield={`${parentField}.text`}
-                >
-                  {text}
-                </p>
-              )}
+            </div>
+          </div>
+          <div className="flex flex-col w-full md:flex-row-reverse space-y-5 md:space-y-0">
+            <div className="grid flex-grow card rounded-box place-items-start">
+              <div className="">
+                <p>{publishedAt && formatDate(publishedAt)}</p>
+                <p>{readingTime}</p>
+                <div className="badge badge-accent badge-sm mr-1.5 mb-1.5">
+                  {category}
+                </div>
+                {tags
+                  ?.filter((tag, i) => tag !== category)
+                  .map((tag, i) => (
+                    <div
+                      key={`tag-${i}`}
+                      className="badge badge-outline badge-sm  mr-1.5 mb-1.5"
+                    >
+                      {tag}
+                    </div>
+                  ))}
+              </div>
+            </div>
+            <div className="hidden divider md:flex md:divider-horizontal"></div>{" "}
+            <div className="grid flex-grow card rounded-box place-items-center md:w-6/12">
+              <p>{text}</p>
             </div>
           </div>
         </Container>

@@ -17,6 +17,7 @@ export default function NextPage(
   return (
     <Layout>
       <Suspense fallback={<div>Loading...</div>}>
+        {/* @ts-ignore */}
         <Post
           {...{
             title: data.post?.title,
@@ -26,6 +27,8 @@ export default function NextPage(
             prev: props.prev,
             readingTime: props.readingTime,
             publishedAt: data.post?.publishedAt,
+            category: data.post?.category,
+            tags: data.post?.tags?.options,
           }}
         />
       </Suspense>

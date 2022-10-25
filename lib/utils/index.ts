@@ -47,8 +47,8 @@ export const fetcher = async (
 };
 
 export const formatDate = (
-  date = new Date(),
-  locale = "es-ES",
+  date: Date | string = new Date(),
+  locale: Intl.LocalesArgument = "es-ES",
   options?: Intl.DateTimeFormatOptions
 ) => {
   const defaultOptions: Intl.DateTimeFormatOptions = {

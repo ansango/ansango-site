@@ -53,12 +53,13 @@ const Pagination: FC<{
 
 export type PostProps = {
   title?: string | null;
+
+  body?: any | null;
   summary?: string | null;
   category?: string | null;
-  tags?: string[] | null;
-  body?: any | null;
-  publishedAt?: Date | null;
-  readingTime?: ReadTimeResults["text"];
+  tags?: (string[] | null)[] | null;
+  publishedAt?: string | null;
+  readingTime: ReadTimeResults["text"];
   prev: Pagination | null;
   next: Pagination | null;
 };
@@ -81,11 +82,13 @@ export const Post: FC<PostProps> = ({
           headline: title,
           text: summary,
           type: "blogPost",
+          readingTime,
+          publishedAt,
+          category,
+          tags,
         }}
       />
-      <p className="text-center text-sm text-secondary">
-        {publishedAt && formatDate(publishedAt)} - {readingTime}
-      </p>
+
       <Section>
         <Container className="prose prose-h2:text-secondary prose-code:bg-accent prose-code:text-accent-content">
           <Markdown content={body} />
