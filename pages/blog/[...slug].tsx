@@ -1,7 +1,7 @@
 import { Post } from "components/blog/post";
 import { Layout } from "components/layout/layout";
 import { getAllPosts, postConn, postQuery, useTina } from "lib/tina";
-import { composeSlug, getTextInTinaMarkDownContent } from "lib/utils";
+import { composeSlug, getReadingTime } from "lib/utils";
 import { Suspense } from "react";
 import readingTime from "reading-time";
 
@@ -24,6 +24,8 @@ export default function NextPage(
             body: data.post?.body,
             next: props.next,
             prev: props.prev,
+            readingTime: props.readingTime,
+            publishedAt: data.post?.publishedAt,
           }}
         />
       </Suspense>
@@ -49,12 +51,12 @@ export const getStaticProps = async ({
   const prevPost = allPosts[postIndex - 1] || null;
   const nextPost = allPosts[postIndex + 1] || null;
   const tinaProps = await postQuery(`${relativePath}.mdx`);
+  const readingTime = getReadingTime(tinaProps.data.post.body);
 
-  const time = getTextInTinaMarkDownContent(tinaProps.data.post.body);
-  console.log(time);
   return {
     props: {
       ...tinaProps,
+      readingTime,
       prev: prevPost && {
         title: prevPost.title,
         slug: `/blog/${composeSlug(prevPost._sys.breadcrumbs)}`,

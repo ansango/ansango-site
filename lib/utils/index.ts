@@ -62,7 +62,7 @@ export const formatDate = (
   return now;
 };
 
-export const getTextInTinaMarkDownContent = (content: any | any[]) => {
+export const getReadingTime = (content: any | any[]) => {
   const nodes = Array.isArray(content) ? content : content.children;
   const mapper = nodes.map((child: any) => {
     if (
@@ -92,6 +92,5 @@ export const getTextInTinaMarkDownContent = (content: any | any[]) => {
       return "";
     }
   });
-
-  return readingTime(mapper.join(" "));
+  return readingTime(mapper.join(" ")).text.replace("read", "");
 };

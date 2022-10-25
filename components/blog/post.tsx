@@ -1,8 +1,10 @@
 import { Hero } from "components/blocks/hero";
 import { Container, Section } from "components/common";
 import { Markdown } from "lib/tina";
+import { formatDate } from "lib/utils";
 import Link from "next/link";
 import { FC } from "react";
+import { ReadTimeResults } from "reading-time";
 
 type Pagination = {
   title: string | null | undefined;
@@ -55,12 +57,23 @@ export type PostProps = {
   category?: string | null;
   tags?: string[] | null;
   body?: any | null;
-  publishedAt?: string | null;
+  publishedAt?: Date | null;
+  readingTime?: ReadTimeResults["text"];
   prev: Pagination | null;
   next: Pagination | null;
 };
 
-export const Post: FC<PostProps> = ({ body, next, prev, title, summary }) => {
+export const Post: FC<PostProps> = ({
+  body,
+  next,
+  prev,
+  title,
+  summary,
+  readingTime,
+  publishedAt,
+  category,
+  tags,
+}) => {
   return (
     <article>
       <Hero
@@ -70,6 +83,9 @@ export const Post: FC<PostProps> = ({ body, next, prev, title, summary }) => {
           type: "blogPost",
         }}
       />
+      <p className="text-center text-sm text-secondary">
+        {publishedAt && formatDate(publishedAt)} - {readingTime}
+      </p>
       <Section>
         <Container className="prose prose-h2:text-secondary prose-code:bg-accent prose-code:text-accent-content">
           <Markdown content={body} />
