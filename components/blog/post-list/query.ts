@@ -4,18 +4,19 @@ import useSWR from "swr";
 import { Post } from "../common/post-lists";
 
 export const usePostMapper = () => {
-  const { posts } = useAllPostsQuery();
+  const { data: dataFiles } = useSWR("/api/files", fetcher);
   const { data: dataFetcher } = useSWR("/api/page-views/by-path", fetcher);
 
-  const postMapper = posts?.map((post: any) => {
-    const relativePath = post._sys.relativePath.replace(".mdx", "");
-    const analytics = dataFetcher?.analytics?.find(
-      (item: any) => item.path === relativePath
-    );
-    return {
-      ...post,
-      views: analytics?.views || 0,
-    };
-  }) as Post[];
+  const postMapper =
+    dataFiles?.map((post: any) => {
+      const relativePath = post.slug;
+      const analytics = dataFetcher?.analytics?.find(
+        (item: any) => item.path === relativePath
+      );
+      return {
+        ...post,
+        views: analytics?.views || 0,
+      };
+    }) || ([] as Post[]);
   return postMapper;
 };

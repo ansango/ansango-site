@@ -2,6 +2,7 @@ import { PostQuery } from ".tina/__generated__/types";
 import { useEffect, useState } from "react";
 import { client } from ".tina/__generated__/client";
 
+
 export const useAllPostsQuery = (init?: number, limit?: number) => {
   const [data, setPosts] = useState<{
     loading: boolean;

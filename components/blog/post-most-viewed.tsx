@@ -9,6 +9,7 @@ export const PostMostViewedList = ({ data }: { data: any }) => {
   const posts = usePostMapper()
     ?.sort((a: any, b: any) => b.views - a.views)
     .slice(data.init || 0, data.limit || 4);
+
   return (
     <Section>
       <Container className="space-y-10">

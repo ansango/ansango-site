@@ -4,12 +4,13 @@ import { Suspense } from "react";
 import { Template } from "tinacms/dist/admin/types";
 import { PostList } from "./common/post-lists";
 import { SubTitlePostList } from "./common/subtitle";
+import { usePostMapper } from "./post-list/query";
 
 export const PostFeaturedList = ({ data }: { data: any }) => {
-  const { posts } = useFeaturedPostsQuery({
-    init: data?.init || 0,
-    limit: data?.limit || 3,
-  });
+  const posts = usePostMapper()
+    .filter((post: any) => post.featured)
+    .slice(data?.init || 0, data?.limit || 3);
+
   return (
     <Section>
       <Container className="space-y-10">

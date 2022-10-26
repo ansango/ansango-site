@@ -81,6 +81,7 @@ export const Posts = ({
                 summary,
                 publishedAt,
                 views,
+                slug,
               }: {
                 _sys: any;
                 title: string;
@@ -89,14 +90,11 @@ export const Posts = ({
                 summary: string;
                 publishedAt: string;
                 views: number;
+                slug: string;
               },
               i: number
             ) => (
-              <Link
-                href={`/blog/${_sys.relativePath.replace(".mdx", "")}`}
-                key={`${title}-${i}`}
-                passHref
-              >
+              <Link href={`/blog/${slug}`} key={`${title}-${i}`} passHref>
                 <a
                   className={`h-48 md:h-40 group space-y-1 card bg-base-100 border-3 border-dashed border-primary ${hoverTheme} transition-all duration-300`}
                 >

@@ -6,10 +6,11 @@ import { useAllPostsQuery } from "lib/hooks/queries";
 import { IconStat } from "./icon";
 
 export const Stats = () => {
-  const { data, error } = useSWR("/api/page-views/basic", fetcher);
+  const { data } = useSWR("/api/page-views/basic", fetcher);
+  const { data: dataFiles } = useSWR("/api/files", fetcher);
+  const files = dataFiles?.length;
   const analytics = data?.analytics;
-  const { posts } = useAllPostsQuery();
-  const postsCount = posts?.length || 0;
+
   const screenPageViews = analytics
     ?.filter((item: any) => item?.name === "screenPageViews")
     .map((item: any) => item?.value)[0];
@@ -24,7 +25,7 @@ export const Stats = () => {
             <IconStat kind="posts" />
           </div>
           <div className="stat-title">Entradas</div>
-          <div className="stat-value text-primary">{postsCount}</div>
+          <div className="stat-value text-primary">{files}</div>
           <div className="stat-desc">Todo lo que he escrito</div>
         </div>
 
