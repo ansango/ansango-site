@@ -154,7 +154,7 @@ const renderHero = (
             </div>
           </div>
           <div className="flex flex-col w-full md:flex-row-reverse space-y-5 md:space-y-0">
-            <div className="grid flex-grow card rounded-none place-items-start">
+            <div className="grid flex-grow card rounded-none place-items-start max-w-md md:max-w-xs">
               <div className="text-sm space-y-2">
                 <p className="flex items-center space-x-2">
                   <span className="flex items-center prose">

@@ -1,11 +1,21 @@
 ---
 title: Configurar Ubuntu 20.04 / 21.04
 summary: Instalación de utilidades para desarrollo en Ubuntu 20.04 y 21.04
+category: linux
+tags:
+  options:
+    - linux
+    - ubuntu
+    - terminal
+    - bash
+    - touchpad
+    - mongodb
+    - git
+    - vscode
+    - firefox
 draft: false
-publishedAt: "2021-07-17T22:00:00.000Z"
+publishedAt: '2021-07-17T22:00:00.000Z'
 ---
-
-
 
 Normalmente suelo formatear mi ordenador al menos dos veces al año, es una práctica que me gusta hacer para vaciarlo de basura o instalarme de cero alguna versión de Ubuntu nueva. He ido guardando todos los pasos que hago para dejar un Ubuntu listo para empezar a programar.
 
@@ -128,7 +138,7 @@ nvm install --lts # Para instalar la última versión de larga duración
 
 ## Instalación de MongoDB
 
-> Para instalar MongoDB puedes seguir esta [guía](/blog/linux/instalar-mongo)
+> Para instalar MongoDB puedes seguir esta [guía](/blog/linux/instalar-mongo "")
 
 ## Dashboard
 
@@ -156,7 +166,7 @@ sudo apt -y install gnome-tweaks
 sudo apt -y install wmctrl
 ```
 
-Necesitamos instalar el plugin de `Custom Hot Corners`, para ello podemos acceder [aquí](https://extensions.gnome.org/extension/1362/custom-hot-corners/) en `Firefox` y activarlo en el botón de switch, o si accedemos desde `Chrome` deberemos instalar un [complemento](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep) para el navegador.
+Necesitamos instalar el plugin de `Custom Hot Corners`, para ello podemos acceder [aquí](https://extensions.gnome.org/extension/1362/custom-hot-corners/ "") en `Firefox` y activarlo en el botón de switch, o si accedemos desde `Chrome` deberemos instalar un [complemento](https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep "") para el navegador.
 
 Accedemos a Gnome Tweaks, y en `extensions`, activamos `Custom hot corners`. En el botón de configuración podremos seleccionar las acciones que queremos que se lancen al poner el puntero en cada esquina de nuestra pantalla.
 
@@ -184,7 +194,7 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 ### Firefox Developer Edition
 
-> Para instalar Firefox Developer Edition puedes seguir esta [guía](/blog/linux/firefox-developer)
+> Para instalar Firefox Developer Edition puedes seguir esta [guía](/blog/linux/firefox-developer "")
 
 ### Htop
 
@@ -206,7 +216,7 @@ sudo snap install code --classic
 
 Lo ideal es utilizar el plugin `Settings Sync` para tener sincronizados todos nuestros plugins de Visual Studio Code, así solo tendremos que descargarlos.
 
-> Puedes ver la lista de los plugins que uso [aquí](/blog/vscode/plugins)
+> Puedes ver la lista de los plugins que uso [aquí](/blog/vscode/plugins "")
 
 ### Postman
 
@@ -216,7 +226,7 @@ sudo snap install postman
 
 ### Robo 3T
 
-> Para instalar Robo 3T puedes seguir esta [guía](/blog/linux/instalar-mongo)
+> Para instalar Robo 3T puedes seguir esta [guía](/blog/linux/instalar-mongo "")
 
 ### VLC
 
@@ -232,7 +242,7 @@ sudo snap install spotify
 
 ### Balena Etcher
 
-Descarga la última versión de Balena Etcher [aquí](https://www.balena.io/etcher/).
+Descarga la última versión de Balena Etcher [aquí](https://www.balena.io/etcher/ "").
 
 ### Transmission
 
@@ -252,22 +262,22 @@ sudo apt install ghostwriter
 
 ## Resetear Touchpad en Ubuntu
 
-> Puedes encontrar algunas soluciones para resetear el touchpad en Ubuntu [aquí](/blog/linux/touchpad).
+> Puedes encontrar algunas soluciones para resetear el touchpad en Ubuntu [aquí](/blog/linux/touchpad "").
 
 ## Reconfigurar Drivers de Nvidia
 
 Si en algún momento has perdido la configuración por defecto de tus drivers privativos de Nvidia y Ubuntu no te permite seleccionarlos en "Additional Drivers", entonces puedes hacer lo siguiente:
 
-En primer lugar, busca qué controlador necesitas. ¿Cómo lo averiguas? Consultando según el modelo de tarjeta que tengas y seleccionando obviamente la opción de _Linux 64-bit_ en **Sistema Operativo** [aquí](https://www.nvidia.es/Download/index.aspx?lang=es). Es recomendable utilizar en **Tipo de descarga** la opción de _Rama de producción_, que suele ser la versión ya testeada y que da menos problemas.
+En primer lugar, busca qué controlador necesitas. ¿Cómo lo averiguas? Consultando según el modelo de tarjeta que tengas y seleccionando obviamente la opción de *Linux 64-bit* en **Sistema Operativo** [aquí](https://www.nvidia.es/Download/index.aspx?lang=es ""). Es recomendable utilizar en **Tipo de descarga** la opción de *Rama de producción*, que suele ser la versión ya testeada y que da menos problemas.
 
 En mi caso tengo una GeForce GTX 1060, así que seleccionaría estas opciones:
 
-- Tipo de producto: GeForce
-- Serie del producto: GeForce 10 Series
-- Familia del producto: GeForce 1060
-- Sistema operativo: Linux 64-bit
-- Tipo de descarga: Rama de producción
-- Idioma: Español (España)
+* Tipo de producto: GeForce
+* Serie del producto: GeForce 10 Series
+* Familia del producto: GeForce 1060
+* Sistema operativo: Linux 64-bit
+* Tipo de descarga: Rama de producción
+* Idioma: Español (España)
 
 A continuación le damos a buscar, y podremos descargarlo, pero si no te apetece ejecutar un .run, es más fácil quedarnos con el número de versión del driver. En mi caso la **470.63.01**
 

@@ -49,7 +49,7 @@ const Pre = (props: any) => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6"
+            className="w-5 h-5"
           >
             {copied ? (
               <path
@@ -68,7 +68,7 @@ const Pre = (props: any) => {
         </button>
       )}
 
-      <pre>{props.children}</pre>
+      <pre className="py-5">{props.children}</pre>
     </div>
   );
 };
