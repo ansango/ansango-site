@@ -109,7 +109,7 @@ export const getStaticProps = async ({
 
 export const getStaticPaths = async () => {
   const postList = await postConn();
-  console.log(postList.length);
+  console.log(postList);
   return {
     paths: postList.map((post) => {
       return {
