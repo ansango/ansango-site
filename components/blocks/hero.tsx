@@ -12,7 +12,7 @@ type HeroData = {
   category?: string | null;
   tags?: (string[] | null)[] | null;
   publishedAt?: string | null;
-  readingTime: ReadTimeResults["text"];
+  readingTime?: ReadTimeResults["text"];
   views?: number;
 };
 
