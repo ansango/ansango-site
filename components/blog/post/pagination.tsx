@@ -16,10 +16,10 @@ export const Pagination: FC<{
       <div className="text-left group">
         {prev && (
           <>
-            <h4 className={`tracking-wide italic`}>←</h4>
+            <h4 className={`tracking-wide italic text-primary-focus`}>←</h4>
             <Link href={prev.slug} passHref>
               <a
-                className={`hover:text-primary transition-all line-clamp-1 max-w-xs mr-auto`}
+                className={`text-primary-focus hover:text-primary transition-all line-clamp-1 max-w-xs mr-auto`}
               >
                 {prev.title}
               </a>
@@ -31,11 +31,11 @@ export const Pagination: FC<{
       <div className="text-right group">
         {next && (
           <>
-            <h4 className={`tracking-wide italic`}>→</h4>
+            <h4 className={`tracking-wide italic text-primary-focus`}>→</h4>
 
             <Link href={`${next.slug}`} passHref>
               <a
-                className={`hover:text-primary transition-all line-clamp-1 max-w-xs ml-auto`}
+                className={`text-primary-focus hover:text-primary transition-all line-clamp-1 max-w-xs ml-auto`}
               >
                 {next.title}
               </a>

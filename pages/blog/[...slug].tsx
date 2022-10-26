@@ -1,4 +1,5 @@
 import { Hero } from "components/blocks/hero";
+import { SocialShare } from "components/blog/common/social-share";
 import { Pagination, Post } from "components/blog/post";
 import { RelatedPosts } from "components/blog/post/related-posts";
 import { Layout } from "components/layout/layout";
@@ -53,6 +54,12 @@ export default function NextPage(
             views: dataR?.views,
           }}
         />
+        {data.post.title && (
+          <SocialShare
+            title={data.post.title}
+            url={`https://ansango.com/blog/${props.path}`}
+          />
+        )}
         {/* @ts-ignore?*/}
         {data.post?.relatedPosts && <RelatedPosts {...relatedPosts} />}
         {(props.next || props.prev) && (
