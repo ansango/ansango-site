@@ -1,8 +1,12 @@
 ---
 title: Introducción a React
 summary: Breves apuntes sobre la introducción a React
+category: react
+tags:
+  options:
+    - react
 draft: false
-publishedAt: '2021-08-01T22:00:00.000Z'
+publishedAt: "2021-08-01T22:00:00.000Z"
 ---
 
 React es una libería Javascript, React solo nos cubre el modelo vista, entonces para tener un patrón por ejemplo MVC necesitaríamos complementarlo con otras librerías.
@@ -27,29 +31,29 @@ cd my-first-app
 yarn start
 ```
 
-* Estructura base:
-  * public
-  * src
-    * index.js: es el punto de entrada donde React renderiza el componente App.
-    * index.css: estilos para el index.js
-    * App.js: componente tipo función que nos devuelve un elemento de react `<div></div>` (jsx)
-    * App.css: estilos para el componente App.js
-  * .gitignore
-  * package-lock.json
-  * package.json.
-    * Dependencias base:
-      * testing-library
-      * react
-      * react-dom
-      * react-scripts
-      * web-vitals (rendimiento)
-    * Scripts:
-      * start
-      * build
-      * test
-      * eject
-  * README.md
-  * yarn.lock
+- Estructura base:
+  - public
+  - src
+    - index.js: es el punto de entrada donde React renderiza el componente App.
+    - index.css: estilos para el index.js
+    - App.js: componente tipo función que nos devuelve un elemento de react `<div></div>` (jsx)
+    - App.css: estilos para el componente App.js
+  - .gitignore
+  - package-lock.json
+  - package.json.
+    - Dependencias base:
+      - testing-library
+      - react
+      - react-dom
+      - react-scripts
+      - web-vitals (rendimiento)
+    - Scripts:
+      - start
+      - build
+      - test
+      - eject
+  - README.md
+  - yarn.lock
 
 ## JSX
 
@@ -61,7 +65,7 @@ const element = <h1>Hello World!</h1>;
 
 No es obligatorio utilizarlo con React, pero es altamente recomendable.
 
-* Qué podemos hacer con `JSX`?
+- Qué podemos hacer con `JSX`?
 
 ```javascript
 const formatName = (user) => {
@@ -98,4 +102,4 @@ setInterval(tick, 1000)
 
 ❤️ Espero que te haya gustado la entrada.
 
-Puedes continuar leyendo el siguiente capítulo sobre [Functional components](/blog/react/functional-components ""), o volver al [Índice](/blog/react/indice "")
+Puedes continuar leyendo el siguiente capítulo sobre [Functional components](/blog/react/functional-components), o volver al [Índice](/blog/react/indice)

@@ -90,6 +90,7 @@ export const getStaticProps = async ({
   const tinaProps = await client.queries.post({
     relativePath: `${relativePath}.mdx`,
   });
+  console.log(tinaProps.data.post);
   const readingTime = getReadingTime(tinaProps.data.post.body);
 
   return {
