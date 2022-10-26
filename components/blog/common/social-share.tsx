@@ -63,7 +63,9 @@ export const SocialShare: FC<{ title: string; url: string }> = ({
               <Component
                 url={url}
                 title={title}
-                onClick={(e) => handleClick(e, name)}
+                onClick={(
+                  e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+                ) => handleClick(e, name)}
               >
                 <Icon className="text-2xl" />
               </Component>

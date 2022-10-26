@@ -54,7 +54,7 @@ export default function NextPage(
             views: dataR?.views,
           }}
         />
-        {data.post.title && (
+        {data?.post?.title && (
           <SocialShare
             title={data.post.title}
             url={`https://ansango.com/blog/${props.path}`}
