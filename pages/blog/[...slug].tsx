@@ -1,9 +1,9 @@
 import { Post } from "components/blog/post";
 import { Layout } from "components/layout/layout";
 import { getAllPosts, postConn, postQuery, useTina } from "lib/tina";
-import { composeSlug, getReadingTime } from "lib/utils";
+import { composeSlug, fetcher, getReadingTime } from "lib/utils";
 import { Suspense } from "react";
-import readingTime from "reading-time";
+import useSWR from "swr";
 
 export default function NextPage(
   props: AsyncReturnType<typeof getStaticProps>["props"]
@@ -13,6 +13,10 @@ export default function NextPage(
     variables: props.variables,
     data: props.data,
   });
+  const { data: dataR } = useSWR(
+    `/api/page-views/by-path/${props.path}`,
+    fetcher
+  );
 
   return (
     <Layout>
@@ -29,6 +33,7 @@ export default function NextPage(
             publishedAt: data.post?.publishedAt,
             category: data.post?.category,
             tags: data.post?.tags?.options,
+            views: dataR?.views,
           }}
         />
       </Suspense>
@@ -60,6 +65,7 @@ export const getStaticProps = async ({
     props: {
       ...tinaProps,
       readingTime,
+      path: relativePath,
       prev: prevPost && {
         title: prevPost.title,
         slug: `/blog/${composeSlug(prevPost._sys.breadcrumbs)}`,

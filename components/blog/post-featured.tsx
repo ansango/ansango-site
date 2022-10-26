@@ -34,7 +34,7 @@ const Posts = ({
               <div className="card-body p-4 w-full h-full justify-between">
                 <div>
                   <h3 className="card-title line-clamp-1">{title}</h3>
-                  <p className="line-clamp-2">{summary}</p>
+                  <p className="line-clamp-2 prose leading-6">{summary}</p>
                 </div>
                 <div className="card-actions justify-end">
                   <div className="badge badge-primary badge-sm">{category}</div>

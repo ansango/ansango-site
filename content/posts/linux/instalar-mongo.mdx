@@ -1,8 +1,14 @@
 ---
 title: Instalar MongoDB en Ubuntu 20.04
 summary: Cómo instalar MongoDB y Robo 3T en Ubuntu
+category: linux
+tags:
+  options:
+    - linux
+    - ubuntu
+    - mongodb
 draft: false
-publishedAt: "2021-07-07T22:00:00.000Z"
+publishedAt: '2021-07-07T22:00:00.000Z'
 ---
 
 ## Instalar MongoDB en Ubuntu 20.04
@@ -49,15 +55,11 @@ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb
 
 Esta única línea le dice a APT todo lo que necesita saber sobre cuál es la fuente y dónde encontrarla:
 
-- `deb`: Esto significa que la entrada de la fuente hace referencia a una arquitectura normal de Debian.
-
-- `[ arch=amd64,arm64 ]`: Especifica para qué arquitecturas deben descargarse los datos de APT. En este caso, especifica las arquitecturas amd64 y arm64.
-
-- `https://repo.mongodb.org/apt/ubuntu`: Se trata de un URI que representa la ubicación donde se pueden encontrar los datos de APT. En este caso, el URI apunta a la dirección HTTPS donde se encuentra el repositorio oficial de MongoDB.
-
-- `focal/mongodb-org/4.4`: Los repositorios de Ubuntu pueden contener varias versiones diferentes. Esto especifica que sólo quieres la versión 4.4 del paquete mongodb-org disponible para la versión focal de Ubuntu ("Focal Fossa" es el nombre en clave de Ubuntu 20.04).
-
-- `multiverse`: Esta parte apunta a APT a uno de los cuatro repositorios principales de Ubuntu. En este caso, apunta al repositorio multiverse.
+* `deb`: Esto significa que la entrada de la fuente hace referencia a una arquitectura normal de Debian.
+* `[ arch=amd64,arm64 ]`: Especifica para qué arquitecturas deben descargarse los datos de APT. En este caso, especifica las arquitecturas amd64 y arm64.
+* `https://repo.mongodb.org/apt/ubuntu`: Se trata de un URI que representa la ubicación donde se pueden encontrar los datos de APT. En este caso, el URI apunta a la dirección HTTPS donde se encuentra el repositorio oficial de MongoDB.
+* `focal/mongodb-org/4.4`: Los repositorios de Ubuntu pueden contener varias versiones diferentes. Esto especifica que sólo quieres la versión 4.4 del paquete mongodb-org disponible para la versión focal de Ubuntu ("Focal Fossa" es el nombre en clave de Ubuntu 20.04).
+* `multiverse`: Esta parte apunta a APT a uno de los cuatro repositorios principales de Ubuntu. En este caso, apunta al repositorio multiverse.
 
 Después de ejecutar este comando, actualiza el índice de paquetes local de su servidor para que APT sepa dónde encontrar el paquete mongodb-org:
 
@@ -78,7 +80,7 @@ sudo service mongod start
 
 ```
 
-2. **Verificar que MongoDB se ha iniciado**:
+1. **Verificar que MongoDB se ha iniciado**:
 
 ```bash
 sudo service mongod status
@@ -119,25 +121,25 @@ sudo chown -R mongodb:mongodb /var/lib/mongodb
 sudo chown mongodb:mongodb /tmp/mongodb-27017.sock
 ```
 
-3. **Parar MongoDB**:
+1. **Parar MongoDB**:
 
 ```bash
 sudo service mongod stop
 ```
 
-4. **Reiniciar MongoDB**:
+1. **Reiniciar MongoDB**:
 
 ```bash
 sudo service mongod restart
 ```
 
-5. **Empezar a usar MongoDB**:
+1. **Empezar a usar MongoDB**:
 
 ```bash
 mongo
 ```
 
-6. **Arrancar la terminal de MongoDB**:
+1. **Arrancar la terminal de MongoDB**:
 
 ```bash
 mongo shell
@@ -145,7 +147,7 @@ mongo shell
 
 ## Instalar Robo 3T en Ubuntu 20.04
 
-Para instalar Robo 3T primero descargaremos la [versión oficial](https://robomongo.org/) para Linux. Tendremos entonces un archivo comprimido con este nombre: `robo3t-1.4.3-linux-x86_64-48f7dfd.tar.gz`
+Para instalar Robo 3T primero descargaremos la [versión oficial](https://robomongo.org/ "") para Linux. Tendremos entonces un archivo comprimido con este nombre: `robo3t-1.4.3-linux-x86_64-48f7dfd.tar.gz`
 
 Lo extraeremos con:
 
@@ -183,7 +185,7 @@ Ahora ya podemos ejecutar Robo 3T
 ./robo3t
 ```
 
-Para customizar el icono que veremos en el dashboard podemos [descargar](https://www.google.com/search?q=robo3t+icon+png&tbm=isch&source=iu&ictx=1&fir=Lh5FTCRLPKZyvM%253A%252CT0TupOjHzw6HKM%252C_&usg=AI4_-kRUiahKne4RFzDIMMulD1ZHJZNzAA&sa=X&ved=2ahUKEwiXtenUqbjgAhUBUhUIHfvEACQQ9QEwAHoECAUQBA) la imagen que queramos y guardarla en el `/bin`:
+Para customizar el icono que veremos en el dashboard podemos [descargar](https://www.google.com/search?q=robo3t+icon+png\&tbm=isch\&source=iu\&ictx=1\&fir=Lh5FTCRLPKZyvM%253A%252CT0TupOjHzw6HKM%252C_\&usg=AI4_-kRUiahKne4RFzDIMMulD1ZHJZNzAA\&sa=X\&ved=2ahUKEwiXtenUqbjgAhUBUhUIHfvEACQQ9QEwAHoECAUQBA "") la imagen que queramos y guardarla en el `/bin`:
 
 ```bash
 mv icon.png /usr/local/bin/robo3t/bin

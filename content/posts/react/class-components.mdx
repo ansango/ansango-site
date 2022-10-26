@@ -1,56 +1,52 @@
 ---
 title: Class Components
-summary: Class components y ciclos de vida
+summary: En esta entrada vamos a hablar sobre los componentes de clase en React, diferencias con los componentes función y ciclos de vida del componente. Actualmente se trabaja más con functional components, pero los class components siguen siendo utilizables y en algunos casos pueden resultar más fáciles de usar.
 category: react
 tags:
   options:
     - react
 featured: true
 draft: false
-publishedAt: '2021-08-08T22:00:00.000Z'
+publishedAt: "2021-08-08T22:00:00.000Z"
 ---
-
-En esta entrada vamos a hablar sobre los componentes de clase en React, diferencias con los componentes función y ciclos de vida del componente.
-
-Actualmente se trabaja más con functional components, pero los class components siguen siendo utilizables y en algunos casos pueden resultar más fáciles de usar.
 
 Ejemplo de componente clase:
 
 ```javascript
 class Welcome extends React.Component {
-    render() {
-        return <h1>Hello {this.props.name}</h1>
-    }
+  render() {
+    return <h1>Hello {this.props.name}</h1>;
+  }
 }
 
-<Welcome name="Anibal"/>
+<Welcome name="Anibal" />;
 ```
 
 ## Diferencias entre tipos de componentes:
 
 ### Function based components
 
-* Reciben props
-* Devuelven `JSX`
-* Las propiedades son de solo lectura
-* La performance es mejor que en los componentes de clase
+- Reciben props
+- Devuelven `JSX`
+- Las propiedades son de solo lectura
+- La performance es mejor que en los componentes de clase
 
 ### Class based components
 
-* No reciben nada, extienden de React.Component
-* Tienen un método `render` que devuelve `JSX`
-* Accedemos a las propiedades mediante `this`: `this.props.name`
-* Tenemos disponible un estado interno de componente.
-* Podemos inicializar el estado en el `constructor`
-* Tenemos ciclos de vida como en otros frameworks como Vue o Angular
+- No reciben nada, extienden de React.Component
+- Tienen un método `render` que devuelve `JSX`
+- Accedemos a las propiedades mediante `this`: `this.props.name`
+- Tenemos disponible un estado interno de componente.
+- Podemos inicializar el estado en el `constructor`
+- Tenemos ciclos de vida como en otros frameworks como Vue o Angular
 
 ### ¿Cuándo deberíamos utilizar cada tipo de componente?
 
 Actualmente con la llegada de los Hooks, podemos hacer la mayoría de componentes como funciones o como clases. La elección va a depender de diferentes factores como:
 
-* Performance.
-* Mantenimiento.
-* Facilidad en el desarrollo.
+- Performance.
+- Mantenimiento.
+- Facilidad en el desarrollo.
 
 Normalmente si la situación es indiferente se suele utilizar componentes como función. Un ejemplo real de componente clase sería el siguiente:
 
@@ -114,10 +110,10 @@ Respecto al estado de los componentes nos sucede como en los componentes funció
 
 Las fases son:
 
-* Se ejecuta el `constructor`.
-* Se ejecuta el método `render`.
-* React actualiza el DOM y refs.
-* Se ejecuta el método `componentDidMount`
+- Se ejecuta el `constructor`.
+- Se ejecuta el método `render`.
+- React actualiza el DOM y refs.
+- Se ejecuta el método `componentDidMount`
 
 Una vez montado, el constructor nunca se vuelve a llamar.
 
@@ -125,9 +121,9 @@ Una vez montado, el constructor nunca se vuelve a llamar.
 
 Las fases son:
 
-* Se ejecuta el método `render` (se da cuando tenemos nuevas propiedades, `setState()`, o `forceUpdate()`).
-* React actualiza el DOM y refs.
-* Se ejecuta el método `componentDidUpdate`
+- Se ejecuta el método `render` (se da cuando tenemos nuevas propiedades, `setState()`, o `forceUpdate()`).
+- React actualiza el DOM y refs.
+- Se ejecuta el método `componentDidUpdate`
 
 Las modificaciones de las propiedades o el estado hacen que el componente se actualice, pero no se desmonta y vuelve a montarse. Lo que sucede es que se vuelve a llamar al método `render`.
 
@@ -135,7 +131,7 @@ Las modificaciones de las propiedades o el estado hacen que el componente se act
 
 Solo tenemos una única fase:
 
-* Se ejecuta el método `componentWillUnmount`
+- Se ejecuta el método `componentWillUnmount`
 
 En este caso el método se ejecuta justo antes de que se desmonte.
 
@@ -143,27 +139,27 @@ En este caso el método se ejecuta justo antes de que se desmonte.
 
 ### `componentDidMount`:
 
-* Se ejecuta cuando se ha producido la primera renderización del componente.
-* Nos sirve para añadir información al DOM. Operar con el DOM, porque hasta que no lo tenemos disponible no podemos manipularlo.
-* Inicializar timers.
-* Setear suscripciones.
-* Cargas de datos. Por ejemplo el consumo de una api para cargar datos.
+- Se ejecuta cuando se ha producido la primera renderización del componente.
+- Nos sirve para añadir información al DOM. Operar con el DOM, porque hasta que no lo tenemos disponible no podemos manipularlo.
+- Inicializar timers.
+- Setear suscripciones.
+- Cargas de datos. Por ejemplo el consumo de una api para cargar datos.
 
 Siempre que utilicemos timers o suscripciones, deberemos ejecutar el método `componentWillUnmount` para cancelar los timers o las suscripciones. Si no los matamos tendremos una fuga de memoria.
 
 ### `componentDidUpdate`:
 
-* Este método se ejecuta inmediatamente después de que suceda la actualización de o bien props o el estado.
-* Cargas de datos. Por ejemplo en una vista de detalle, el id de los elementos va cambiando, entonces actualizamos la información de ese componente.
-* Llamar al método `setState`, para setear el estado comparando el estado anterior y el estado actual.
+- Este método se ejecuta inmediatamente después de que suceda la actualización de o bien props o el estado.
+- Cargas de datos. Por ejemplo en una vista de detalle, el id de los elementos va cambiando, entonces actualizamos la información de ese componente.
+- Llamar al método `setState`, para setear el estado comparando el estado anterior y el estado actual.
 
 ### `componentWillUnmount`:
 
-* Es invocado inmediatamente antes de desmontar y destruir el componente.
-* Limpiar el componente.
-* Cancelar peticiones.
-* Cancelar timers
-* Eliminar suscripciones.
+- Es invocado inmediatamente antes de desmontar y destruir el componente.
+- Limpiar el componente.
+- Cancelar peticiones.
+- Cancelar timers
+- Eliminar suscripciones.
 
 Ejemplo:
 
@@ -215,4 +211,4 @@ const App = () => {
 
 ❤️ Espero que te haya gustado la entrada.
 
-Puedes continuar leyendo el siguiente capítulo sobre [Hooks](/blog/react/hooks ""), volver al capítulo anterior de [Functional components](/blog/react/functional-components ""), o volver al [Índice](/blog/react/indice "").
+Puedes continuar leyendo el siguiente capítulo sobre [Hooks](/blog/react/hooks), volver al capítulo anterior de [Functional components](/blog/react/functional-components), o volver al [Índice](/blog/react/indice).

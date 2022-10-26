@@ -99,14 +99,13 @@ export const Posts = ({
                           <span className="">{formatDate(publishedAt)}</span>
                           <span>/</span>
                           <span className="flex items-center">
-                            {views}
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
                               strokeWidth={1.5}
                               stroke="currentColor"
-                              className="w-5 h-5 ml-1"
+                              className="w-5 h-5 mr-1"
                             >
                               <path
                                 strokeLinecap="round"
@@ -119,6 +118,7 @@ export const Posts = ({
                                 d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                               />
                             </svg>
+                            {views}
                           </span>
                         </div>
                       </div>

@@ -28,19 +28,22 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method === "GET") {
-    const path = req.body.path;
-
     try {
       const response = await queryReport(configQuery);
 
-      const analytics = response.rows?.map((row) => {
-        return {
-          path: row.dimensionValues && row.dimensionValues[0].value,
-          value:
-            row.metricValues &&
-            row.metricValues.map((metric, i) => metric.value)[0],
-        };
-      });
+      const analytics = response.rows
+        ?.map((row) => {
+          return {
+            path: row.dimensionValues && row.dimensionValues[0].value,
+            value:
+              row.metricValues &&
+              row.metricValues.map((metric, i) => metric.value)[0],
+          };
+        })
+        .filter((item: any) => item.path.includes("/blog/"))
+        .map((item: any) => {
+          return { views: item.value, path: item.path.replace("/blog/", "") };
+        });
 
       res.status(200).json({ analytics });
     } catch (error) {

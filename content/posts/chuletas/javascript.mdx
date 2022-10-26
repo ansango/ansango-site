@@ -1,17 +1,16 @@
 ---
 title: "Javascript \U0001F4D1"
-summary: Chuleta de Javascript
+summary: >-
+  Cualquiera puede olvidar cómo buscar espacios en blanco con regex, eliminar un
+  elemento de un Array o hacer un bucle For. Esta hoja de trucos básicos, trata
+  de proporcionar una referencia básica para nosotros, los desarrolladores.
+category: javascript
 tags:
-  generic:
-    - chuletas
-  javascript:
+  options:
     - javascript
-    - es6
 draft: false
-publishedAt: "2021-07-08T22:00:00.000Z"
+publishedAt: '2021-07-08T22:00:00.000Z'
 ---
-
-Cualquiera puede olvidar cómo buscar espacios en blanco con regex, eliminar un elemento de un Array o hacer un bucle For. Esta hoja de trucos básicos, trata de proporcionar una referencia básica para nosotros, los desarrolladores.
 
 ## Comentarios
 
@@ -67,10 +66,10 @@ var ourDecimal = 5.7; // float
 
 ### ES6 var, let y const
 
-- A diferencia de `var`, `let` arroja un error si se declara la misma variable dos veces.
-- Las variables declaradas con `let` dentro de un bloque, sentencia o expresión, su alcance está limitado a ese bloque, sentencia o expresión.
-- Las variables declaradas con `const` son de sólo lectura y no pueden ser reasignadas.
-- Los objetos (incluyendo arrays y funciones) asignados a una variable usando `const` siguen siendo mutables y sólo se impide la reasignación del identificador de la variable.
+* A diferencia de `var`, `let` arroja un error si se declara la misma variable dos veces.
+* Las variables declaradas con `let` dentro de un bloque, sentencia o expresión, su alcance está limitado a ese bloque, sentencia o expresión.
+* Las variables declaradas con `const` son de sólo lectura y no pueden ser reasignadas.
+* Los objetos (incluyendo arrays y funciones) asignados a una variable usando `const` siguen siendo mutables y sólo se impide la reasignación del identificador de la variable.
 
 Para asegurar que los datos no cambian, JavaScript proporciona una función Object.freeze para prevenir la mutación de datos.
 
@@ -1100,9 +1099,9 @@ duck.sayName(); // Devuelve "El nombre de este pato es Aflac".
 
 Los constructores siguen algunas convenciones:
 
-- Los constructores se definen con un nombre en mayúsculas para distinguirlos de otras funciones que no son constructores.
-- Los constructores utilizan la palabra clave this para establecer las propiedades del objeto que van a crear. Dentro del constructor, this se refiere al nuevo objeto que creará.
-- Los constructores definen propiedades y comportamientos en lugar de devolver un valor como pueden hacer otras funciones.
+* Los constructores se definen con un nombre en mayúsculas para distinguirlos de otras funciones que no son constructores.
+* Los constructores utilizan la palabra clave this para establecer las propiedades del objeto que van a crear. Dentro del constructor, this se refiere al nuevo objeto que creará.
+* Los constructores definen propiedades y comportamientos en lugar de devolver un valor como pueden hacer otras funciones.
 
 ```javascript
 // constructor

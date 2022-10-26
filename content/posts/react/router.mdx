@@ -1,16 +1,16 @@
 ---
 title: React Router
-summary: Cómo utilizar la librería de React Router
+summary: React Router es la librería que nos permite navegar entre rutas en una aplicación en React.
 category: react
 tags:
   options:
     - react
 featured: true
 draft: false
-publishedAt: '2021-08-07T22:00:00.000Z'
+publishedAt: "2021-08-07T22:00:00.000Z"
 ---
 
-React Router es la librería que nos permite navegar entre rutas en una aplicación en React. Para instalarla ejecutamos lo siguiente en terminal:
+Para instalarla ejecutamos lo siguiente en terminal:
 
 ```bash
 npm install react-router-dom
@@ -26,10 +26,10 @@ yarn add react-router-dom
 
 Para poder utilizar React Router tenemos que meter en nuestra aplicación lo siguiente:
 
-* Componente `<Router></Router>`, nos permite tener rutas dentro de una aplicación y navegar entre ellas.
-* Componente `<Switch></Switch>`, es un contenedor que indíca al router dónde tiene que meter el contenido de las rutas.
-* Componente `<Route></Route>`, que contendrá el contenido propio de cada ruta y a qué ruta pertenece.
-* Componente `<Link></Link>`, que nos permite navegar entre rutas sin salirnos de la SPA.
+- Componente `<Router></Router>`, nos permite tener rutas dentro de una aplicación y navegar entre ellas.
+- Componente `<Switch></Switch>`, es un contenedor que indíca al router dónde tiene que meter el contenido de las rutas.
+- Componente `<Route></Route>`, que contendrá el contenido propio de cada ruta y a qué ruta pertenece.
+- Componente `<Link></Link>`, que nos permite navegar entre rutas sin salirnos de la SPA.
 
 Podemos ver una estructura básica en el siguiente ejemplo:
 
@@ -121,13 +121,13 @@ Por esta razón debemos de situar antes la ruta específica por delante de la m�
 
 Existen tres tipos de componentes para navegar entre rutas:
 
-* `<Link></Link>`, es similar al tag `<a></a>` de html, a través del atributo `to` indicamos dónde queremos ir.
+- `<Link></Link>`, es similar al tag `<a></a>` de html, a través del atributo `to` indicamos dónde queremos ir.
 
 ```javascript
 <Link to="/">Home</Link>
 ```
 
-* `<NavLink></NavLink>`, es exactamente igual al anterior, pero le da un estilo concreto cuando estamos en esa ruta.
+- `<NavLink></NavLink>`, es exactamente igual al anterior, pero le da un estilo concreto cuando estamos en esa ruta.
 
 ```javascript
 <NavLink to="/react" activeClassName="hurray">
@@ -135,7 +135,7 @@ Existen tres tipos de componentes para navegar entre rutas:
 </NavLink>
 ```
 
-* `<Redirect></Redirect>`, es un componente que según se renderiza hace que la aplicación navegue al sitio donde le indicamos. Se suele utilizar muchas veces en partes de la aplicación que hacen referencia a la autenticación. Por ejemplo, podemos comprobar si el usuario está no está autenticado o si no tiene permisos y redirigirle a la pantalla de login.
+- `<Redirect></Redirect>`, es un componente que según se renderiza hace que la aplicación navegue al sitio donde le indicamos. Se suele utilizar muchas veces en partes de la aplicación que hacen referencia a la autenticación. Por ejemplo, podemos comprobar si el usuario está no está autenticado o si no tiene permisos y redirigirle a la pantalla de login.
 
 ```javascript
 <Redirect to="/login" />
@@ -149,11 +149,11 @@ Tenemos tres objetos para poder realizar está navegación:
 
 Este objeto nos permite navegar en la aplicación de manera programática. Este objeto nos da los siguientes métodos y propiedades (React Router funciona como un stack, y hay que tenerlo en cuenta a la hora de utilizar los métodos, ya que añaden al stack esas acciones):
 
-* `push()`, añade una nueva entrada al stack y navega hacia ella
-* `goBack()`, vuelve a la entrada anterior del objeto history
-* `goForward()`, avanza a la siguiente entrada en el objeto history
-* `block(prompt)`, bloquea la navegación. Por ejemplo, podemos usar este método si no queremos que el usuario abandone la página sin guardar cambios.
-* `location`, es un objeto que nos devuelve información acerca de la ruta actual.
+- `push()`, añade una nueva entrada al stack y navega hacia ella
+- `goBack()`, vuelve a la entrada anterior del objeto history
+- `goForward()`, avanza a la siguiente entrada en el objeto history
+- `block(prompt)`, bloquea la navegación. Por ejemplo, podemos usar este método si no queremos que el usuario abandone la página sin guardar cambios.
+- `location`, es un objeto que nos devuelve información acerca de la ruta actual.
 
 ### Location
 
@@ -272,7 +272,7 @@ const BlogPost = () => {
 
 ## Ejemplo completo
 
-* App
+- App
 
 ```javascript
 import React from "react";
@@ -325,7 +325,7 @@ const App = () => {
 export default App;
 ```
 
-* Header
+- Header
 
 ```javascript
 import React from "react";
@@ -364,7 +364,7 @@ const UserBox = () => {
 export default Header;
 ```
 
-* Allergen Detail
+- Allergen Detail
 
 ```javascript
 import React from "react";
@@ -386,7 +386,7 @@ const AllergenDetail = (props) => {
 export default AllergenDetail;
 ```
 
-* Content
+- Content
 
 ```javascript
 import React from "react";
@@ -415,7 +415,7 @@ const Content = () => {
 export default Content;
 ```
 
-* List
+- List
 
 ```javascript
 import React from "react";
@@ -448,7 +448,7 @@ const List = (props) => {
 export default List;
 ```
 
-* Help
+- Help
 
 ```javascript
 import React from "react";
@@ -473,7 +473,7 @@ const Help = (props) => {
 export default Help;
 ```
 
-* Help Detail
+- Help Detail
 
 ```javascript
 import React from "react";
@@ -494,4 +494,4 @@ export default HelpDetail;
 
 ❤️ Espero que te haya gustado la entrada.
 
-Puedes continuar leyendo el siguiente capítulo sobre [Trabajar con backend en React](/blog/react/backend ""), volver al capítulo anterior de [Context API](/blog/react/context-api ""), o volver al [Índice](/blog/react/indice "").
+Puedes continuar leyendo el siguiente capítulo sobre [Trabajar con backend en React](/blog/react/backend), volver al capítulo anterior de [Context API](/blog/react/context-api), o volver al [Índice](/blog/react/indice).

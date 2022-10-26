@@ -53,7 +53,7 @@ const Pagination: FC<{
 
 export type PostProps = {
   title?: string | null;
-
+  views?: number;
   body?: any | null;
   summary?: string | null;
   category?: string | null;
@@ -74,6 +74,7 @@ export const Post: FC<PostProps> = ({
   publishedAt,
   category,
   tags,
+  views,
 }) => {
   return (
     <article>
@@ -86,6 +87,7 @@ export const Post: FC<PostProps> = ({
           publishedAt,
           category,
           tags,
+          views,
         }}
       />
 
