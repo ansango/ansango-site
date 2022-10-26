@@ -155,7 +155,7 @@ const renderHero = (
             </div>
           </div>
           <div className="flex flex-col w-full md:flex-row-reverse space-y-5 md:space-y-0">
-            <div className="grid flex-grow card rounded-box place-items-start">
+            <div className="grid flex-grow card rounded-none place-items-start">
               <div className="">
                 <p>{publishedAt && formatDate(publishedAt)}</p>
                 <p>{readingTime}</p>
@@ -175,7 +175,7 @@ const renderHero = (
               </div>
             </div>
             <div className="hidden divider md:flex md:divider-horizontal"></div>{" "}
-            <div className="grid flex-grow card rounded-box place-items-start md:w-6/12">
+            <div className="grid flex-grow card rounded-none place-items-start md:w-6/12">
               <p>{text}</p>
             </div>
           </div>
