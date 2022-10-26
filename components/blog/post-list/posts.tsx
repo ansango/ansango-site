@@ -83,12 +83,12 @@ export const Posts = ({
                 passHref
               >
                 <a
-                  className={`h-36 group space-y-1 card bg-base-100 border-3 border-dashed border-primary ${hoverTheme} transition-all duration-300`}
+                  className={`h-48 md:h-40 group space-y-1 card bg-base-100 border-3 border-dashed border-primary ${hoverTheme} transition-all duration-300`}
                 >
                   <li className="sm:flex lg:items-end card-body p-4 w-full h-full justify-between">
                     <div className="w-full space-y-2 h-full">
                       <div className="md:flex justify-between">
-                        <p className="text-lg font-medium leading-6">
+                        <p className="text-xl font-medium leading-6">
                           <h3
                             className={`line-clamp-1 card-title ${hoverTextGroup} transition-all duration-300`}
                           >
@@ -96,9 +96,11 @@ export const Posts = ({
                           </h3>
                         </p>
                         <div className="flex items-center text-sm space-x-2">
-                          <span className="">{formatDate(publishedAt)}</span>
+                          <span className="prose leading-6 max-w-full">
+                            {formatDate(publishedAt)}
+                          </span>
                           <span>/</span>
-                          <span className="flex items-center">
+                          <span className="prose leading-6 max-w-full flex items-center">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -123,7 +125,7 @@ export const Posts = ({
                         </div>
                       </div>
                       <p
-                        className={`line-clamp-1 md:line-clamp-2 ${hoverTextGroup} transition-all duration-300`}
+                        className={`line-clamp-2 ${hoverTextGroup} transition-all duration-300 prose leading-6 max-w-full`}
                       >
                         {summary}
                       </p>

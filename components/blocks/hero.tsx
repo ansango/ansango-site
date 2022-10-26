@@ -157,7 +157,7 @@ const renderHero = (
             <div className="grid flex-grow card rounded-none place-items-start">
               <div className="text-sm space-y-2">
                 <p className="flex items-center space-x-2">
-                  <span className="flex items-center">
+                  <span className="flex items-center prose">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -175,7 +175,7 @@ const renderHero = (
                     {publishedAt && formatDate(publishedAt)}
                   </span>
                   <span>/</span>
-                  <span className="flex items-center">
+                  <span className="flex items-center prose">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -198,7 +198,7 @@ const renderHero = (
                     {views}
                   </span>
                 </p>
-                <p className="flex items-center">
+                <p className="flex items-center prose">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -215,7 +215,7 @@ const renderHero = (
                   </svg>
                   {readingTime}
                 </p>
-                <div className="badge badge-accent badge-sm mr-1.5 mb-1.5">
+                <div className="badge badge-accent badge-md mr-1.5 mb-1.5 ">
                   {category}
                 </div>
                 {tags
@@ -223,7 +223,7 @@ const renderHero = (
                   .map((tag, i) => (
                     <div
                       key={`tag-${i}`}
-                      className="badge badge-outline badge-sm  mr-1.5 mb-1.5"
+                      className="badge badge-outline badge-md  mr-1.5 mb-1.5"
                     >
                       {tag}
                     </div>
