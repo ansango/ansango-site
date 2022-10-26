@@ -3,6 +3,7 @@ import { useFeaturedPostsQuery } from "lib/hooks/queries";
 import { Suspense } from "react";
 import { Template } from "tinacms/dist/admin/types";
 import { PostList } from "./common/post-lists";
+import { SubTitlePostList } from "./common/subtitle";
 
 export const PostFeaturedList = ({ data }: { data: any }) => {
   const { posts } = useFeaturedPostsQuery({
@@ -12,7 +13,7 @@ export const PostFeaturedList = ({ data }: { data: any }) => {
   return (
     <Section>
       <Container className="space-y-10">
-        <h2 className="text-4xl font-bold font-serif">{data.title}</h2>
+        <SubTitlePostList>{data.title}</SubTitlePostList>
         <Suspense fallback={<div>Loading...</div>}>
           <PostList posts={posts} />
         </Suspense>

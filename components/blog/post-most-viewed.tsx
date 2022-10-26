@@ -2,6 +2,7 @@ import { Container, Section } from "components/common";
 import { Suspense } from "react";
 import { Template } from "tinacms/dist/admin/types";
 import { PostList } from "./common/post-lists";
+import { SubTitlePostList } from "./common/subtitle";
 import { usePostMapper } from "./post-list/query";
 
 export const PostMostViewedList = ({ data }: { data: any }) => {
@@ -11,7 +12,7 @@ export const PostMostViewedList = ({ data }: { data: any }) => {
   return (
     <Section>
       <Container className="space-y-10">
-        <h2 className="text-4xl font-bold font-serif">Más vistas</h2>
+        <SubTitlePostList>{data.title}</SubTitlePostList>
         <Suspense fallback={<div>Loading...</div>}>
           <PostList posts={posts} type="viewed" />
         </Suspense>
@@ -28,11 +29,6 @@ export const postMostViewedSchema: Template = {
       type: "string",
       name: "title",
       label: "Title",
-    },
-    {
-      type: "string",
-      name: "noDataMessage",
-      label: "No data message",
     },
     {
       type: "number",

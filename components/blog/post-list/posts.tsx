@@ -5,6 +5,7 @@ import { Searcher } from "./searcher";
 import { usePostMapper } from "./query";
 import { formatDate } from "lib/utils";
 import { useTheme } from "next-themes";
+import { SubTitlePostList } from "../common/subtitle";
 export const Posts = ({
   data,
   parentField = "",
@@ -25,12 +26,12 @@ export const Posts = ({
     active: search?.active || false,
     maxPosts: search?.maxPosts || 3,
   };
-  const posts = usePostMapper();
+  const posts = usePostMapper() as any;
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const filteredPosts =
     posts?.filter(
-      (post) =>
+      (post: any) =>
         (post &&
           post.title?.toLowerCase().includes(searchValue.toLowerCase())) ||
         post?.tags?.options?.some((tag: string) =>
@@ -66,16 +67,30 @@ export const Posts = ({
       <section className="space-y-10">
         <div className="relative">
           <div className="relative flex justify-start">
-            <h2 className="text-4xl font-bold font-serif">
-              Todas las publicaciones
-            </h2>
+            <SubTitlePostList>Todas las publicaciones</SubTitlePostList>
           </div>
         </div>
         <ul className="space-y-5">
           {currentPosts.map(
             (
-              { _sys, title, category, tags, summary, publishedAt, views },
-              i
+              {
+                _sys,
+                title,
+                category,
+                tags,
+                summary,
+                publishedAt,
+                views,
+              }: {
+                _sys: any;
+                title: string;
+                category: string;
+                tags: any;
+                summary: string;
+                publishedAt: string;
+                views: number;
+              },
+              i: number
             ) => (
               <Link
                 href={`/blog/${_sys.relativePath.replace(".mdx", "")}`}

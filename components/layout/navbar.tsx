@@ -3,21 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import { useMounted } from "lib/hooks";
-
-const routes = [
-  {
-    label: "Inicio",
-    href: "/",
-  },
-  {
-    label: "Blog",
-    href: "/blog",
-  },
-  {
-    label: "Bio",
-    href: "/bio",
-  },
-];
+import { mapRoutes } from "./routes";
 
 export const NavBar = () => {
   const { theme, setTheme } = useTheme();
@@ -38,7 +24,23 @@ export const NavBar = () => {
             )}
           </div>
 
-          <div className="navbar-end">
+          <div className="navbar-end space-x-1">
+            <div className="hidden md:flex">
+              {mapRoutes.map((route) => {
+                const isActive = asPath === route.href;
+                return (
+                  <Link href={route.href} key={route.href}>
+                    <a
+                      className={`btn btn-link no-underline normal-case text-base-content ${
+                        isActive && "text-primary-focus"
+                      }`}
+                    >
+                      {route.label}
+                    </a>
+                  </Link>
+                );
+              })}
+            </div>
             <button
               className="btn btn-ghost hover:btn-secondary btn-circle transition-all duration-300"
               onClick={() => setTheme(theme !== "cmyk" ? "cmyk" : "night")}
@@ -66,7 +68,8 @@ export const NavBar = () => {
                 )}
               </svg>
             </button>
-            <div className="dropdown dropdown-end">
+
+            <div className="dropdown dropdown-end md:hidden">
               <label
                 tabIndex={0}
                 className="btn btn-ghost btn-circle hover:btn-accent"
@@ -90,12 +93,16 @@ export const NavBar = () => {
                 tabIndex={0}
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
-                {routes.map((route) => {
+                {mapRoutes.map((route) => {
                   const isActive = asPath === route.href;
                   return (
                     <li key={route.href}>
                       <Link href={route.href}>
-                        <a className={`${isActive && "underline font-medium"}`}>
+                        <a
+                          className={`${
+                            isActive && "font-medium text-primary-focus"
+                          }`}
+                        >
                           {route.label}
                         </a>
                       </Link>

@@ -3,6 +3,7 @@ import { fetcher } from "lib/utils";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import useSWR from "swr";
+import { SubTitlePostList } from "../common/subtitle";
 export type RelatedPost = {
   title: "PostRelatedPosts";
   category: string;
@@ -101,9 +102,7 @@ export const RelatedPosts = ({ postOne, postTwo, postThree }: RelatedPosts) => {
   return (
     <Section>
       <Container className="space-y-10">
-        <h2 className="text-4xl font-bold font-serif">
-          Entradas relacionadas
-        </h2>
+        <SubTitlePostList>Entradas relacionadas</SubTitlePostList>
 
         <div className="grid gap-5 md:grid-cols-3">
           {posts.map((post, i) => (

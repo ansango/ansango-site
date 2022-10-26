@@ -1,46 +1,6 @@
 import { Container } from "components/common";
 import Link from "next/link";
-
-const mapRoutes = [
-  {
-    label: "Inicio",
-    href: "/",
-  },
-  {
-    label: "Blog",
-    href: "/blog",
-  },
-  {
-    label: "Bio",
-    href: "/bio",
-  },
-];
-
-const personalRoutes = [
-  {
-    label: "Film captures",
-    href: "https://anibalsantosgomez.com",
-  },
-  {
-    label: "Currículum",
-    href: "/",
-  },
-];
-
-const socialRoutes = [
-  {
-    label: "Twitter",
-    href: "https://twitter.com/ansango",
-  },
-  {
-    label: "Github",
-    href: "htts://github.com/ansango",
-  },
-  {
-    label: "Linkedin",
-    href: "https://www.linkedin.com/in/ansango/",
-  },
-];
+import { mapRoutes, personalRoutes, socialRoutes } from "./routes";
 
 export const Footer = () => {
   return (
