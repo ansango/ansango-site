@@ -1,6 +1,7 @@
 import { useAllPostsQuery } from "lib/hooks/queries";
 import { fetcher } from "lib/utils";
 import useSWR from "swr";
+import { Post } from "../common/post-lists";
 
 export const usePostMapper = () => {
   const { posts } = useAllPostsQuery();
@@ -15,6 +16,6 @@ export const usePostMapper = () => {
       ...post,
       views: analytics?.views || 0,
     };
-  });
+  }) as Post[];
   return postMapper;
 };

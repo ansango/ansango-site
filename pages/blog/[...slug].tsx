@@ -34,6 +34,7 @@ export default function NextPage(
             readingTime: props.readingTime,
             publishedAt: data.post?.publishedAt,
             category: data.post?.category,
+            // @ts-ignore
             tags: data.post?.tags?.options,
             views: dataR?.views,
           }}
@@ -52,6 +53,7 @@ export default function NextPage(
             views: dataR?.views,
           }}
         />
+        {/* @ts-ignore?*/}
         {data.post?.relatedPosts && <RelatedPosts {...relatedPosts} />}
         {(props.next || props.prev) && (
           <Pagination next={props.next} prev={props.prev} />

@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import useSWR from "swr";
 export type RelatedPost = {
-  title: string;
+  title: "PostRelatedPosts";
   category: string;
   publishedAt: string;
   summary: string;
@@ -15,6 +15,7 @@ export type RelatedPost = {
 } | null;
 
 export type RelatedPosts = {
+  __typename: string;
   postOne: RelatedPost;
   postTwo: RelatedPost;
   postThree: RelatedPost;
