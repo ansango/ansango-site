@@ -28,7 +28,7 @@ const Posts = ({
             passHref
           >
             <a
-              className={`h-40 card bg-base-100 border border-secondary border-dashed ${hoverTheme} transition-all duration-300`}
+              className={`h-40 card bg-base-100 border border-secondary border-dashed ${hoverTheme} transition-colors duration-300`}
             >
               <div className="card-body p-4 w-full h-full justify-between">
                 <div>

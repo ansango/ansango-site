@@ -23,7 +23,7 @@ const Pagination: FC<{
             <h4 className={`tracking-wide italic`}>←</h4>
             <Link href={prev.slug} passHref>
               <a
-                className={`link no-underline hover:text-primary transition-all line-clamp-1 max-w-xs mr-auto`}
+                className={`hover:text-primary transition-all line-clamp-1 max-w-xs mr-auto`}
               >
                 {prev.title}
               </a>
@@ -39,7 +39,7 @@ const Pagination: FC<{
 
             <Link href={`${next.slug}`} passHref>
               <a
-                className={`link no-underline hover:text-primary transition-all line-clamp-1 max-w-xs ml-auto`}
+                className={`hover:text-primary transition-all line-clamp-1 max-w-xs ml-auto`}
               >
                 {next.title}
               </a>
