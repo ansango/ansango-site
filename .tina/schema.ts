@@ -10,7 +10,8 @@ import {
   statsSchema,
 } from "components/schemas";
 import { client } from "./__generated__/client";
-import { composeSlug, kebabCase } from "lib/utils";
+import { kebabCase } from "lib/utils";
+import { formatSlug } from "lib/utils/";
 
 const branch =
   process.env.NEXT_PUBLIC_TINA_BRANCH ||
@@ -38,7 +39,7 @@ const schema = defineSchema({
           },
         },
         router({ document }) {
-          return `/blog/${composeSlug(document._sys.breadcrumbs)}`;
+          return `/blog/${formatSlug(document._sys.breadcrumbs.join("/"))}`;
         },
       },
       defaultItem: {

@@ -15,13 +15,13 @@ publishedAt: '2021-07-07T22:00:00.000Z'
 
 Para empezar, importa la clave GPG pública de la última versión estable de MongoDB ejecutando el siguiente comando. Si quieres utilizar una versión de MongoDB distinta de la 4.4, asegúrate de cambiar el 4.4 en la parte de la URL de este comando:
 
-```bash
+```powershell
 curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
 ```
 
 Este comando devolverá OK si la clave se ha añadido con éxito:
 
-```bash
+```powershell
 ## Output
 
 OK
@@ -29,13 +29,13 @@ OK
 
 Si quieres comprobar que la clave se ha añadido correctamente, puedes hacerlo con el siguiente comando:
 
-```bash
+```powershell
 apt-key list
 ```
 
 Esto devolverá la clave de MongoDB en algún lugar de la salida:
 
-```bash
+```powershell
 Output
 /etc/apt/trusted.gpg
 --------------------
@@ -49,7 +49,7 @@ En este punto, APT todavía no sabe dónde encontrar el paquete mongodb-org que 
 
 Ejecuta el siguiente comando, que creará un archivo en el directorio sources.list.d llamado mongodb-org-4.4.list:
 
-```bash
+```powershell
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 ```
 
@@ -63,32 +63,32 @@ Esta única línea le dice a APT todo lo que necesita saber sobre cuál es la fu
 
 Después de ejecutar este comando, actualiza el índice de paquetes local de su servidor para que APT sepa dónde encontrar el paquete mongodb-org:
 
-```bash
+```powershell
 sudo apt update
 ```
 
 A continuación podemos **instalar** MongoDB:
 
-```bash
+```powershell
 sudo apt install mongodb-org
 ```
 
 1. **Arrancar MongoDB**:
 
-```bash
+```powershell
 sudo service mongod start
 
 ```
 
 1. **Verificar que MongoDB se ha iniciado**:
 
-```bash
+```powershell
 sudo service mongod status
 ```
 
 Deberíamos obtener un output como este:
 
-```bash
+```powershell
 ● mongod.service - MongoDB Database Server
      Loaded: loaded (/lib/systemd/system/mongod.service; disabled; vendor preset: enabled)
      Active: active (running) since Tue 2020-06-09 12:57:06 UTC; 2s ago
@@ -101,7 +101,7 @@ Deberíamos obtener un output como este:
 
 Si por algún casual obtenemos que no está activo:
 
-```bash
+```powershell
 ● mongod.service - MongoDB Database Server
      Loaded: loaded (/lib/systemd/system/mongod.service; disabled; vendor preset: enabled)
      Active: failed (Result: exit-code) since Wed 2021-07-07 23:14:17 CEST; 33s ago
@@ -116,32 +116,32 @@ jul 07 23:14:17 ansango systemd[1]: mongod.service: Failed with result 'exit-cod
 
 Es probable que sea por falta de permisos en las carpetas internas. Para dar permisos podemos introducir en terminal lo siguiente:
 
-```bash
+```powershell
 sudo chown -R mongodb:mongodb /var/lib/mongodb
 sudo chown mongodb:mongodb /tmp/mongodb-27017.sock
 ```
 
 1. **Parar MongoDB**:
 
-```bash
+```powershell
 sudo service mongod stop
 ```
 
 1. **Reiniciar MongoDB**:
 
-```bash
+```powershell
 sudo service mongod restart
 ```
 
 1. **Empezar a usar MongoDB**:
 
-```bash
+```powershell
 mongo
 ```
 
 1. **Arrancar la terminal de MongoDB**:
 
-```bash
+```powershell
 mongo shell
 ```
 
@@ -151,55 +151,55 @@ Para instalar Robo 3T primero descargaremos la [versión oficial](https://robomo
 
 Lo extraeremos con:
 
-```bash
+```powershell
 tar -xvzf robo3t-1.4.3-linux-x86_64-48f7dfd.tar.gz
 ```
 
 Crea una nueva carpta para el paquete en usr/local/bin:
 
-```bash
+```powershell
 sudo mkdir /usr/local/bin/robo3t
 ```
 
 Mueve el paquete extraido a usr/local/bin/robo3t
 
-```bash
+```powershell
 sudo mv  robo3t-1.4.3-linux-x86_64-48f7dfd/* /usr/local/bin/robo3t
 ```
 
 Cámbiate al directorio:
 
-```bash
+```powershell
 cd /usr/local/bin/robo3t/
 ```
 
 Necesitamos dar permisos a Robo 3T:
 
-```bash
+```powershell
 sudo chmod +x robo3t ./robo3t
 ```
 
 Ahora ya podemos ejecutar Robo 3T
 
-```bash
+```powershell
 ./robo3t
 ```
 
 Para customizar el icono que veremos en el dashboard podemos [descargar](https://www.google.com/search?q=robo3t+icon+png\&tbm=isch\&source=iu\&ictx=1\&fir=Lh5FTCRLPKZyvM%253A%252CT0TupOjHzw6HKM%252C_\&usg=AI4_-kRUiahKne4RFzDIMMulD1ZHJZNzAA\&sa=X\&ved=2ahUKEwiXtenUqbjgAhUBUhUIHfvEACQQ9QEwAHoECAUQBA "") la imagen que queramos y guardarla en el `/bin`:
 
-```bash
+```powershell
 mv icon.png /usr/local/bin/robo3t/bin
 ```
 
 Para crear un acceso desde el escritorio podemos crear un archivo en `sr/share/applications`:
 
-```bash
+```powershell
 sudo nano /usr/share/applications/robo3t.desktop
 ```
 
 Copiamos y pegamos lo siguiente:
 
-```bash
+```powershell
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
@@ -269,7 +269,7 @@ console.log("Done!");
 
 Después mediante terminal ejecutaremos:
 
-```bash
+```powershell
 node convert-to-json.js
 ```
 
@@ -277,7 +277,7 @@ Esto nos generará un archivo `json` en la raíz.
 
 Ahora sólo nos queda meter todos estos datos directamente en nuesta base de datos, para ello tendremos que tener arrancado MongoDB, y entonces ejecutamos lo siguiente en nuestro terminal:
 
-```bash
+```powershell
 mongoimport --db="meal-tracker" --collection="recipes" --file="recipes.json" --jsonArray
 ```
 
@@ -285,17 +285,17 @@ mongoimport --db="meal-tracker" --collection="recipes" --file="recipes.json" --j
 
 Pues bien, para ello podemos recurrir a Robo 3T, o bien iniciando Mongo Shell, si elegimos esta última opción introduciremos:
 
-```bash
+```powershell
 use meal-tracker
 ```
 
-```bash
+```powershell
 db.recipes.find({}).pretty()
 ```
 
 Si queremos crear una colección nueva:
 
-```bash
+```powershell
 db.meals.insert({ recipeId: '123', plannedDate: newDate() })
 ```
 

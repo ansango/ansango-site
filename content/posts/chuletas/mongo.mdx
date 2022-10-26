@@ -8,12 +8,12 @@ tags:
     - terminal
     - bash
 draft: false
-publishedAt: '2021-07-09T22:00:00.000Z'
+publishedAt: "2021-07-09T22:00:00.000Z"
 ---
 
 ## Conectar MongoDB Shell
 
-```bash
+```powershell
 mongo # nos conectamos to mongodb://127.0.0.1:27017 por defecto
 mongo --host <host> --port <port> -u <user> -p <pwd> # omitir la contraseña si se desea un aviso
 mongo "mongodb://192.168.1.1:27017"
@@ -24,26 +24,26 @@ mongo "mongodb+srv://cluster-name.abcde.mongodb.net/<dbname>" --username <userna
 
 ### Mostrar bases de datos
 
-```bash
+```powershell
 show dbs
 db // imprime la actual base de datos
 ```
 
 ### Cambiar de base de datos
 
-```bash
+```powershell
 use <database_name>
 ```
 
 ### Mostrar colecciones
 
-```bash
+```powershell
 show collections
 ```
 
 ### Ejectuar un archivo `.js`
 
-```bash
+```powershell
 load("myScript.js")
 ```
 
@@ -51,7 +51,7 @@ load("myScript.js")
 
 ### Crear
 
-```bash
+```powershell
 db.coll.insertOne({name: "Max"})
 db.coll.insert([{name: "Max"}, {name:"Alex"}])
 db.coll.insert([{name: "Max"}, {name:"Alex"}], {ordered: false})
@@ -61,7 +61,7 @@ db.coll.insert({name: "Max"}, {"writeConcern": {"w": "majority", "wtimeout": 500
 
 ### Leer
 
-```bash
+```powershell
 db.coll.findOne() // devuelve un único documento
 db.coll.find()    // devuelve un cursor - muestra 20 resultados - "it" para mostrar más
 db.coll.find().pretty()
@@ -133,7 +133,7 @@ db.coll.find().readConcern("majority")
 
 ### Actualizar
 
-```bash
+```powershell
 db.coll.update({"_id": 1}, {"year": 2016}) // ADVERTENCIA Sustituye a todo el documento
 db.coll.update({"_id": 1}, {$set: {"year": 2016, name: "Max"}})
 db.coll.update({"_id": 1}, {$unset: {"year": 1}})
@@ -179,7 +179,7 @@ db.coll.update({}, {$set: {"x": 1}}, {"writeConcern": {"w": "majority", "wtimeou
 
 ### Eliminar
 
-```bash
+```powershell
 db.coll.remove({name: "Max"})
 db.coll.remove({name: "Max"}, {justOne: true})
 db.coll.remove({}) // ADVERTENCIA Elimina todos los documentos, pero no la propia colección y sus definiciones de índice
@@ -191,14 +191,14 @@ db.coll.findOneAndDelete({"name": "Max"})
 
 ### Eliminar
 
-```bash
+```powershell
 db.coll.drop()    // elimina la colección y sus definiciones de índice
 db.dropDatabase() // comprueba que no estás en el clúster de PROD... 😄
 ```
 
 ### Crear colección
 
-```bash
+```powershell
 // Crear colección con un $jsonschema
 db.createCollection("contacts", {
    validator: {$jsonSchema: {
@@ -225,7 +225,7 @@ db.createCollection("contacts", {
 
 ### Otras funciones para colecciones
 
-```bash
+```powershell
 db.coll.stats()
 db.coll.storageSize()
 db.coll.totalIndexSize()
@@ -238,14 +238,14 @@ db.coll.renameCollection("new_coll", true) // Segundo parámetro para eliminar l
 
 ### Listar índices
 
-```bash
+```powershell
 db.coll.getIndexes()
 db.coll.getIndexKeys()
 ```
 
 ### Crear índices
 
-```bash
+```powershell
 // Index Types
 db.coll.createIndex({"name": 1})                // índice de campo único
 db.coll.createIndex({"name": 1, "date": 1})     // índice compuesto
@@ -266,20 +266,20 @@ db.coll.createIndex({"name": 1 }, {sparse: true})
 
 ### Eliminar índices
 
-```bash
+```powershell
 db.coll.dropIndex("name_1")
 ```
 
 ### Ocultar/mostrar índices
 
-```bash
+```powershell
 db.coll.hideIndex("name_1")
 db.coll.unhideIndex("name_1")
 ```
 
 ## Comandos prácticos
 
-```bash
+```powershell
 use admin
 db.createUser({"user": "root", "pwd": passwordPrompt(), "roles": ["root"]})
 db.dropUser("root")

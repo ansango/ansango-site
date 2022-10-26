@@ -21,14 +21,14 @@ Los sistemas de archivos modernos tienen árboles de directorios (carpetas), don
 
 Cuando se trabaja dentro de un sistema de archivos, el usuario siempre está trabajando dentro de algún directorio, al que llamamos directorio actual o directorio de trabajo. Imprime el directorio de trabajo del usuario con pwd:
 
-```bash
+```powershell
 $ pwd
 /home/andrew
 ```
 
 Listar el contenido de este directorio (archivos y/o directorios hijos, etc.) con ls:
 
-```bash
+```powershell
 $ ls
 Git  TEST  jdoc  test  test.file
 ```
@@ -44,7 +44,7 @@ Git  TEST  jdoc  test  test.file
 
 Cambia de directorio con cd
 
-```bash
+```powershell
 
 $ cd TEST/
 
@@ -59,7 +59,7 @@ $ pwd
 
 `cd ..` es la abreviatura de "cd al directorio padre":
 
-```bash
+```powershell
 $ cd ..
 
 $ pwd
@@ -68,7 +68,7 @@ $ pwd
 
 `cd ~` o simplemente `cd` es la abreviatura de "cd a mi directorio personal" (/home/nombredeusuario):
 
-```bash
+```powershell
 $ cd
 
 $ pwd
@@ -84,7 +84,7 @@ $ pwd
 
 Las cosas que escribimos en la línea de comandos se llaman comandos, y siempre ejecutan algún código máquina almacenado en algún lugar de tu ordenador. A veces este código de máquina es un comando incorporado de Linux, a veces es una aplicación, a veces es algún código que escribiste tú mismo. Ocasionalmente, querremos ejecutar un comando justo después de otro. Para hacer eso, podemos usar `;`
 
-```bash
+```powershell
 $ ls; pwd
 Git  TEST  jdoc  test  test.file
 /home/andrew
@@ -94,7 +94,7 @@ En el ejemplo anterior, punto y coma significa que primero (ls) lista el conteni
 
 Otra herramienta útil para encadenar comandos es `&&`. Con `&&`, el comando de la derecha no se ejecutará si el comando de la izquierda falla. `;` y `&&` pueden utilizarse varias veces en la misma línea:
 
-```bash
+```powershell
 # whoops!
 $ cd /Giit/Parser && pwd && ls && cd
 -bash: cd: /Giit/Parser: No such file or directory
@@ -107,7 +107,7 @@ README.md  doc.sh  pom.xml  resource  run.sh  shell.sh  source  src  target
 
 pero con `;`, el segundo comando se ejecutará incluso si el primero falla:
 
-```bash
+```powershell
 # pwd y ls se ejecutarán aún si cd falla
 $ cd /Giit/Parser ; pwd ; ls
 -bash: cd: /Giit/Parser: No such file or directory
@@ -117,14 +117,14 @@ Git  TEST  jdoc  test  test.file
 
 `&` se parece a `&&` pero en realidad cumple una función completamente diferente. Normalmente, cuando se ejecuta un comando de larga duración, la línea de comandos espera a que ese comando termine antes de permitirle introducir otro. Poner `&` después de un comando evita que esto ocurra, y te permite ejecutar un nuevo comando mientras uno anterior sigue en marcha:
 
-```bash
+```powershell
 $ cd Git/Parser && mvn package & cd
 [1] 9263
 ```
 
 > Cuando usamos `&` después de un comando para "ocultarlo", decimos que el trabajo está "en segundo plano". Para ver qué trabajos en segundo plano se están ejecutando actualmente, podemos utilizar el comando `jobs`:
 
-```bash
+```powershell
 $ jobs
 [1]+ Running cd Git/Parser/ && mvn package &
 ```
@@ -135,7 +135,7 @@ $ jobs
 
 Escribe `-h` o `--help` después de casi cualquier comando para que aparezca un menú de ayuda para ese comando:
 
-```bash
+```powershell
 $ du --help
 Usage: du [OPTION]... [FILE]...
   or:  du [OPTION]... --files0-from=F
@@ -158,7 +158,7 @@ Mandatory arguments to long options are mandatory for short options too.
 
 Escribe `man` antes de casi cualquier comando para que aparezca el manual de ese comando (salga de man con `q`):
 
-```bash
+```powershell
 LS(1)                            User Commands                           LS(1)
 
 NAME
@@ -183,7 +183,7 @@ DESCRIPTION
 
 `head` muestra las primeras líneas de un archivo. La bandera `-n` especifica el número de líneas a mostrar (el valor por defecto es 10):
 
-```bash
+```powershell
 # Imprime las primeras tres líneas
 $ head -n 3 c
 this
@@ -193,7 +193,7 @@ has
 
 `tail` muestra las últimas líneas de un archivo. Puedes obtener las últimas `n` líneas (como en el caso anterior), o puedes obtener el final del archivo a partir de la Nª línea con tail -n +N:
 
-```bash
+```powershell
 # imprime el final del archivo empezando por la cuarta línea
 $ tail -n +4 c
 exactly
@@ -203,7 +203,7 @@ lines
 
 `cat` concatena una lista de archivos y los envía al flujo de salida estándar (normalmente el terminal). `cat` puede usarse con un solo archivo, o con varios, y a menudo se utiliza para verlos rápidamente.
 
-```bash
+```powershell
 $ cat a
 file a
 
@@ -230,13 +230,13 @@ Todos los editores modernos ofrecen comodidades básicas como buscar y reemplaza
 
 `touch` fue creado para modificar las marcas de tiempo de los archivos, pero también puede utilizarse para crear rápidamente un archivo vacío. Puedes crear un nuevo archivo abriéndolo con un editor de texto, como `nano`:
 
-```bash
+```powershell
 $ ls
 
 $ nano a
 ```
 
-```bash
+```powershell
 $ touch b && ls
 a  b
 ```
@@ -249,7 +249,7 @@ a  b
 
 `mkdir` se utiliza para crear nuevos directorios vacíos:
 
-```bash
+```powershell
 $ ls && mkdir c && ls
 a  b
 a  b  c
@@ -257,28 +257,28 @@ a  b  c
 
 Puedes eliminar cualquier archivo con `rm` -- ¡pero ten cuidado, esto no es recuperable!
 
-```bash
+```powershell
 $ rm a && ls
 b  c
 ```
 
 Puedes añadir un aviso de "¿está seguro?" con la bandera `-i`:
 
-```bash
+```powershell
 $ rm -i b
 rm: remove regular empty file 'b'? y
 ```
 
 Eliminar un directorio vacío con `rmdir`. Si `ls -a` en un directorio vacío, sólo debería ver una referencia al propio directorio (.) y una referencia a su directorio padre (..):
 
-```bash
+```powershell
 $ rmdir c && ls -a
 .  ..
 ```
 
 `rmdir` sólo elimina los directorios vacíos:
 
-```bash
+```powershell
 $ cd .. && ls test/
 *.txt  0.txt  1.txt  a  a.txt  b  c
 
@@ -288,7 +288,7 @@ rmdir: failed to remove 'test/': Directory not empty
 
 Pero puedes eliminar un directorio y todo su contenido con `rm -rf` (-r = recursivo, -f = forzado):
 
-```bash
+```powershell
 $ rm –rf test
 ```
 
@@ -296,7 +296,7 @@ $ rm –rf test
 
 `bash` tiene dos grandes características para ayudarte a completar y volver a ejecutar comandos, la primera es la finalización de tabulación. Simplemente escribe la primera parte de un comando, pulsa la tecla`tab` y deja que el terminal adivine lo que estás tratando de hacer:
 
-```bash
+```powershell
 $ ls <ENTER>
 anotherlongfilename  thisisalongfilename  anewfilename
 
@@ -305,14 +305,14 @@ $ ls t <TAB>
 
 pulsa la tecla `tab` después de escribir ls t y el comando se completará...
 
-```bash
+```powershell
 $ ls thisisalongfilename <ENTER>
 thisisalongfilename
 ```
 
 Puede que tengas que pulsar `tab` varias veces si hay una ambigüedad:
 
-```bash
+```powershell
 $ ls a <TAB>
 
 $ ls an <TAB>
@@ -321,13 +321,13 @@ anewfilename  anotherlongfilename
 
 `bash` mantiene un breve historial de los comandos que has escrito anteriormente y te permite buscar entre esos comandos escribiendo ^r (Ctrl+r):
 
-```bash
+```powershell
 (reverse-i-search)`':
 ```
 
 escribe 'anew' y se encuentra el último comando que contiene esto...
 
-```bash
+```powershell
 (reverse-i-search)`anew': touch anewfilename
 ```
 
@@ -337,7 +337,7 @@ escribe 'anew' y se encuentra el último comando que contiene esto...
 
 `mkdir`, por defecto, sólo hace un único directorio. Esto significa que si, por ejemplo, el directorio d/e no existe, entonces d/e/f no puede hacerse con mkdir por sí mismo:
 
-```bash
+```powershell
 $ ls && mkdir d/e/f
 a  b  c
 mkdir: cannot create directory 'd/e/f': No such file or directory
@@ -345,14 +345,14 @@ mkdir: cannot create directory 'd/e/f': No such file or directory
 
 Pero si pasamos la bandera `-p` a mkdir, hará todos los directorios de la ruta si no existen ya:
 
-```bash
+```powershell
 $ mkdir -p d/e/f && ls
 a  b  c  d
 ```
 
 `tree` puede ayudarte a visualizar mejor la estructura de un directorio imprimiendo un árbol de directorios con un buen formato. Por defecto, imprime toda la estructura del árbol (empezando por el directorio especificado), pero puede restringirla a un número determinado de niveles con la bandera -L:
 
-```bash
+```powershell
 $ tree -L 2
 .
 |-- a
@@ -366,7 +366,7 @@ $ tree -L 2
 
 Puedes ocultar los directorios vacíos en la salida de `tree` con `--prune`. Ten en cuenta que esto también elimina los directorios "recursivamente vacíos", o los directorios que no están vacíos en sí mismos, pero que sólo contienen otros directorios vacíos, u otros directorios recursivamente vacíos:
 
-```bash
+```powershell
 $ tree --prune
 .
 |-- a
@@ -377,7 +377,7 @@ $ tree --prune
 
 `df` se utiliza para mostrar cuánto espacio ocupan los archivos de los discos o de su sistema (discos duros, etc.).
 
-```bash
+```powershell
 $ df -h
 Filesystem                   Size  Used Avail Use% Mounted on
 udev                         126G     0  126G   0% /dev
@@ -390,7 +390,7 @@ En el comando anterior, `-h` no significa "ayuda", sino "lectura humana". Alguno
 
 `du` muestra el uso del espacio de archivos para un directorio en particular y sus subdirectorios. Si quieres saber cuánto espacio está libre en un disco duro determinado, utiliza `df`; si quieres saber cuánto espacio está ocupando un directorio, utiliza `du`:
 
-```bash
+```powershell
 $ du
 4       ./d/e/f
 8       ./d/e
@@ -401,7 +401,7 @@ $ du
 
 `du` toma una bandera `--max-depth=N`, que sólo muestra los directorios N niveles abajo (o menos) del directorio especificado:
 
-```bash
+```powershell
 $ du -h --max-depth=1
 12K     ./d
 4.0K    ./c
@@ -410,7 +410,7 @@ $ du -h --max-depth=1
 
 `ps` muestra todos los procesos del usuario que se están ejecutando actualmente (también conocidos como trabajos):
 
-```bash
+```powershell
 $ ps
   PID TTY          TIME CMD
 16642 pts/15   00:00:00 ps
@@ -423,7 +423,7 @@ $ ps
 
 Cambia la contraseña de tu cuenta con `passwd`. Te pedirá tu contraseña actual para verificarla, y luego te pedirá que introduzcas la nueva contraseña dos veces, para que no cometas ningún error:
 
-```bash
+```powershell
 $ passwd
 Changing password for andrew.
 (current) UNIX password:    <type current password>
@@ -434,7 +434,7 @@ passwd: password updated successfully
 
 `logout` sale de un shell en el que has entrado (donde tienes una cuenta de usuario):
 
-```bash
+```powershell
 $ logout
 
 ──────────────────────────────────────────────────────────────────────────────
@@ -446,7 +446,7 @@ Session stopped
 
 `exit` sale de cualquier tipo de shell:
 
-```bash
+```powershell
 $ exit
 logout
 
@@ -463,7 +463,7 @@ Ejecuta `clear` para mover la línea actual del terminal a la parte superior de 
 
 Utilice el glob (\*, aka. Kleene Star, aka. wildcard) cuando busques archivos. Observe la diferencia entre los dos comandos siguientes:
 
-```bash
+```powershell
 $ ls Git/Parser/source/
 PArrayUtils.java     PFile.java            PSQLFile.java      PWatchman.java
 PDateTimeUtils.java  PFixedWidthFile.java  PStringUtils.java  PXSVFile.java
@@ -475,7 +475,7 @@ Git/Parser/source/PDateTimeUtils.java  Git/Parser/source/PDelimitedFile.java
 
 `glob` se puede utilizar varias veces en un comando y coincide con cero o más caracteres:
 
-```bash
+```powershell
 $ ls Git/Parser/source/P*D*m*
 Git/Parser/source/PDateTimeUtils.java  Git/Parser/source/PDelimitedFile.java
 ```

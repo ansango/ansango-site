@@ -18,7 +18,7 @@ publishedAt: "2021-09-26T22:00:00.000Z"
 
 `ncdu` (NCurses Disk Usage) proporciona una visión general navegable del uso del espacio de archivos, como un du mejorado. Abre una ventana de sólo lectura similar a la de vim (pulsa `q` para salir):
 
-```bash
+```powershell
 $ ncdu
 
 ncdu 1.11 ~ Use the arrow keys to navigate, press ? for help
@@ -49,7 +49,7 @@ ncdu 1.11 ~ Use the arrow keys to navigate, press ? for help
 
 `top` muestra todos los procesos que se están ejecutando actualmente y sus propietarios, el uso de la memoria, etc. `htop` es un top mejorado e interactivo. (Nota: puede pasar la bandera `-u username` para restringir los procesos mostrados sólo a los propietarios por nombre de usuario).
 
-```bash
+```powershell
 $ htop
 
   1  [       0.0%]   9  [       0.0%]   17 [       0.0%]   25 [       0.0%]
@@ -83,7 +83,7 @@ Un REPL es un bucle de lectura-evaluación-impresión, similar a la línea de co
 
 Puedes abrir el REPL de Python con el comando python (y salir con la función quit()):
 
-```bash
+```powershell
 $ python
 Python 3.5.2 (default, Nov 12 2018, 13:43:14) ...
 >>> quit()
@@ -91,7 +91,7 @@ Python 3.5.2 (default, Nov 12 2018, 13:43:14) ...
 
 Abre el R REPL con el comando R (y salga con la función q()):
 
-```bash
+```powershell
 $ R
 R version 3.5.2 (2018-12-20) --"Eggshell Igloo" ...
 > q()
@@ -100,7 +100,7 @@ Save workspace image? [y/n/c]: n
 
 Abre el REPL de Scala con el comando scala (y salga con el comando :quit):
 
-```bash
+```powershell
 $ scala
 Welcome to Scala 2.11.12 ...
 scala> :quit
@@ -108,7 +108,7 @@ scala> :quit
 
 Abre el REPL de Java con el comando jshell (y salga con el comando /exit):
 
-```bash
+```powershell
 $ jshell
 | Welcome to JShell--Version 11.0.1 ...
 jshell> /exit
@@ -120,7 +120,7 @@ También puedes salir de cualquiera de estos REPL con ^d (Ctrl+d). ^d es el marc
 
 La mayoría de los comandos y programas tienen una bandera `-version` o `--version` que da la versión del software de ese comando o programa. La mayoría de las aplicaciones hacen que esta información esté fácilmente disponible:
 
-```bash
+```powershell
 $ ls --version
 ls (GNU coreutils) 8.25 ...
 
@@ -133,7 +133,7 @@ Python 3.5.2
 
 pero algunos son menos intuitivos:
 
-```bash
+```powershell
 $ sbt scalaVersion
 ...
 [info] 2.12.4s
@@ -141,7 +141,7 @@ $ sbt scalaVersion
 
 Ten en cuenta que algunos programas utilizan `-v` como bandera de versión, mientras que otros utilizan `-v` para significar "verboso", que ejecutará la aplicación mientras imprime mucha información de diagnóstico o depuración:
 
-```bash
+```powershell
 SCP(1)                    BSD General Commands Manual                   SCP(1)
 
 NAME
@@ -159,7 +159,7 @@ NAME
 
 Las variables de entorno (a veces abreviadas como "env vars") son variables persistentes que pueden ser creadas y utilizadas dentro de su shell bash. Se definen con un signo de igualdad (=) y se utilizan con un signo de dólar ($). Puedes ver todas las env vars definidas actualmente con printenv:
 
-```bash
+```powershell
 $ printenv
 SPARK_HOME=/usr/local/spark
 TERM=xterm
@@ -168,34 +168,34 @@ TERM=xterm
 
 Establece una nueva variable de entorno con un signo `=` (¡no pongas ningún espacio antes o después del `=`!):
 
-```bash
+```powershell
 $ myvar=hello
 ```
 
 Imprime una var env específica en la terminal con `echo` y un signo `$` precedente:
 
-```bash
+```powershell
 $ echo $myvar
 hello
 ```
 
 Las variables de entorno que contengan espacios u otros espacios en blanco deben ir rodeadas de comillas ("..."). Ten en cuenta que la reasignación de un valor a una variable de entorno lo sobrescribe sin previo aviso:
 
-```bash
+```powershell
 $ myvar="hello, world!" && echo $myvar
 hello, world!
 ```
 
 Los env vars también pueden definirse utilizando el comando export. Cuando se definen de esta manera, también estarán disponibles para los subprocesos (comandos llamados desde este shell):
 
-```bash
+```powershell
 $ export myvar="another one" && echo $myvar
 another one
 ```
 
 Se puede anular una variable de entorno dejando el lado derecho del `=` en blanco o utilizando el comando `unset`:
 
-```bash
+```powershell
 $ unset mynewvar
 
 $ echo $mynewvar
@@ -205,7 +205,7 @@ $ echo $mynewvar
 
 Los alias son similares a las variables de entorno, pero suelen utilizarse de forma diferente: para sustituir comandos largos por otros más cortos:
 
-```bash
+```powershell
 $ ls -l -a -h -t
 total 220K
 drwxr-xr-x 5 andrew andrew 4.0K Dec 21 12:37 .
@@ -225,7 +225,7 @@ drwxr-xr-x 5 andrew andrew 4.0K Dec 21 12:37 .
 
 Puedes eliminar un alias con `unalias`:
 
-```bash
+```powershell
 $ unalias lc
 
 $ lc
@@ -238,13 +238,13 @@ The program 'lc' is currently not installed. ...
 
 Los scripts bash (que suelen terminar en .sh) permiten automatizar procesos complicados, empaquetándolos en funciones reutilizables. Un script bash puede contener cualquier número de comandos normales del shell:
 
-```bash
+```powershell
 $ echo "ls && touch file && ls" > ex.sh
 ```
 
 Un script de shell puede ser ejecutado con el comando source o el comando sh:
 
-```bash
+```powershell
 $ source ex.sh
 Desktop  Git  TEST  c  ex.sh  project  test
 Desktop  Git  TEST  c  ex.sh  file  project  test
@@ -252,7 +252,7 @@ Desktop  Git  TEST  c  ex.sh  file  project  test
 
 Las secuencias de comandos pueden hacerse ejecutables con el comando `chmod`:
 
-```bash
+```powershell
 $ echo "ls && touch file2 && ls" > ex2.sh
 
 $ chmod +x ex2.sh
@@ -260,7 +260,7 @@ $ chmod +x ex2.sh
 
 Un script de shell ejecutable puede ser ejecutado precediéndolo con `./`:
 
-```bash
+```powershell
 $ ./ex2.sh
 Desktop  Git  TEST  c  ex.sh  ex2.sh  file  project  test
 Desktop  Git  TEST  c  ex.sh  ex2.sh  file  file2  project  test
@@ -268,14 +268,14 @@ Desktop  Git  TEST  c  ex.sh  ex2.sh  file  file2  project  test
 
 Las líneas largas de código se pueden dividir terminando un comando con `\`:
 
-```bash
+```powershell
 $ echo "for i in {1..3}; do echo \
 > \"Welcome \$i times\"; done" > ex3.sh
 ```
 
 Los scripts de Bash pueden contener bucles, funciones y mucho más.
 
-```bash
+```powershell
 $ source ex3.sh
 Welcome 1 times
 Welcome 2 times
@@ -288,14 +288,14 @@ Los scripts de Bash pueden hacer tu vida mucho más fácil y colorida.
 
 `$PS1` (Prompt String 1) es la variable de entorno que define el prompt principal de tu shell
 
-```bash
+```powershell
 $ printf "%q" $PS1
 $'\\n\\[\E[1m\\]\\[\E[30m\\]\\A'$'\\[\E[37m\\]|\\[\E[36m\\]\\u\\[\E[37m\\]@\\[\E[34m\\]\\h'$'\\[\E[32m\\]\\W\\[\E[37m\\]|'$'\\[\E(B\E[m\\]‘
 ```
 
 Puedes cambiar el prompt por defecto con el comando export:
 
-```bash
+```powershell
 $ export PS1="\ncommand here> "
 
 command here> echo $PS1
@@ -304,7 +304,7 @@ command here> echo $PS1
 
 También puedes añadir colores!:
 
-```bash
+```powershell
 command here> export PS1="\e[1;31m\nCODE: \e[39m"
 
 # (this should be red, but it may not show up that way in Markdown)
@@ -314,7 +314,7 @@ CODE: echo $PS1
 
 También puedes cambiar los colores que muestra ls editando la variable de entorno `$LS_COLORS`:
 
-```bash
+```powershell
 # (again, these colours might not show up in Markdown)
 CODE: ls
 Desktop  Git  TEST  c  ex.sh  ex2.sh  ex3.sh  file  file2  project  test
@@ -333,20 +333,20 @@ Si has probado los comandos de la última sección y te has desconectado y vuelt
 
 Si editas tu archivo `~/.bashrc`, puedes recargarlo sin cerrar la sesión utilizando el comando fuente:
 
-```bash
+```powershell
 $ nano ~/.bashrc
 ```
 
 añade la línea `echo "~/.bashrc loaded!"` al principio del archivo
 
-```bash
+```powershell
 $ source ~/.bashrc
 ~/.bashrc loaded!
 ```
 
 cierra la sesión y vuelve a entrar
 
-```bash
+```powershell
 Last login: Fri Jan 11 10:29:07 2019 from 111.11.11.111
 ~/.bashrc loaded!
 
@@ -369,7 +369,7 @@ De cómo se obtienen estos scripts, y el orden en que se obtienen, dependen del 
 
 Ten en cuenta que los scripts de bash pueden originar otros scripts. Por ejemplo, en tu ~/.bashrc, podrías incluir la línea
 
-```bash
+```powershell
 source ~/.bashrc_addl
 ```
 
@@ -388,29 +388,29 @@ Otras más comunes son `zsh`, `csh`, `fish` entre otras. Juega con diferentes sh
 
 ### `whereis / which / whatis`
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
 #### `locate / find`
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
@@ -418,41 +418,41 @@ Otras más comunes son `zsh`, `csh`, `fish` entre otras. Juega con diferentes sh
 
 ### `ping / wget / curl`
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
 ### `apt / gunzip / tar / gzip`
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
@@ -460,53 +460,53 @@ Otras más comunes son `zsh`, `csh`, `fish` entre otras. Juega con diferentes sh
 
 ### `| / > / < / echo / printf`
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
 ### `0 / 1 / 2 / tee`
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 
-```bash
+```powershell
 
 ```
 

@@ -23,32 +23,32 @@ Esta solución consiste en crear un archivo `.sh` para que cada vez que nos pase
 
 Pero antes de nada necesitaremos la información de nuestro punto de entrada del touchpad. Para ello podemos consultar los inputs mediante:
 
-```bash
+```powershell
 xinput --list
 ```
 
 En mi caso es este:
 
-```bash
+```powershell
 ELAN2304:00 04F3:30FE Touchpad
 ```
 
 Creamos un archivo `.sh`, escribimos lo siguiente:
 
-```bash
+```powershell
 xinput disable 'ELAN2304:00 04F3:30FE Touchpad'
 xinput enable 'ELAN2304:00 04F3:30FE Touchpad'
 ```
 
 Le damos permisos de ejecución:
 
-```bash
+```powershell
 chmod +x touchpad-reset.sh
 ```
 
 Y ejecutamos:
 
-```bash
+```powershell
 ./touchpad-reset.sh
 ```
 
@@ -56,7 +56,7 @@ Y ejecutamos:
 
 Abrimos terminal y accedemos al archivo de configuración del `grub`:
 
-```bash
+```powershell
 sudo nano /etc/default/grub
 ```
 

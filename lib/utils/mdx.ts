@@ -2,6 +2,7 @@ import path from "path";
 import getAllFilesRecursively from "./files";
 import fs from "fs";
 import matter from "gray-matter";
+import { formatSlug } from ".";
 
 const root = process.cwd();
 
@@ -12,10 +13,6 @@ export function getFiles(type: string) {
   return files.map((file: any) =>
     file.slice(prefixPaths.length + 1).replace(/\\/g, "/")
   );
-}
-
-export function formatSlug(slug: string) {
-  return slug.replace(/\.(mdx|md)/, "");
 }
 
 export function dateSortDesc(a: any, b: any) {

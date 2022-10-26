@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { GADAO, queryReport } from "lib/google/client";
-import { formatSlug } from "lib/utils/mdx";
+import { formatSlug } from "lib/utils";
 
 type Data = any;
 

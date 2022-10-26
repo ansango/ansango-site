@@ -16,56 +16,56 @@ publishedAt: '2021-07-15T22:00:00.000Z'
 * Abre tu terminal y accede a `Downloads`.
 * Copia el archivo `.tar` en la carpeta `/opt`:
 
-```bash
+```powershell
 sudo cp -rp firefox-67.0b10.tar.bz2 /opt
 ```
 
 * Borra el archivo `.tar`:
 
-```bash
+```powershell
 sudo rm -rf firefox-67.0b10.tar.bz2
 ```
 
 * Accede a la carpeta `/opt`:
 
-```bash
+```powershell
 cd /opt
 ```
 
 * Descomprime el archivo `.tar`:
 
-```bash
+```powershell
 sudo tar xjf firefox-67.0b10.tar.bz2
 ```
 
 * Elimina el `.tar`:
 
-```bash
+```powershell
 sudo rm -rf firefox-67.0b10.tar.bz2
 ```
 
 * Vamos a darle permisos a la carpeta de Firefox:
 
-```bash
+```powershell
 sudo chown -R $USER /opt/firefox
 ```
 
 * Abrimos el archivo de configuración de `bash`:
 
-```bash
+```powershell
 nano ~/.bashrc
 ```
 
 * Copia y pega al final del archivo la siguiente línea:
 
-```bash
+```powershell
 export PATH=/opt/firefox/firefox:$PATH
 ```
 
 * Cierra el archivo con `ctrl+x` y guarda los cambios.
 * El último es ejecutar un comando para crear un acceso directo de Unity. Después de crear este archivo, podremos buscar "Firefox Developer Edition" nuestro Dashboard:
 
-```bash
+```powershell
 cat > ~/.local/share/applications/firefoxDeveloperEdition.desktop <<EOL
 [Desktop Entry]
 Encoding=UTF-8

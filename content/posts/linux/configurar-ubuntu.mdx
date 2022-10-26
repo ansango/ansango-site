@@ -25,30 +25,30 @@ Lo ideal sería componer todo mediante un script en `bash` que automatizase todo
 
 ## Actualización de repositiorios
 
-```bash
+```powershell
 sudo apt update
 sudo apt -y upgrade
 ```
 
 ## Instalación de Git
 
-```bash
+```powershell
 sudo apt -y install git
 ```
 
 ## Soporte para exFAT
 
-```bash
+```powershell
 sudo apt -y install exfat-fuse exfat-utils
 ```
 
 ## Instalación de Fonts Powerline y Firacode
 
-```bash
+```powershell
 sudo apt -y install fonts-powerline
 ```
 
-```bash
+```powershell
 sudo apt -y install fonts-firacode
 ```
 
@@ -56,29 +56,29 @@ sudo apt -y install fonts-firacode
 
 Instalamos `curl`
 
-```bash
+```powershell
 sudo apt -y install curl
 ```
 
 Después instalamos `zsh`
 
-```bash
+```powershell
 sudo apt -y install git-core zsh
 ```
 
-```bash
+```powershell
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
 Accede al archivo de configuración de `zsh`
 
-```bash
+```powershell
 nano ~/.zshrc
 ```
 
 Busca la variable `ZSH_THEME` y actualiza el valor a `agnoster`. Debería quedarte algo así:
 
-```bash
+```powershell
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -95,7 +95,7 @@ ZSH_THEME="agnoster"
 
 Guarda el anterior archivo y a continuación hacemos `zsh` nuestra terminal por defecto
 
-```bash
+```powershell
 chsh -s $(which zsh)
 ```
 
@@ -103,19 +103,19 @@ Necesitaremos reiniciar la sesión para que `zsh` sea nuestra terminal predeterm
 
 ## Instalación y configuración de Node Version Manager
 
-```bash
+```powershell
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
 ```
 
 Abrimos el archivo configuración de `zsh` de nuevo:
 
-```bash
+```powershell
 nano ~/.zshrc
 ```
 
 Copiamos y pegamos al final del archivo el siguiente código:
 
-```bash
+```powershell
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 ```
@@ -126,13 +126,13 @@ Necesitaremos reiniciar la sesión para que `nvm` funcione
 
 Podemos obtener el listado de todas las versiones con:
 
-```bash
+```powershell
 nvm ls-remote
 ```
 
 Para instalar `Node.js` y `npm` simplemente ejecutamos:
 
-```bash
+```powershell
 nvm install --lts # Para instalar la última versión de larga duración
 ```
 
@@ -146,23 +146,23 @@ Hace tiempo utilizaba OSX y me encantaba la interfaz gráfica, básicamente por 
 
 ### Instalación de Dconf Editor para el Dock
 
-```bash
+```powershell
 sudo apt -y install dconf-editor
 ```
 
 Entramos en Dconf Editor y accedemos a la siguiente ruta para customizar a nuestro gusto el Dock en Ubuntu:
 
-```bash
+```powershell
 org/gnome/shell/extensions/dash-to-dock
 ```
 
 ### Instalación de Gnome Tweaks y configuración para "Mission Control"
 
-```bash
+```powershell
 sudo apt -y install gnome-tweaks
 ```
 
-```bash
+```powershell
 sudo apt -y install wmctrl
 ```
 
@@ -172,7 +172,7 @@ Accedemos a Gnome Tweaks, y en `extensions`, activamos `Custom hot corners`. En 
 
 ### Instalación de GDM Background
 
-```bash
+```powershell
 sudo apt install git make gcc libgtk-3-dev libpolkit-gobject-1-dev
 git clone https://github.com/thiggy01/gdm-background.git
 cd gdm-background/
@@ -184,11 +184,11 @@ sudo make install
 
 ### Google Chrome
 
-```bash
+```powershell
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 ```
 
-```bash
+```powershell
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 ```
 
@@ -198,19 +198,19 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 ### Htop
 
-```bash
+```powershell
 sudo apt -y install htop
 ```
 
 ### Byobu
 
-```bash
+```powershell
 sudo apt -y install byobu
 ```
 
 ### Visual Studio Code
 
-```bash
+```powershell
 sudo snap install code --classic
 ```
 
@@ -220,7 +220,7 @@ Lo ideal es utilizar el plugin `Settings Sync` para tener sincronizados todos nu
 
 ### Postman
 
-```bash
+```powershell
 sudo snap install postman
 ```
 
@@ -230,13 +230,13 @@ sudo snap install postman
 
 ### VLC
 
-```bash
+```powershell
 sudo snap install vlc
 ```
 
 ### Spotify
 
-```bash
+```powershell
 sudo snap install spotify
 ```
 
@@ -246,7 +246,7 @@ Descarga la última versión de Balena Etcher [aquí](https://www.balena.io/etch
 
 ### Transmission
 
-```bash
+```powershell
 sudo apt install transmission
 ```
 
@@ -254,7 +254,7 @@ sudo apt install transmission
 
 Si quieres escribir markdown sin distracciones aquí tienes un editor genial que te ayudará a prescindir de editores
 
-```bash
+```powershell
 sudo add-apt-repository ppa:wereturtle/ppa
 sudo apt update
 sudo apt install ghostwriter
@@ -283,7 +283,7 @@ A continuación le damos a buscar, y podremos descargarlo, pero si no te apetece
 
 Abrimos un terminal y ejecutamos:
 
-```bash
+```powershell
 sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo apt update
 sudo apt install nvidia-driver-470
