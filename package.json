@@ -12,6 +12,7 @@
     "@google-analytics/data": "^3.1.0",
     "@tinacms/cli": "^0.61.25",
     "daisyui": "^2.33.0",
+    "gray-matter": "^4.0.3",
     "next": "12.3.1",
     "next-themes": "^0.2.1",
     "nextjs-google-analytics": "^2.1.0",

@@ -3,8 +3,9 @@ import { SocialShare } from "components/blog/common/social-share";
 import { Pagination, Post } from "components/blog/post";
 import { RelatedPosts } from "components/blog/post/related-posts";
 import { Layout } from "components/layout/layout";
-import { getAllPosts, postConn, postQuery, useTina } from "lib/tina";
+import { client, getAllPosts, postConn, postQuery, useTina } from "lib/tina";
 import { composeSlug, fetcher, getReadingTime } from "lib/utils";
+import { formatSlug, getAllFilesFrontMatter, getFiles } from "lib/utils/mdx";
 import { Suspense } from "react";
 import useSWR from "swr";
 
@@ -77,19 +78,17 @@ export const getStaticProps = async ({
     slug: string[];
   };
 }) => {
-  const relativePath = composeSlug(params.slug);
-
-  const allPosts = await getAllPosts();
+  const allPosts = await getAllFilesFrontMatter("/posts");
   const postIndex = allPosts.findIndex(
-    (post) =>
-      post && post._sys.relativePath.replace(".mdx", "") === relativePath
+    (post: any) => formatSlug(post.slug) === params.slug.join("/")
   );
-
+  const relativePath = params.slug.join("/");
   const prevPost = allPosts[postIndex - 1] || null;
   const nextPost = allPosts[postIndex + 1] || null;
-  const tinaProps = await postQuery(`${relativePath}.mdx`);
+  const tinaProps = await client.queries.post({
+    relativePath: `${relativePath}.mdx`,
+  });
   const readingTime = getReadingTime(tinaProps.data.post.body);
-
   return {
     props: {
       ...tinaProps,
@@ -97,27 +96,24 @@ export const getStaticProps = async ({
       path: relativePath,
       prev: prevPost && {
         title: prevPost.title,
-        slug: `/blog/${composeSlug(prevPost._sys.breadcrumbs)}`,
+        slug: `/blog/${prevPost.slug}`,
       },
       next: nextPost && {
         title: nextPost.title,
-        slug: `/blog/${composeSlug(nextPost._sys.breadcrumbs)}`,
+        slug: `/blog/${nextPost.slug}`,
       },
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  const postList = await postConn();
-  console.log(postList);
+  const posts = getFiles("/posts");
   return {
-    paths: postList.map((post) => {
-      return {
-        params: {
-          slug: post?._sys.breadcrumbs,
-        },
-      };
-    }),
+    paths: posts.map((p: string) => ({
+      params: {
+        slug: formatSlug(p).split("/"),
+      },
+    })),
     fallback: false,
   };
 };
