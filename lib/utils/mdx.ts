@@ -2,8 +2,6 @@ import path from "path";
 import getAllFilesRecursively from "./files";
 import fs from "fs";
 import matter from "gray-matter";
-import { bundleMDX } from "mdx-bundler";
-import readingTime from "reading-time";
 
 const root = process.cwd();
 
