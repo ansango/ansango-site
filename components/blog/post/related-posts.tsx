@@ -24,7 +24,7 @@ export type RelatedPosts = {
 
 const RelatedPost = ({ data }: { data: RelatedPost }) => {
   const slug =
-    data && data.id.replace(".mdx", "").replace("content/posts", "/blog");
+    data && data.id?.replace(".mdx", "").replace("content/posts", "/blog");
   const { theme } = useTheme();
   const hoverTheme =
     theme === "night" ? "hover:border-accent-focus" : "hover:border-primary";
