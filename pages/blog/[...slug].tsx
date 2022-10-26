@@ -1,4 +1,6 @@
-import { Post } from "components/blog/post";
+import { Hero } from "components/blocks/hero";
+import { Pagination, Post } from "components/blog/post";
+import { RelatedPosts } from "components/blog/post/related-posts";
 import { Layout } from "components/layout/layout";
 import { getAllPosts, postConn, postQuery, useTina } from "lib/tina";
 import { composeSlug, fetcher, getReadingTime } from "lib/utils";
@@ -13,15 +15,29 @@ export default function NextPage(
     variables: props.variables,
     data: props.data,
   });
+
   const { data: dataR } = useSWR(
     `/api/page-views/by-path/${props.path}`,
     fetcher
   );
 
+  const relatedPosts = data?.post?.relatedPosts;
+
   return (
     <Layout>
       <Suspense fallback={<div>Loading...</div>}>
-        {/* @ts-ignore */}
+        <Hero
+          data={{
+            headline: data.post?.title,
+            text: data.post?.summary,
+            type: "blogPost",
+            readingTime: props.readingTime,
+            publishedAt: data.post?.publishedAt,
+            category: data.post?.category,
+            tags: data.post?.tags?.options,
+            views: dataR?.views,
+          }}
+        />
         <Post
           {...{
             title: data.post?.title,
@@ -36,6 +52,10 @@ export default function NextPage(
             views: dataR?.views,
           }}
         />
+        {data.post?.relatedPosts && <RelatedPosts {...relatedPosts} />}
+        {(props.next || props.prev) && (
+          <Pagination next={props.next} prev={props.prev} />
+        )}
       </Suspense>
     </Layout>
   );

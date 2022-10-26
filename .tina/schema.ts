@@ -93,6 +93,31 @@ const schema = defineSchema({
           isBody: true,
         },
         {
+          label: "Related Posts",
+          name: "relatedPosts",
+          type: "object",
+          fields: [
+            {
+              type: "reference",
+              label: "Post One",
+              name: "postOne",
+              collections: ["post"],
+            },
+            {
+              type: "reference",
+              label: "Post Two",
+              name: "postTwo",
+              collections: ["post"],
+            },
+            {
+              type: "reference",
+              label: "Post Three",
+              name: "postThree",
+              collections: ["post"],
+            },
+          ],
+        },
+        {
           type: "boolean",
           label: "Featured",
           name: "featured",
