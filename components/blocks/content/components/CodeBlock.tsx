@@ -4,6 +4,7 @@ import styles from "react-syntax-highlighter/dist/cjs/styles/prism/tomorrow";
 import { useState, useRef } from "react";
 
 const Pre = (props: any) => {
+  console.log(props.children);
   const textInput = useRef(null);
   const [hovered, setHovered] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -81,7 +82,7 @@ export const CodeBlock = (props: any) => {
         style={styles}
         PreTag={Pre}
       >
-        {props.children}
+        {props.value}
       </SyntaxHighlighter>
     </span>
   );

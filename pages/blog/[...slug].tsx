@@ -24,7 +24,7 @@ export default function NextPage(
   );
 
   const relatedPosts = data?.post?.relatedPosts;
-
+console.log(data)
   return (
     <Layout>
       <Suspense fallback={<div>Loading...</div>}>
