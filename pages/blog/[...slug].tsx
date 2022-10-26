@@ -3,9 +3,10 @@ import { SocialShare } from "components/blog/common/social-share";
 import { Pagination, Post } from "components/blog/post";
 import { RelatedPosts } from "components/blog/post/related-posts";
 import { Layout } from "components/layout/layout";
-import { client, getAllPosts, postConn, postQuery, useTina } from "lib/tina";
-import { composeSlug, fetcher, getReadingTime } from "lib/utils";
+import { client, useTina } from "lib/tina";
+import { fetcher, getReadingTime } from "lib/utils";
 import { formatSlug, getAllFilesFrontMatter, getFiles } from "lib/utils/mdx";
+import { GetStaticPaths } from "next";
 import { Suspense } from "react";
 import useSWR from "swr";
 
@@ -79,6 +80,7 @@ export const getStaticProps = async ({
   };
 }) => {
   const allPosts = await getAllFilesFrontMatter("/posts");
+
   const postIndex = allPosts.findIndex(
     (post: any) => formatSlug(post.slug) === params.slug.join("/")
   );
@@ -89,6 +91,7 @@ export const getStaticProps = async ({
     relativePath: `${relativePath}.mdx`,
   });
   const readingTime = getReadingTime(tinaProps.data.post.body);
+
   return {
     props: {
       ...tinaProps,
@@ -106,7 +109,7 @@ export const getStaticProps = async ({
   };
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getFiles("/posts");
   return {
     paths: posts.map((p: string) => ({

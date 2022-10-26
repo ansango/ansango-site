@@ -44,7 +44,7 @@ const schema = defineSchema({
       defaultItem: {
         title: "New Post",
         tags: {
-          options: "",
+          options: tagOptions[0],
         },
         category: categories[0],
         body: "",
@@ -71,6 +71,7 @@ const schema = defineSchema({
           label: "Category",
           name: "category",
           options: categories,
+          required: true,
         },
         {
           name: "tags",

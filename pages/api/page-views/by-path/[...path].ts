@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { GADAO, queryReport } from "lib/google/client";
-import { composeSlug } from "lib/utils";
+import { formatSlug } from "lib/utils/mdx";
 
 type Data = any;
 
@@ -28,8 +28,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  if (req.method === "GET") {
-    const slug = composeSlug(req.query.path as string[]);
+  if (req.method === "GET" && req.query.path && Array.isArray(req.query.path)) {
+    const path = req.query.path.join("/");
+    const slug = formatSlug(path);
 
     try {
       const response = await queryReport(configQuery);

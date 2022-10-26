@@ -19,14 +19,6 @@ export const kebabParser = (str?: string) => {
   );
 };
 
-export const composeSlug = (slug: string[]) => {
-  const lastStringSlug = slug[slug.length - 1];
-  const restStringSlug = slug.slice(0, slug.length - 1).join("/");
-  return restStringSlug
-    ? `${restStringSlug}/${lastStringSlug}`
-    : lastStringSlug;
-};
-
 export const fetcher = async (
   ...args: Parameters<typeof fetch>
 ): Promise<any | Error> => {
