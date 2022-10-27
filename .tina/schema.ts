@@ -8,6 +8,7 @@ import {
   postLatestsSchema,
   postMostViewedSchema,
   statsSchema,
+  githubBlockSchema,
 } from "components/schemas";
 import { client } from "./__generated__/client";
 import { kebabCase } from "lib/utils";
@@ -59,6 +60,7 @@ const schema = defineSchema({
           label: "Title",
           name: "title",
         },
+
         {
           name: "summary",
           label: "Summary",
@@ -159,6 +161,7 @@ const schema = defineSchema({
             postLatestsSchema,
             postMostViewedSchema,
             statsSchema,
+            githubBlockSchema,
           ],
         },
       ],

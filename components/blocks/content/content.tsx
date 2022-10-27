@@ -1,29 +1,7 @@
-import { Components, TinaMarkdown } from "tinacms/dist/rich-text";
 import { type FC } from "react";
-
-import {
-  type BlockQuoteProps,
-  BlockQuote,
-  type DateTimeProps,
-  DateTime,
-  img,
-} from "./components";
-
-import { CodeBlock } from "./components/CodeBlock";
 import { Template } from "tinacms/dist/admin/types";
 import { Container, Section } from "components/common";
 import { Markdown } from "lib/tina";
-
-export const components: Components<{
-  BlockQuote: BlockQuoteProps;
-  DateTime: DateTimeProps;
-}> = {
-  BlockQuote,
-  DateTime,
-  img,
-  code_block: CodeBlock,
-  hr: () => <span className="divider" />,
-};
 
 export const Content: FC<{
   body: any;
@@ -73,6 +51,90 @@ export const contentBlockSchema: Template = {
               name: "authorName",
               label: "Author",
               type: "string",
+            },
+          ],
+        },
+        {
+          name: "Github",
+          label: "Github",
+          fields: [
+            {
+              name: "username",
+              label: "Username",
+              type: "string",
+            },
+          ],
+        },
+        {
+          type: "object",
+          label: "Tech Stack",
+          name: "TechStack",
+          fields: [
+            {
+              type: "object",
+              label: "Group",
+              name: "group",
+              list: true,
+              ui: {
+                itemProps: (item: any) => {
+                  return { label: item?.label };
+                },
+                defaultItem: {
+                  label: "Label",
+                },
+              },
+              fields: [
+                {
+                  type: "string",
+                  label: "Label",
+                  name: "label",
+                },
+                {
+                  type: "object",
+                  label: "Tools",
+                  name: "tools",
+                  list: true,
+                  ui: {
+                    itemProps: (item: any) => {
+                      return { label: item?.label };
+                    },
+                    defaultItem: {
+                      label: "HTML5",
+                      bgColor: "#000",
+                      labelColor: "#313869",
+                      logoColor: "#fff",
+                    },
+                  },
+                  fields: [
+                    {
+                      type: "string",
+                      label: "Label",
+                      name: "label",
+                    },
+                    {
+                      type: "string",
+                      component: "color",
+                      name: "bgColor",
+                      label: "Background Color",
+                      colorFormat: "hex",
+                    },
+                    {
+                      type: "string",
+                      component: "color",
+                      name: "labelColor",
+                      label: "Label Color",
+                      colorFormat: "hex",
+                    },
+                    {
+                      type: "string",
+                      component: "color",
+                      name: "logoColor",
+                      label: "Logo Color",
+                      colorFormat: "hex",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },

@@ -5,3 +5,4 @@ export { postMostViewedSchema } from "./blog/post-most-viewed";
 export { heroBlockSchema } from "./blocks/hero";
 export { postFeaturedSchema } from "./blog/post-featured";
 export { statsSchema } from "./blocks/stats";
+export { githubBlockSchema } from "./blocks/github";

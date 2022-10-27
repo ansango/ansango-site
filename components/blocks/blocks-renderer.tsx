@@ -8,6 +8,7 @@ import { PostFeaturedList } from "components/blog/post-featured";
 import { Stats } from "./stats";
 import { PostLatestsList } from "components/blog/post-latests";
 import { PostMostViewedList } from "components/blog/post-most-viewed";
+import { ContributionsLite } from "./github";
 
 export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
   return (
@@ -77,6 +78,15 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
                     key={i + block.__typename}
                   >
                     <Stats />
+                  </div>
+                );
+              case "PageBlocksGithub":
+                return (
+                  <div
+                    data-tinafield={`blocks.${i}`}
+                    key={i + block.__typename}
+                  >
+                    <ContributionsLite />
                   </div>
                 );
               default:
