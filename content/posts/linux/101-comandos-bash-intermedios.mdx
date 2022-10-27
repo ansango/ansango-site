@@ -1,5 +1,5 @@
 ---
-title: Comandos Bash 💻 (Intermedios)
+title: "Comandos Bash \U0001F4BB (Intermedios)"
 summary: Comandos Bash nivel intermedio
 category: linux
 tags:
@@ -8,8 +8,9 @@ tags:
     - terminal
     - zsh
     - linux
-draft: false
-publishedAt: "2021-09-26T22:00:00.000Z"
+draft: true
+featured: false
+publishedAt: '2021-09-26T22:00:00.000Z'
 ---
 
 ## Uso de disco, memoria y procesador
@@ -358,12 +359,12 @@ Los shells de inicio de sesión son shells en los que se entra (donde se tiene u
 
 Además de ~/.bashrc, hay algunos otros scripts que el shell obtiene automáticamente cuando se inicia o se cierra la sesión. Estos son:
 
-- `/etc/profile`
-- `~/.bash_profile`
-- `~/.bash_login`
-- `~/.profile`
-- `~/.bash_logout`
-- `/etc/bash.bash_logout`
+* `/etc/profile`
+* `~/.bash_profile`
+* `~/.bash_login`
+* `~/.profile`
+* `~/.bash_logout`
+* `/etc/bash.bash_logout`
 
 De cómo se obtienen estos scripts, y el orden en que se obtienen, dependen del tipo de shell abierto.
 
@@ -373,12 +374,12 @@ Ten en cuenta que los scripts de bash pueden originar otros scripts. Por ejemplo
 source ~/.bashrc_addl
 ```
 
-lo que también originaría ese script .bashrc_addl. Este archivo puede contener sus propios alias, funciones, variables de entorno, etc. Podría, a su vez, originar otros scripts, también. (¡Ten cuidado y evita los bucles infinitos de aprovisionamiento de scripts!)
+lo que también originaría ese script .bashrc\_addl. Este archivo puede contener sus propios alias, funciones, variables de entorno, etc. Podría, a su vez, originar otros scripts, también. (¡Ten cuidado y evita los bucles infinitos de aprovisionamiento de scripts!)
 
 Puede ser útil dividir los comandos en diferentes scripts de shell basados en la funcionalidad o el tipo de máquina (Ubuntu vs. Red Hat vs. macOS), por ejemplo:
 
 `~/.bash_ubuntu ` - configuración específica para máquinas basadas en Ubuntu
-`~/.bashrc_styles` - configuración estética, como PS1 y LS_COLORS
+`~/.bashrc_styles` - configuración estética, como PS1 y LS\_COLORS
 `~/.bash_java` - configuración específica para el lenguaje Java
 
 Ten en cuenta que también hay diferentes shells. bash es sólo un tipo de shell (el "Bourne Again Shell").
@@ -389,29 +390,23 @@ Otras más comunes son `zsh`, `csh`, `fish` entre otras. Juega con diferentes sh
 ### `whereis / which / whatis`
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 #### `locate / find`
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ## Descargando cosas
@@ -419,41 +414,32 @@ Otras más comunes son `zsh`, `csh`, `fish` entre otras. Juega con diferentes sh
 ### `ping / wget / curl`
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ### `apt / gunzip / tar / gzip`
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ## Redirigir la entrada y la salida
@@ -461,55 +447,43 @@ Otras más comunes son `zsh`, `csh`, `fish` entre otras. Juega con diferentes sh
 ### `| / > / < / echo / printf`
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ### `0 / 1 / 2 / tee`
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ```powershell
-
 ```
 
 ❤️ Espero que te haya gustado la entrada.
 
-Puedes continuar leyendo el siguiente capítulo sobre [Comandos Avanzados](/blog/linux/101-comandos-bash-avanzados), volver al capítulo anterior de [Comandos Básicos](/blog/linux/101-comandos-bash-basicos), o volver al [Índice](/blog/react/indice).
+Puedes continuar leyendo el siguiente capítulo sobre [Comandos Avanzados](/blog/linux/101-comandos-bash-avanzados ""), volver al capítulo anterior de [Comandos Básicos](/blog/linux/101-comandos-bash-basicos ""), o volver al [Índice](/blog/react/indice "").
