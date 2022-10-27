@@ -11,6 +11,8 @@ import {
 
 import { CodeBlock } from "./components/CodeBlock";
 import { Template } from "tinacms/dist/admin/types";
+import { Container, Section } from "components/common";
+import { Markdown } from "lib/tina";
 
 export const components: Components<{
   BlockQuote: BlockQuoteProps;
@@ -20,25 +22,26 @@ export const components: Components<{
   DateTime,
   img,
   code_block: CodeBlock,
-  hr: () => <span className="divider"/>,
+  hr: () => <span className="divider" />,
 };
 
 export const Content: FC<{
   body: any;
   parentField?: string;
 }> = ({ body }) => {
-  return <TinaMarkdown content={body} components={components} />;
+  return (
+    <Section>
+      <Container className="prose prose-h2:text-secondary prose-code:bg-accent prose-code:text-accent-content">
+        <Markdown content={body} />
+      </Container>
+    </Section>
+  );
 };
 
 export const contentBlockSchema: Template = {
   name: "content",
   label: "Content",
   fields: [
-    {
-      label: "Highlight",
-      type: "boolean",
-      name: "highlight",
-    },
     {
       type: "rich-text",
       label: "Body",
