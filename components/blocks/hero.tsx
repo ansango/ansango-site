@@ -46,7 +46,7 @@ const renderHero = (
               )}
               {headline && (
                 <h1
-                  className={`mb-4 text-4xl font-bold leading-none tracking-tighter font-serif italic`}
+                  className={`mb-4 text-4xl font-bold leading-none tracking-wide md:text-8xl font-serif text-primary`}
                   data-tinafield={`${parentField}.headline`}
                 >
                   {headline}
@@ -72,7 +72,7 @@ const renderHero = (
             <div className="flex flex-col w-full mb-12 text-center">
               {headline && (
                 <h1
-                  className={`mb-4 text-4xl font-bold leading-none tracking-tighter`}
+                  className={`mb-4 text-4xl font-bold leading-none tracking-wide md:text-8xl font-serif text-primary`}
                   data-tinafield={`${parentField}.headline`}
                 >
                   {headline}
