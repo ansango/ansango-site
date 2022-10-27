@@ -46,7 +46,7 @@ const renderHero = (
               )}
               {headline && (
                 <h1
-                  className={`mb-4 text-4xl font-bold leading-none tracking-wide md:text-8xl font-serif text-primary`}
+                  className={`mb-4 text-6xl font-bold leading-none tracking-wide md:text-8xl font-serif text-primary`}
                   data-tinafield={`${parentField}.headline`}
                 >
                   {headline}
@@ -72,7 +72,7 @@ const renderHero = (
             <div className="flex flex-col w-full mb-12 text-center">
               {headline && (
                 <h1
-                  className={`mb-4 text-4xl font-bold leading-none tracking-wide md:text-8xl font-serif text-primary`}
+                  className={`mb-4 text-6xl font-bold leading-none tracking-wide md:text-8xl font-serif text-primary`}
                   data-tinafield={`${parentField}.headline`}
                 >
                   {headline}
@@ -111,7 +111,7 @@ const renderHero = (
               )}
               {headline && (
                 <h1
-                  className={`mb-4 text-4xl font-bold leading-none tracking-wide md:text-8xl font-serif text-primary`}
+                  className={`mb-4 text-6xl font-bold leading-none tracking-wide md:text-8xl font-serif text-primary`}
                   data-tinafield={`${parentField}.headline`}
                 >
                   {headline}
@@ -145,7 +145,7 @@ const renderHero = (
               )}
               {headline && (
                 <h1
-                  className={`mb-4 text-4xl font-bold leading-none tracking-wide md:text-6xl lg:text-7xl font-serif text-primary`}
+                  className={`mb-4 text-5xl font-bold leading-none tracking-wide md:text-6xl lg:text-7xl font-serif text-primary`}
                   data-tinafield={`${parentField}.headline`}
                 >
                   {headline}
