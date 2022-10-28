@@ -1,13 +1,14 @@
 import { Container, Section } from "components/common";
-import { useLatestsPostsQuery } from "lib/hooks/queries";
+import { fetcher } from "lib/utils";
 import { Suspense } from "react";
+import useSWR from "swr";
 import { Template } from "tinacms/dist/admin/types";
 import { PostList } from "./common/post-lists";
 import { SubTitlePostList } from "./common/subtitle";
-import { usePostMapper } from "./post-list/query";
 
 export const PostLatestsList = ({ data }: { data: any }) => {
-  const posts = usePostMapper().slice(data?.init || 0, data?.limit || 3);
+  const { data: dataPosts } = useSWR("/api/files", fetcher);
+  const posts = dataPosts?.slice(data?.init || 0, data?.limit || 3);
 
   return (
     <Section>

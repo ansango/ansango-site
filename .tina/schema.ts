@@ -6,7 +6,6 @@ import {
   heroBlockSchema,
   postFeaturedSchema,
   postLatestsSchema,
-  postMostViewedSchema,
   statsSchema,
   githubBlockSchema,
 } from "components/schemas";
@@ -156,7 +155,7 @@ const schema = defineSchema({
             postListSchema,
             postFeaturedSchema,
             postLatestsSchema,
-            postMostViewedSchema,
+
             statsSchema,
             githubBlockSchema,
           ],

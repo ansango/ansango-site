@@ -2,21 +2,18 @@ import { Container } from "components/common";
 import { Template } from "tinacms/dist/admin/types";
 import useSWR from "swr";
 import { fetcher } from "lib/utils";
-import { useAllPostsQuery } from "lib/hooks/queries";
 import { IconStat } from "./icon";
+import { categories } from "constants/categories";
 
 export const Stats = () => {
-  const { data } = useSWR("/api/page-views/basic", fetcher);
-  const { data: dataFiles } = useSWR("/api/files", fetcher);
-  const files = dataFiles?.length;
-  const analytics = data?.analytics;
+  const { data } = useSWR("/api/files", fetcher);
+  const files = data?.length;
+  const readingTimeTotal = data
+    ?.map((file: any) => parseInt(file.readingTime.split(" ")[0]) / 60)
+    .reduce((a: number, b: number) => a + b, 0)
+    .toString()
+    .replace(".", ",");
 
-  const screenPageViews = analytics
-    ?.filter((item: any) => item?.name === "screenPageViews")
-    .map((item: any) => item?.value)[0];
-  const users = analytics
-    ?.filter((item: any) => item?.name === "activeUsers")
-    .map((item: any) => item?.value)[0];
   return (
     <Container className="lg:pb-0">
       <div className="stats stats-vertical md:stats-horizontal shadow w-full">
@@ -33,18 +30,18 @@ export const Stats = () => {
           <div className="stat-figure text-secondary">
             <IconStat kind="views" />
           </div>
-          <div className="stat-title">Visitas</div>
-          <div className="stat-value text-secondary">{screenPageViews}</div>
-          <div className="stat-desc">Las visitas a la página</div>
+          <div className="stat-title">Categorías</div>
+          <div className="stat-value text-secondary">{categories.length}</div>
+          <div className="stat-desc">Del contenido</div>
         </div>
 
         <div className="stat">
           <div className="stat-figure">
             <IconStat kind="users" />
           </div>
-          <div className="stat-title">Usuarios</div>
-          <div className="stat-value">{users}</div>
-          <div className="stat-desc">Los usuarios activos</div>
+          <div className="stat-title">Lectura</div>
+          <div className="stat-value">{readingTimeTotal}</div>
+          <div className="stat-desc">Horas de lectura</div>
         </div>
       </div>
     </Container>

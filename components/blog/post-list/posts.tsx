@@ -2,10 +2,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { Pagination } from "./pagination";
 import { Searcher } from "./searcher";
-import { usePostMapper } from "./query";
-import { formatDate } from "lib/utils";
+import { fetcher, formatDate } from "lib/utils";
 import { useTheme } from "next-themes";
 import { SubTitlePostList } from "../common/subtitle";
+import useSWR from "swr";
 export const Posts = ({
   data,
   parentField = "",
@@ -26,7 +26,7 @@ export const Posts = ({
     active: search?.active || false,
     maxPosts: search?.maxPosts || 3,
   };
-  const posts = usePostMapper() as any;
+  const { data: posts } = useSWR("/api/files", fetcher);
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const filteredPosts =
@@ -80,7 +80,7 @@ export const Posts = ({
                 tags,
                 summary,
                 publishedAt,
-                views,
+                readingTime,
                 slug,
               }: {
                 _sys: any;
@@ -89,7 +89,7 @@ export const Posts = ({
                 tags: any;
                 summary: string;
                 publishedAt: string;
-                views: number;
+                readingTime: string;
                 slug: string;
               },
               i: number
@@ -125,15 +125,10 @@ export const Posts = ({
                               <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
-                                d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
-                              />
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
                               />
                             </svg>
-                            {views}
+                            {readingTime}
                           </span>
                         </div>
                       </div>
