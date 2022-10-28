@@ -1,0 +1,262 @@
+---
+title: variables y funciones en rust
+summary: >-
+  En este capítulo, vamos a crear una función, una variable,
+
+  imprimir una variable en la línea de comandos. Nuestro objetivo para este
+  capítulo es desarrollar confianza sobre las funciones y variables básicas en
+  Rust.
+category: rust
+tags:
+  options:
+    - rust
+    - cargo
+    - rustup
+relatedPosts:
+  postOne: content/posts/rust/empezando-en-rust.mdx
+  postTwo: content/posts/rust/crear-un-nuevo-proyecto-en-rust.mdx
+featured: false
+draft: false
+publishedAt: '2022-10-28T16:53:01.317Z'
+---
+
+## Crear una función
+
+Una función se define con la palabra clave fn, así:
+
+```javascript
+fn main() {
+  println!("Hello, world!");
+}
+```
+
+Por encima de nuestra función `main()`, vamos a crear una nueva función llamada `usage()`. Dentro de ella, utilizaremos la misma macro utilizada para escribir `"¡Hola, mundo!"` para dar salida al nombre y a una breve descripción de nuestra herramienta:
+
+```javascript
+fn usage() {
+  println!("tinymd, a markdown compiler written by <YOUR NAME>");
+}
+
+fn main() {
+  println!("Hello, world!");
+}
+```
+
+Sustituye `<YOUR NAME>` por tu nombre. Compila y ejecuta tu proyecto con cargo run -q, que siempre detectará automáticamente los cambios en tus archivos fuente y reconstruirá tu proyecto si es necesario:
+
+```powershell
+cargo run -q
+Hello, world!
+```
+
+### ¿Para qué era `-q`?
+
+`-q` en `cargo run -q` invoca el modo "silencioso".&#x20;
+
+Sin ella:
+
+```powershell
+cargo run
+
+    Finished dev[unoptimized + debuginfo] target(s) in 0.00s
+      Running`target\debug\tinymd.exe`
+
+ -> Hello, world!
+```
+
+Con ella:
+
+```powershell
+cargo run -q
+-> Hello, world!
+```
+
+### ¿Qué pasa si veo un mensaje de `warning: function is never used`?
+
+Es probable que veas una advertencia parecida a la siguiente:
+
+```powershell
+warning: function is never used: `usage`
+--> src / main.rs: 1: 4
+  |
+  1 | fn usage() {
+  |    ^^^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+```
+
+Esta advertencia desaparecerá una vez que realmente llamemos a la función.
+
+Para ahorrar espacio, así es como compilaremos, construiremos y ejecutaremos el código a medida que hagamos cambios en él.
+
+Ahora vamos a reemplazar el comando `println!` en la función principal con una llamada a `usage()`:
+
+```javascript
+fn usage() {
+  println!("tinymd, a markdown compiler written by <YOUR NAME>");
+}
+
+fn main() {
+  usage();
+}
+```
+
+Por último, vamos a compilar, construir y ejecutar, todo en un solo comando:
+
+```powershell
+cargo run -q
+-> tinymd, a markdown compiler written by <YOUR NAME>
+```
+
+Con nuestra función `usage()` ya creada, vamos a iterar y hacer que devuelva un valor simple que podamos escribir en la ventana de la consola.
+
+## Devolver un valor desde una función
+
+En esta sección, vamos a crear una función llamada `get_version()` que devolverá algún número de versión arbitrario de nuestra herramienta.
+
+Hemos visto antes que una función sin argumentos y sin valor de retorno se escribe así:
+
+```javascript
+fn get_version() {
+}
+```
+
+Digamos que nuestro número de versión es `1000`, y queremos devolverlo desde una función y luego imprimirlo.&#x20;
+
+El rango de un entero sin signo es de 0 a 2X-1, lo que significa que tendríamos que almacenar el número 1000 en al menos un entero sin signo de 16 bits (que tiene un rango de 0 a 65.535).&#x20;
+
+En Rust lo denotamos con la palabra clave `u16`.
+
+Para decirle a una función que devuelva un `u16`, la escribimos así
+
+```javascript
+fn get_version() -> u16 {
+}
+```
+
+Esto declara una función llamada `get_version()` que no toma argumentos y devuelve un `u16`.&#x20;
+
+Puedes ver que especificamos los valores de retorno utilizando el conjunto de símbolos `->`.
+
+Para devolver el valor 1000, podemos usar la palabra clave return (que hace exactamente lo que parece) o simplemente escribir el número.
+
+Las siguientes funciones hacen exactamente lo mismo:
+
+```javascript
+fn get_version() -> u16 {
+  1000
+}
+
+fn get_version() -> u16 {
+  return 1000;
+}
+```
+
+Rust se considera un lenguaje basado en expresiones. Un bloque de código, siendo una expresión, se evalúa a un valor. Como una función es un bloque de código, las funciones también se evalúan a un valor.
+
+Fíjate en que sólo necesitamos el punto y coma cuando usamos la palabra clave `return;` el número 1000 por sí mismo es el valor al que se evalúa el bloque, mientras que return 1000; es una declaración, y las declaraciones terminan con punto y coma.
+
+La forma aceptada en la comunidad de Rust es utilizar la palabra clave return sólo para los retornos tempranos, es decir, para cuando la última sentencia de un bloque en particular puede no ser el único valor que el bloque puede evaluar.&#x20;
+
+Por ejemplo, si queremos imprimir alguna salida basada en el número de versión, haría algo como esto
+
+```javascript
+fn get_version() -> u16 {
+    let version = 1; // For the sake of example
+    if version < 2 {
+        return 1;
+    }
+    2
+}
+```
+
+Este es un bloque de código sin sentido, pero puedes ver que el bloque se evaluará a 1, y en la expresión `if` satisfecha, usamos la palabra clave return para indicar un retorno temprano. Es un retorno anticipado porque el bloque normalmente se evaluaría a 2, pero en el caso de la comprobación `if`, podría devolver un valor antes de cuando se devolvería 2.
+
+Añadamos la nueva función `get_version()` a nuestro programa llamándola desde la macro `println!()` en `usage()`:
+
+```javascript
+fn get_version() -> u16 {
+    1000
+}
+
+fn usage() {
+    println!("tinymd, a markdown compiler written by <YOUR NAME>");
+    println!("Version {}", get_version());
+}
+
+fn main() {
+    usage();
+}
+```
+
+Aquí puedes ver cómo pasamos argumentos a `println!()` como lo haríamos con una función `printf` típica en otro lenguaje.&#x20;
+
+Compila, construye y ejecuta:
+
+```powershell
+cargo run -q
+-> tinymd, a markdown compiler written by <YOUR NAME>
+-> Version 1000
+```
+
+El entero de la versión está siendo impreso, y la macro println! puede inferir que es un entero basado en el tipo de retorno especificado por `get_version()`.
+
+## Crear un número entero como variable
+
+El primer tipo de variable que conoceremos es el entero.&#x20;
+
+Todas las variables en Rust se declaran poniendo su tipo después de su nombre. Por ejemplo, si queremos crear una variable entera para contener la versión de nuestra aplicación, declararíamos una variable versión así:
+
+```javascript
+let version: u16;
+```
+
+Recordemos que u16 es la abreviatura de entero de 16 bits sin signo.
+
+Las variables en Rust se declaran con la palabra clave let, y luego usamos dos puntos : para describir el tipo de la variable.&#x20;
+
+Todas las variables deben ser declaradas de esta manera, a menos que el tipo de la variable pueda ser inferido por, por ejemplo, el valor de retorno de una función..
+
+
+
+Para almacenar nuestra versión arbitraria de la aplicación en una variable, vamos a declararla dentro del ámbito de la función usage().&#x20;
+
+Entonces, en lugar de hacer que println! utilice la función get\_version() para imprimir la versión, haremos que utilice nuestra variable:
+
+```javascript
+fn get_version() -> u16 {
+  1000
+}
+
+fn usage() {
+  let the_version: u16;
+  the_version = get_version();
+  println!("tinymd, a markdown compiler written by <YOUR NAME>");
+  println!("Version {}", the_version);
+}
+
+fn main() {
+  usage();
+}
+```
+
+Rust infiere el tipo de variable que queremos basándose en el valor de retorno de la función que usamos para asignarle un valor.
+
+Podemos mejorar esto dejando que Rust infiera el tipo de the\_version:
+
+```javascript
+fn get_version() -> u16 {
+  1000
+}
+
+fn usage() {
+  let the_version = get_version();
+  // ...
+  println!("Version {}", the_version);
+}
+
+fn main() {
+  usage();
+}
+```
+
