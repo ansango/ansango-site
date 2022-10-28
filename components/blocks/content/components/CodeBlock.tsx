@@ -32,7 +32,7 @@ const Pre = (props: any) => {
       ref={textInput}
       onMouseEnter={onEnter}
       onMouseLeave={onExit}
-      className="relative mockup-code my-5"
+      className="relative mockup-code my-8 shadow-lg"
     >
       {hovered && (
         <button
