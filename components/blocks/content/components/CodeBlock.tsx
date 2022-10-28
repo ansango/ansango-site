@@ -32,7 +32,7 @@ const Pre = (props: any) => {
       ref={textInput}
       onMouseEnter={onEnter}
       onMouseLeave={onExit}
-      className="relative"
+      className="relative mockup-code my-5"
     >
       {hovered && (
         <button
@@ -68,7 +68,7 @@ const Pre = (props: any) => {
         </button>
       )}
 
-      <pre className="py-5">{props.children}</pre>
+      <pre className="no-scrollbar">{props.children}</pre>
     </div>
   );
 };
