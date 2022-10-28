@@ -28,6 +28,34 @@ cat some.html
 <h1>Hello, world!</h1>
 ```
 
+
+
+## Instalar Rust
+
+Antes de comenzar tenemos que instalar Rust, para ello ejecutaremos en nuestra terminal lo siguiente:
+
+```powershell
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+Puedes revisar la documentación [aquí](https://rustup.rs/)
+
+Para comprobar que se ha instalado correctamente, deberemos reiniciar la terminal y ejecutar lo siguiente:
+
+```powershell
+rustc --version
+-> rustc 1.64.0 (a55dd71d5 2022-09-19)
+```
+
+
+
+### Extensiones para VS Code
+
+* [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+* [crates](https://marketplace.visualstudio.com/items?itemName=serayuzgur.crates)
+* [Better TOML](https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml)
+* [CodeLLDB](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb)
+
 ## Objetivos
 
 1. **Crear un nuevo proyecto en Rust**
@@ -55,3 +83,4 @@ cat some.html
    * Escribir en un archivo sin errores
 6. **Release del proyecto**
    * Construir una versión de un proyecto en Rust
+
