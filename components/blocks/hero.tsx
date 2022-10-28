@@ -26,7 +26,6 @@ const renderHero = (
     publishedAt,
     category,
     tags,
-    views,
   }: HeroData,
   parentField: string
 ) => {

@@ -4,12 +4,11 @@ import { Pagination, Post } from "components/blog/post";
 import { RelatedPosts } from "components/blog/post/related-posts";
 import { Layout } from "components/layout/layout";
 import { client, useTina } from "lib/tina";
-import { fetcher, formatSlug, getReadingTime } from "lib/utils";
+import { formatSlug, getReadingTime } from "lib/utils";
 import { getAllFilesFrontMatter, getFiles } from "lib/utils/mdx";
 import { GetStaticPaths } from "next";
 import FourOhFour from "pages/404";
 import { Suspense } from "react";
-import useSWR from "swr";
 
 export default function NextPage(
   props: AsyncReturnType<typeof getStaticProps>["props"]
@@ -20,10 +19,6 @@ export default function NextPage(
     data: props.data,
   });
   const isPublished = !data.post?.draft;
-  const { data: dataR } = useSWR(
-    `/api/page-views/by-path/${props.path}`,
-    fetcher
-  );
 
   const relatedPosts = data?.post?.relatedPosts;
 
@@ -41,21 +36,11 @@ export default function NextPage(
               category: data.post?.category,
               // @ts-ignore
               tags: data.post?.tags?.options,
-              views: dataR?.views,
             }}
           />
           <Post
             {...{
-              title: data.post?.title,
-              summary: data.post?.summary,
               body: data.post?.body,
-              next: props.next,
-              prev: props.prev,
-              readingTime: props.readingTime,
-              publishedAt: data.post?.publishedAt,
-              category: data.post?.category,
-              tags: data.post?.tags?.options,
-              views: dataR?.views,
             }}
           />
           {data?.post?.title && (
