@@ -1,0 +1,28 @@
+---
+title: Crear un nuevo proyecto en Rust
+summary: >-
+  En este capítulo, vamos crear un nuevo proyecto Rust y compilar y construir un
+  "Hello, World"
+category: rust
+tags:
+  options:
+    - rust
+    - cargo
+    - rustup
+featured: false
+draft: false
+publishedAt: '2022-10-28T16:08:15.469Z'
+---
+
+Para empezar, vamos a crear un nuevo proyecto con `cargo`, el gestor de paquetes y la herramienta de construcción de proyectos que viene al instalar Rust.
+
+Vamos a armar este y todos los proyectos en Rust usando la herramienta `cargo`, pasando el argumento new y especificando lo que queremos:
+
+```powershell
+cargo new tinymd --bin
+```
+
+El comando `cargo new `construye un nuevo proyecto, y  `--bin` le dice a Cargo que quieres que este proyecto se construya como un ejecutable (llamado tinymd) en lugar de una biblioteca.
+
+Después de ejecutar el comando, obtendrás una confirmación de que el proyecto se ha construido correctamente. Sigue adelante y abre la carpeta raíz del proyecto, tinymd.
+
