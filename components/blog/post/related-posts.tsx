@@ -31,7 +31,7 @@ const RelatedPost = ({ data }: { data: RelatedPost }) => {
   const { data: dataPosts } = useSWR("/api/files", fetcher);
   const post = dataPosts?.filter(
     (post: any) =>
-      post.slug === data?.id.replace(".mdx", "").replace("content/posts/", "")
+      post.slug === data?.id?.replace(".mdx", "").replace("content/posts/", "")
   )[0];
 
   return (
