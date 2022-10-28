@@ -6,5 +6,6 @@ export const categories = [
   "javascript",
   "linux",
   "react",
+  "rust",
   "otros",
 ];

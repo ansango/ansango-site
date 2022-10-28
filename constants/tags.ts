@@ -7,6 +7,8 @@ export const tools = ["git", "github", "vscode", "firefox"];
 
 export const react = ["react", "hooks", "hoc"];
 
+export const rust = ["rust", "cargo", "rustup"];
+
 export const javascript = [
   "javascript",
   "typescript",
@@ -30,6 +32,7 @@ export const tagOptions = [
   ...javascript,
   ...node,
   ...react,
+  ...rust,
 ];
 
 export const tagsSearcher = [
@@ -39,4 +42,5 @@ export const tagsSearcher = [
   ...javascript,
   ...node,
   ...react,
+  ...rust,
 ];
