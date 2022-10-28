@@ -1,0 +1,163 @@
+---
+title: Strings y memoria
+summary: >-
+  En este capítulo, vamos a crear una variable de cadena, devolver una variable
+  de cadena desde una función, concatenar dos cadenas, imprimir una cadena en la
+  línea de comandos. Entenderemos cómo Rust trata las cadenas y el concepto de
+  propiedad de la memoria.
+category: rust
+tags:
+  options:
+    - cargo
+    - rust
+    - rustup
+relatedPosts:
+  postOne: content/posts/rust/empezando-en-rust.mdx
+  postTwo: content/posts/rust/variables-y-funciones-en-rust.mdx
+featured: false
+draft: true
+publishedAt: '2022-10-28T19:57:02.047Z'
+---
+
+
+
+## Crear una variable de tipo string
+
+Rust tiene dos tipos de strings: cadenas y fragmentos de cadena, cuya principal diferencia es su mutabilidad; una variable mutable puede cambiarse, mientras que una variable inmutable no puede cambiarse.
+
+```markdown
+| Name             | Type     | Mutability                  |
+| ---------------- | -------- | --------------------------- |
+| `A string`       | string   | Can be mutable or inmutable |
+| `A string slice` | &str     | Is only inmutable           |
+
+```
+
+Piensa en una cadena como en un vector; puede crecer y encogerse, puedes meter y sacar elementos de ella, y se libera automáticamente cuando sale del ámbito. En Rust, una cadena es la propietaria de la memoria donde se almacenan los bytes que la componen.
+
+Una cadena de caracteres, por otro lado, no posee ningún búfer en la memoria. En su lugar, toma prestado lo que hay en una dirección de un propietario diferente. Por esta razón, los fragmentos de cadena son siempre inmutables.
+
+### Más sobre strings y fragmentos de strings
+
+Una cadena puede cambiar y un fragmento no, así que en general, utiliza cadenas cuando tengas valores que puedan cambiar y utiliza fragmentos para los valores que no lo harán.
+
+En nuestro compilador markdown, usaremos String para mantener el valor de nuestro HTML compilado hasta que estemos listos para escribirlo en un archivo. El uso de un string slice no tendría sentido en este caso, ya que el valor del String cambiará a medida que le agreguemos datos.
+
+Un \&str, por otro lado, es una ventana a otra cadena, ya sea que esa cadena sea un literal de cadena (en cuyo caso la porción de cadena sería estática y asignada a la pila) o una cadena (en cuyo caso la porción de cadena sería asignada a la pila).
+
+### Usango strings
+
+Veamos cómo estos dos tipos de cadena pueden ser utilizados eficazmente modificando nuestra variable the\_version para que sea un \&str y mientras estamos en ello, cambiemos la versión de nuestro compilador de markdown para que sea una versión más tradicional de los primeros prototipos (0.1) en lugar de 1000:
+
+```powershell
+fn usage() {
+    let the_version: &str = "0.1";
+    println!("tinymd, a markdown compiler written by <YOUR NAME>");
+    println!("The Version: {}", the_version);
+}
+```
+
+Aquí hemos convertido a the\_version en un trozo de cadena (\&str). Rust va a ver el "0.1" y sabe que debe compilar ese valor como una cadena estática en el programa, y luego hace que the\_version tome prestado ese valor.
+
+La razón por la que decimos que toma prestado el valor allí es porque técnicamente no es el propietario del buffer donde vive "0.1" - la aplicación lo es. (Cada vez que se crea un literal de cadena como "0.1" en tiempo de compilación, se crea como una porción de cadena estática, lo que significa que existe en el código binario que compone el ejecutable y no puede ser cambiado).
+
+El compilador de Rust es lo suficientemente inteligente como para inferir el tipo de the\_version basándose en el valor proporcionado ("0.1"), así que podemos reescribir la declaración para omitir el tipo:
+
+```javascript
+let the_version = "0.1";
+```
+
+Aquí omitimos la parte de la declaración : \&str porque Rust deducirá que, dado que "0.1" es un literal de cadena y todos los literales de cadena se convierten en trozos de cadena estáticos
+
+estáticos, the\_version debe ser un \&str.
+
+Cuando Rust va a compilar nuestro programa, la cadena "0.1" se compila en el programa como un literal de cadena (esencialmente una cadena estática) y por lo tanto se instancian en la memoria de la pila, y the\_version (que se asigna dinámicamente en tiempo de ejecución en la memoria de la pila) toma el valor en la dirección en la memoria de la pila donde Rust lo almacenó.
+
+Nuestro programa se construirá y ejecutará sin problemas siempre que comentemos nuestra antigua función get\_version(). Asegúrate de que tu main.rs se vea así ahora:
+
+```javascript
+// Comenta esto por ahora; volveremos a ello pronto
+/*fn get_version() -> u16 {
+    1000
+}*/
+
+fn usage() {
+  let the_version = "0.1";
+  println!("tinymd, a markdown compiler written by <YOUR NAME>");
+  println!("The Version: {}", the_version);
+}
+
+fn main() {
+  usage();
+}
+```
+
+```powershell
+cargo run -q
+-> tinymd, a markdown compiler written by <YOUR NAME>
+-> The Version: 0.1
+```
+
+Aunque se ejecuta bien, no hemos mejorado nada al introducir una versión de cadena en lugar de una versión entera. Lo que queremos hacer es extraer la versión real de la aplicación del archivo de manifiesto del proyecto (Cargo.toml). Rust nos da una macro para hacer precisamente eso: env!(), que devuelve el valor asociado a una clave concreta.
+
+Echemos un vistazo dentro de Cargo.toml ahora mismo, para ver con qué estamos trabajando:
+
+```powershell
+[package]
+name = "tinymd"
+version = "0.1.0"
+authors = ["Jesse Lawson <jesselawson@protonmail.com>"]
+edition = "2018"
+```
+
+Muchos otros lenguajes utilizan archivos de manifiesto como el Cargo.toml de Rust, como Node (package.json). La información aquí es bastante sencilla. Estas variables aquí son a veces llamadas variables de entorno. Rust proporcionará los valores clave del archivo de manifiesto como variables de entorno para nosotros durante la compilación.
+
+Nuestro objetivo es sacar las variables de este archivo de manifiesto y meterlas en nuestra función usage(). Al hacer esto, podremos mostrar los valores de cadena que vemos en el archivo de manifiesto como partes del banner de nuestra aplicación.&#x20;
+
+Para hacer esto, usaremos la macro env!(). Las macros en Rust son, en lo que a nosotros respecta, básicamente lo mismo que las funciones, excepto que una macro tiene un signo de exclamación después de su nombre para denotar que es una macro.&#x20;
+
+La macro env!() toma un argumento: una clave de cadena correspondiente a la variable que queremos.
+
+Las siguientes son las claves de cadena que vamos a utilizar:
+
+* CARGO\_PKG\_VERSION - La versión completa de su paquete.
+* CARGO\_PKG\_AUTHORS - Lista separada por columnas de los autores del manifiesto de su paquete.
+* CARGO\_PKG\_NAME - El nombre de su paquete.
+* CARGO\_PKG\_DESCRIPTION - La descripción del manifiesto de su paquete.
+* CARGO\_PKG\_HOMEPAGE - La página de inicio del manifiesto de su paquete.
+
+Como habrá adivinado, cada una de estas claves de cadena corresponde a una clave del archivo de manifiesto. Por ejemplo, la clave de la versión en el archivo de manifiesto se recupera pasando CARGO\_PKG\_VERSION a env!().
+
+Observará que hay algunos campos en la lista de claves de cadena anterior que no están en el archivo de manifiesto. La razón por la que no están ahí es porque no son parte del andamiaje por defecto. Vamos a seguir adelante y añadirlos; usted es libre de establecer estos a lo que le gustaría.
+
+Vaya al archivo Cargo.toml y añada entradas para la descripción y la página de inicio, luego modifique el nombre, los autores y la versión como considere oportuno:
+
+```powershell
+[package]
+name = "tinymd"
+version = "0.1.0"
+authors = ["Jesse Lawson <drwho@nsa.gov>"]
+edition = "2021"
+description = "A tiny markdown compiler from the book Getting Started with Rust."
+homepage = "https://jesselawson.org/rust"
+```
+
+A continuación, vamos a crear una función que nos obtenga una de las variables de entorno. Hagamos primero la versión. Sabiendo que env!() toma una única clave de cadena como argumento y devuelve la variable de entorno del fichero de manifiesto, ¿cómo crees que lo haríamos?
+
+Una forma es simplemente establecer el valor de la\_versión para que sea el resultado de una llamada a env!():
+
+```javascript
+// ...
+let the_version = env!("CARGO_PKG_VERSION");
+println!("Versión: {}", the_version);
+// ...
+```
+
+Una forma más eficiente de generar el banner es a través de una única llamada a la función. En otras palabras, cada vez que necesitemos imprimir el banner de la herramienta, deberíamos ser capaces de hacerlo con una sola llamada a la función: usage(). Para ello, tendríamos que mover la variable de la versión a la función usage(). Ya que estamos en ello, vamos a encapsular el trabajo de obtener la versión en su propia función, y reemplazar get\_version() con algo un poco más útil.
+
+## Devolver una variable de tipo string desde una función
+
+## Concatenar dos cadenas
+
+## Imprimir un string en la línea de comandos
+
