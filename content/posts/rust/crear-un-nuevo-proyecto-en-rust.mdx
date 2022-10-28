@@ -26,3 +26,56 @@ El comando `cargo new `construye un nuevo proyecto, y  `--bin` le dice a Cargo q
 
 Después de ejecutar el comando, obtendrás una confirmación de que el proyecto se ha construido correctamente. Sigue adelante y abre la carpeta raíz del proyecto, tinymd.
 
+## La estructura del proyecto
+
+Dentro de un proyecto Rust recién creado, encontrarás **tres cosas**:
+
+* Una carpeta `src`, donde vive tu código Rust (los archivos Rust terminan en `.rs`)
+* Un archivo `.gitignore`, porque el pensamiento de control de versiones está incorporado
+* Un archivo `Cargo.toml`, que es el archivo de manifiesto. Este es el script de configuración y dependencias del proyecto. Esto sería como el `package.json` en Node.
+
+Cada vez que creamos un nuevo proyecto como este, Rust nos mete algo de código por defecto. Abre src/main.rs y veamos qué podemos intuir sobre la sintaxis de Rust:
+
+```javascript
+fn main() {
+  println!("¡Hola, mundo!");
+}
+```
+
+Hay muchas cosas que podemos deducir de este pequeño bloque de código:
+
+* Las funciones se declaran con fn;
+* el equivalente de printf es println!, que es una macro y no una función;
+* este programa no hace nada más que imprimir ¡Hola, mundo! en la línea de comandos.
+
+## Funciones vs Macros en Rust
+
+Una macro en Rust encapsula el código y lo presenta de una manera amigable para el desarrollador.
+
+Las macros facilitan la provisión de herramientas incluidas en la batería para ayudar a los desarrolladores a escribir un código más fluido y legible.
+
+## Build del proyecto
+
+Abre tu terminal y luego escribe:
+
+```powershell
+cargo build -q
+```
+
+El comando build compila tu proyecto y construye tu ejecutable. -q le dice a cargo que "se calle".
+
+El ejecutable es una versión de "desarrollo", donde el código no está optimizado y hay símbolos de depuración presentes que normalmente omitiríamos en una versión de producción.
+
+Cuando Cargo termine de construir tu proyecto, tendrás una nueva carpeta llamada target en el directorio del proyecto. Dentro de esa carpeta es donde encontrarás tu ejecutable.
+
+Para ejecutar  nuestro proyecto actual:
+
+```powershell
+cargo run -q
+```
+
+¡Hola, mundo!
+
+Ten en cuenta que no necesitamos pasar el nombre del proyecto; Rust lo deducirá por nosotros, ejecutando el archivo binario apropiado según la versión.
+
+Si ves ¡Hola, mundo! en tu terminal, entonces felicidades: ¡has construido tu primer programa Rust!
