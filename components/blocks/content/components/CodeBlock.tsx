@@ -68,7 +68,7 @@ const Pre = (props: any) => {
         </button>
       )}
 
-      <pre className="no-scrollbar">{props.children}</pre>
+      <pre className="no-scrollbar px-8">{props.children}</pre>
     </div>
   );
 };
